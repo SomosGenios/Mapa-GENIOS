@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diagnóstico G.E.N.I.O.S. · @somosgenios</title>
-  <meta name="description" content="Mide tu reputación profesional con el sistema G.E.N.I.O.S. 24 conductas, tu perfil, tu hexágono y un plan de acción en 6 semanas." />
+  <meta name="description" content="Mide tu reputación profesional con el sistema G.E.N.I.O.S.: 24 conductas, perfil, hexágono, plan de 6 semanas y Capital Reputacional aproximado." />
   <style>
     :root {
       --bg: #f4f1eb;
@@ -298,43 +298,7 @@
       line-height: 1;
     }
     .scale-item .lbl { display: block; width: 100%; text-align: center; font-size: .72rem; color: var(--muted); line-height: 1.2; }
-
-    /* ── PARTICIPANT NAME ── */
-    .name-panel {
-      border: 1px solid rgba(28,51,92,.10);
-      background: linear-gradient(135deg, rgba(28,51,92,.045), rgba(184,138,59,.06));
-      border-radius: 18px;
-      padding: 16px;
-      display: grid;
-      gap: 8px;
-      margin: 0 0 18px;
-    }
-    .name-panel label {
-      display: grid;
-      gap: 8px;
-      font-weight: 900;
-      color: var(--ink);
-      font-size: .9rem;
-    }
-    .name-panel input {
-      width: 100%;
-      border: 1.5px solid rgba(28,51,92,.14);
-      border-radius: 14px;
-      padding: 12px 14px;
-      background: #ffffff;
-      color: var(--ink);
-      outline: none;
-      transition: border-color .15s ease, box-shadow .15s ease;
-    }
-    .name-panel input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(184,138,59,.14);
-    }
-    .name-panel .hint {
-      color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.45;
-    }
+    .scale-item .lbl strong { color: var(--primary); font-weight: 900; }
 
     /* ── PROGRESS ── */
     .progress-wrap { display: grid; gap: 8px; margin-bottom: 20px; }
@@ -522,6 +486,75 @@
     .info-box .val { font-weight: 800; font-size: .92rem; color: var(--ink); }
     .info-box p { color: var(--muted); font-size: .82rem; margin-top: 4px; }
 
+    /* ── NAME INPUT + CAPITAL ── */
+    .name-panel { margin: 0 0 16px; }
+    .field-label {
+      display: block;
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      margin-bottom: 7px;
+    }
+    .name-input {
+      width: 100%;
+      border: 1.5px solid rgba(28,51,92,.16);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--ink);
+      padding: 12px 14px;
+      font-size: .95rem;
+      font-weight: 700;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .name-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(184,138,59,.13);
+    }
+    .name-hint { color: var(--muted); font-size: .82rem; margin-top: 7px; line-height: 1.45; }
+
+    .capital-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .capital-metric {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-2);
+      padding: 12px;
+    }
+    .capital-metric span {
+      display: block;
+      color: var(--muted);
+      font-size: .66rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .capital-metric strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: 950;
+      letter-spacing: -.03em;
+      margin-top: 5px;
+    }
+    .capital-formula {
+      border: 1px dashed rgba(184,138,59,.35);
+      background: var(--accent-light);
+      color: #4b3412;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: .84rem;
+      line-height: 1.45;
+      margin-top: 12px;
+    }
+
     /* ── RADAR ── */
     .radar-wrap { display: grid; place-items: center; padding: 8px 0; }
     #radarSvg { width: 100%; max-width: 300px; height: auto; overflow: visible; }
@@ -685,6 +718,7 @@
       .hero-stat { min-width: 80px; }
       .plan-grid, .sidebar, .kpi-grid { grid-template-columns: 1fr; }
       .info-row { grid-template-columns: 1fr; }
+      .capital-grid { grid-template-columns: 1fr; }
       .scale { gap: 5px; }
       .scale label { height: 42px; }
       .scale-legend { grid-template-columns: repeat(5, 1fr); gap: 4px; }
@@ -1211,7 +1245,7 @@
           Diagnóstico de reputación profesional
         </div>
         <h1>SOMOS<br><em>G·E·N·I·O·S</em></h1>
-        <p class="hero-desc">Evalúa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu letra de entrada y un plan concreto para avanzar.</p>
+        <p class="hero-desc">Evalúa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu letra de entrada, tu Capital Reputacional aproximado y un plan concreto para avanzar.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#diagnostico">Empezar diagnóstico</a>
           <button class="btn btn-ghost-white" id="btnScrollResults" type="button">Ver resultado en vivo</button>
@@ -1221,7 +1255,7 @@
       <div class="hero-stats">
         <div class="hero-stat"><b>24</b><span>conductas medidas</span></div>
         <div class="hero-stat"><b>6</b><span>semanas de plan</span></div>
-        <div class="hero-stat"><b>5</b><span>perfiles G.E.N.I.O.S.</span></div>
+        <div class="hero-stat"><b>6</b><span>dimensiones G.E.N.I.O.S.</span></div>
       </div>
     </div>
   </div>
@@ -1252,12 +1286,17 @@
       <div class="eyebrow">Cómo funciona</div>
       <h2 style="margin-bottom:10px;">Instrucciones para responder</h2>
       <p class="small" style="margin-bottom:16px;">Lee cada afirmación y marca del 1 al 5 según la frecuencia con que esa conducta aparece en tu trabajo real. No respondas desde lo que sabes, lo que valoras o lo que te gustaría hacer: responde desde lo que otros podrían observar en tu comportamiento habitual.</p>
+      <div class="next-block name-panel">
+        <label class="field-label" for="respondentName">Nombre para el reporte final</label>
+        <input class="name-input" id="respondentName" type="text" maxlength="80" placeholder="Escribe tu nombre completo" autocomplete="name" />
+        <div class="name-hint">Antes de descargar, imprimir o copiar el reporte, escribe tu nombre. Aparecerá en la portada y en el resumen final.</div>
+      </div>
       <div class="scale-legend">
-        <div class="scale-item"><span class="val">1</span><span class="lbl">Casi nunca</span></div>
-        <div class="scale-item"><span class="val">2</span><span class="lbl">Pocas veces</span></div>
-        <div class="scale-item"><span class="val">3</span><span class="lbl">Algunas veces</span></div>
-        <div class="scale-item"><span class="val">4</span><span class="lbl">Con frecuencia</span></div>
-        <div class="scale-item"><span class="val">5</span><span class="lbl">Siempre o casi siempre</span></div>
+        <div class="scale-item"><span class="val">1</span><span class="lbl"><strong>Nunca</strong><br>No aparece en mi conducta reciente.</span></div>
+        <div class="scale-item"><span class="val">2</span><span class="lbl"><strong>Casi nunca</strong><br>Aparece en casos aislados.</span></div>
+        <div class="scale-item"><span class="val">3</span><span class="lbl"><strong>A veces</strong><br>Depende del día, del contexto o de la presión.</span></div>
+        <div class="scale-item"><span class="val">4</span><span class="lbl"><strong>Casi siempre</strong><br>Es parte habitual de mi forma de trabajar.</span></div>
+        <div class="scale-item"><span class="val">5</span><span class="lbl"><strong>Siempre o casi siempre</strong><br>Es un patrón reconocible en mí.</span></div>
       </div>
       <div class="next-block" style="margin-top:16px;">
         <span class="next-label">Instrucción clave</span>
@@ -1275,14 +1314,6 @@
         </div>
         <button class="btn btn-danger btn-sm" id="btnReset" type="button">Reiniciar</button>
       </div>
-      <div class="name-panel" id="namePanel">
-        <label for="participantName">
-          Nombre del participante
-          <input id="participantName" name="participantName" type="text" autocomplete="name" maxlength="80" placeholder="Escribe tu nombre antes de comenzar" />
-        </label>
-        <p class="hint">Tu nombre aparecerá en el resultado, el reporte copiado y el PDF descargable. Se guarda solo en este navegador.</p>
-      </div>
-
       <div class="progress-wrap" aria-live="polite">
         <div class="progress-meta">
           <span class="small"><strong id="answeredText">0 de 24 respondidas</strong></span>
@@ -1293,7 +1324,7 @@
 
       <div id="completeBanner" class="complete-banner">
         <div class="complete-icon">🎯</div>
-        <h3 id="completeTitle">¡Diagnóstico completo!</h3>
+        <h3>¡Diagnóstico completo!</h3>
         <p>Tu hexágono, perfil y plan de 6 semanas están listos. Revisa primero tu letra de entrada: ahí está tu mayor oportunidad de avance.</p>
       </div>
 
@@ -1327,7 +1358,7 @@
       <div class="result-header">
         <div>
           <div class="eyebrow">Tu resultado</div>
-          <h3 id="resultTitle">En tiempo real</h3>
+          <h3>En tiempo real</h3>
         </div>
         <span class="live-pill"><span class="live-dot"></span> En vivo</span>
       </div>
@@ -1351,6 +1382,23 @@
           </div>
         </div>
       </div>
+    </section>
+
+
+    <!-- CAPITAL REPUTACIONAL -->
+    <section class="card card-pad" aria-live="polite">
+      <div class="eyebrow">Capital Reputacional</div>
+      <h3>Medición aproximada</h3>
+      <p class="small" style="margin-top:6px;">Valor × Consistencia × Visibilidad. El resultado bruto se convierte a índice /100.</p>
+      <div class="capital-grid">
+        <div class="capital-metric"><span>Valor</span><strong id="capitalValor">—</strong></div>
+        <div class="capital-metric"><span>Consistencia</span><strong id="capitalConsistencia">—</strong></div>
+        <div class="capital-metric"><span>Visibilidad</span><strong id="capitalVisibilidad">—</strong></div>
+        <div class="capital-metric"><span>Resultado bruto</span><strong id="capitalRaw">—</strong></div>
+        <div class="capital-metric"><span>Máximo bruto</span><strong>8.000</strong></div>
+        <div class="capital-metric"><span>Índice /100</span><strong id="capitalIndex">—</strong></div>
+      </div>
+      <div class="capital-formula" id="capitalDiagnosis">Completa las 24 respuestas para ver tu Capital Reputacional aproximado. El ÷80 es solo la conversión matemática hacia escala /100.</div>
     </section>
 
     <!-- HEXÁGONO -->
@@ -1396,12 +1444,12 @@
 
     <!-- PERFIL -->
     <section class="card card-pad">
-      <div class="eyebrow">Paso 4</div>
+      <div class="eyebrow">Perfil sugerido</div>
       <h3>Tu perfil G.E.N.I.O.S.</h3>
       <div class="profile-banner" id="profileBanner">
         <div class="profile-name-label">Perfil sugerido</div>
         <div class="profile-name" id="profileName">Completa las 24 respuestas</div>
-        <div class="profile-meta" id="profileBody">El sistema sugerirá un perfil a partir de tus seis promedios. Úsalo como orientación práctica, no como etiqueta fija.</div>
+        <div class="profile-meta" id="profileBody">El sistema sugerirá un perfil a partir de tus seis resultados. Úsalo como orientación práctica, no como etiqueta fija.</div>
       </div>
       <div class="report-actions">
         <button class="btn btn-outline btn-sm" id="btnCopy" type="button">📋 Copiar reporte</button>
@@ -1425,146 +1473,339 @@
 <script>
   const STORAGE_KEY = 'somos_genios_webapp_v3';
   const PLAN_KEY    = 'somos_genios_plan_v3';
-  const NAME_KEY    = 'somos_genios_participant_name_v1';
+  const NAME_KEY    = 'somos_genios_nombre_v3';
 
   const dimensions = [
     {
-      letter: 'G', name: 'Generar valor', etiqueta: 'VALOR',
-      plan: 'Mover decisiones, no solo informar.',
-      questions: [
-        'Antes de entregar, pienso para qué le sirve a otros.',
-        'Busco el resultado, no solo la tarea.',
-        'Convierto información en un paso claro.',
-        'Puedo decir qué cambió gracias a mi trabajo.'
-      ],
-      actions: [
-        { title: 'Identifica al receptor', body: 'En cada entrega escribe en una línea quién la usará y qué decisión necesita tomar. Antes de enviar pregúntate: ¿esto le permite decidir, o solo le da datos?' },
-        { title: 'De información a recomendación', body: 'En al menos tres entregas agrega tu postura: «recomiendo X porque Y». No entregues opciones sueltas sin tu criterio.' },
-        { title: 'Mide impacto, no horas', body: 'Al cerrar la semana anota qué cambió gracias a tu trabajo: una decisión, un ahorro, un riesgo evitado; no cuántas tareas hiciste.' },
-        { title: 'Anticipa la próxima necesidad', body: 'Entrega algo que nadie pidió pero que el negocio va a necesitar. Empieza a construir tu sello.' }
-      ]
+        "letter": "G",
+        "name": "Generar valor",
+        "etiqueta": "VALOR",
+        "plan": "Abre cada entrega definiendo qué decisión habilita en quien la recibe. Pasa de informar a entregar algo accionable.",
+        "questions": [
+            "Antes de empezar, defino qué decisión, avance o solución debe facilitar mi entrega.",
+            "Mi trabajo ayuda a otros a decidir, avanzar o resolver con mayor claridad.",
+            "Aporto criterio, no solo datos, tareas o información.",
+            "Puedo nombrar qué cambió para otros gracias a mi trabajo."
+        ],
+        "actions": [
+            {
+                "title": "Identifica al receptor",
+                "body": "En cada entrega escribe en una línea quién la usará y qué decisión necesita tomar. Antes de enviar pregúntate: ¿esto le permite decidir, o solo le da datos?"
+            },
+            {
+                "title": "De información a recomendación",
+                "body": "En al menos tres entregas agrega tu postura: «recomiendo X porque Y». No entregues opciones sueltas sin tu criterio."
+            },
+            {
+                "title": "Mide impacto, no horas",
+                "body": "Al cerrar la semana anota qué cambió gracias a tu trabajo (una decisión, un ahorro, un riesgo evitado), no cuántas tareas hiciste."
+            },
+            {
+                "title": "Anticipa la próxima necesidad",
+                "body": "Entrega algo que nadie pidió pero que el negocio va a necesitar. Empieza a construir tu sello."
+            }
+        ]
     },
     {
-      letter: 'E', name: 'Escuchar', etiqueta: 'ESCUCHAR',
-      plan: 'No responder rápido al problema equivocado.',
-      questions: [
-        'Me detengo y pienso antes de responder.',
-        'Busco entender qué necesita la otra persona.',
-        'Pregunto antes de proponer.',
-        'Puedo resumir lo que la otra persona necesita.'
-      ],
-      actions: [
-        { title: 'El silencio de tres segundos', body: 'Antes de responder en reuniones, cuenta hasta tres. Deja que el otro termine de verdad.' },
-        { title: 'Parafrasea antes de opinar', body: 'En cada conversación importante resume lo que entendiste: «si te entendí, lo clave es…» antes de dar tu solución.' },
-        { title: 'Busca lo no dicho', body: 'En tres reuniones identifica qué quería decir el otro y no dijo, y pregúntalo.' },
-        { title: 'Sal aprendiendo', body: 'Termina cada reunión anotando una cosa que no sabías al entrar.' }
-      ]
+        "letter": "E",
+        "name": "Escuchar para entender",
+        "etiqueta": "ESCUCHAR",
+        "plan": "Practica el silencio de tres segundos y verifica lo que entendiste antes de opinar. Escucha el problema, no solo las palabras.",
+        "questions": [
+            "Escucho para comprender el problema antes de responder.",
+            "Hago una segunda pregunta antes de proponer una solución.",
+            "Identifico lo que la otra persona dice, necesita y todavía no formula con claridad.",
+            "Confirmo lo que entendí antes de responder, proponer o actuar."
+        ],
+        "actions": [
+            {
+                "title": "El silencio de tres segundos",
+                "body": "Antes de responder en reuniones, cuenta hasta tres. Deja que el otro termine de verdad."
+            },
+            {
+                "title": "Parafrasea antes de opinar",
+                "body": "En cada conversación importante resume lo que entendiste («si te entendí, lo clave es…») antes de dar tu solución."
+            },
+            {
+                "title": "Busca lo no dicho",
+                "body": "En tres reuniones identifica qué quería decir el otro y no dijo, y pregúntalo."
+            },
+            {
+                "title": "Sal aprendiendo",
+                "body": "Termina cada reunión anotando una cosa que no sabías al entrar."
+            }
+        ]
     },
     {
-      letter: 'N', name: 'Involucrarte', etiqueta: 'INVOLUCRARTE',
-      plan: 'Hacerte cargo sin cargarlo todo.',
-      questions: [
-        'Si veo un problema, lo digo.',
-        'Si algo se puede mejorar, propongo cómo empezar.',
-        'Me hago responsable del resultado completo.',
-        'Tomo iniciativa con aportes útiles sin que me lo pidan.'
-      ],
-      actions: [
-        { title: 'Conecta con el objetivo', body: 'Para cada tarea escribe cómo se conecta con el resultado final del equipo, no solo con tu entregable.' },
-        { title: 'Hazte cargo de un huérfano', body: 'Toma un problema «que no es de nadie» que afecta el resultado. Propón una solución, sin invadir.' },
-        { title: 'Habla cuando veas algo', body: 'En tres ocasiones di lo que detectaste, aunque te expongas o no te lo hayan pedido.' },
-        { title: 'Dueño del resultado', body: 'Elige un proyecto y siéntete responsable del resultado completo, no solo de tu parte.' }
-      ]
+        "letter": "N",
+        "name": "Nivel de involucramiento",
+        "etiqueta": "INVOLUCRAMIENTO",
+        "plan": "Hazte cargo de algo que mejore el resultado aunque no sea tu función —proponiendo, no invadiendo—. Conéctalo con el objetivo final.",
+        "questions": [
+            "Nombro los riesgos antes de que impacten el resultado.",
+            "Doy el primer paso cuando un tema importante está frenado.",
+            "Me involucro hasta dejar el problema encaminado, sin convertirlo en carga propia.",
+            "Coordino con quien corresponde para avanzar sin duplicar esfuerzos."
+        ],
+        "actions": [
+            {
+                "title": "Conecta con el objetivo",
+                "body": "Para cada tarea escribe cómo se conecta con el resultado final del equipo, no solo con tu entregable."
+            },
+            {
+                "title": "Hazte cargo de un huérfano",
+                "body": "Toma un problema «que no es de nadie» y que afecta el resultado. Propón una solución, sin invadir."
+            },
+            {
+                "title": "Habla cuando veas algo",
+                "body": "En tres ocasiones di lo que detectaste útil, aunque te expongas o no te lo hayan pedido."
+            },
+            {
+                "title": "Dueño del resultado",
+                "body": "Elige un proyecto y siéntete responsable del resultado completo, no solo de tu parte."
+            }
+        ]
     },
     {
-      letter: 'I', name: 'Detalle', etiqueta: 'DETALLE',
-      plan: 'Lograr que tu trabajo funcione sin explicaciones.',
-      questions: [
-        'Antes de entregar, verifico que se entienda.',
-        'Anticipo dudas sobre mi trabajo.',
-        'Verifico cifras, nombres y fechas.',
-        'Mis entregas se entienden solas.'
-      ],
-      actions: [
-        { title: 'Que no necesite explicación', body: 'Antes de cerrar, revisa que tu trabajo se entienda y se use sin que tú tengas que explicarlo.' },
-        { title: 'Anticipa las dudas', body: 'Antes de enviar, lista las preguntas que generará tu entrega y respóndelas de antemano.' },
-        { title: 'La cara oculta de la cerca', body: 'Cuida lo que nadie importante revisará con el mismo estándar que lo visible.' },
-        { title: 'Cuida cómo se recibe', body: 'Trabaja la forma en que llega tu trabajo: formato, claridad, orden; no solo que esté correcto.' }
-      ]
+        "letter": "I",
+        "name": "Intención en el detalle",
+        "etiqueta": "DETALLE",
+        "plan": "Antes de cerrar algo, anticipa las dudas que generará y cuídalo aunque nadie importante lo revise.",
+        "questions": [
+            "Reviso que mi entrega se entienda sin explicaciones adicionales.",
+            "Anticipo las dudas de quien recibe mi trabajo.",
+            "Presento mis entregas con claridad y dejo visible el siguiente paso.",
+            "Mi trabajo puede usarse correctamente aunque yo no esté presente para explicarlo."
+        ],
+        "actions": [
+            {
+                "title": "Que no necesite explicación",
+                "body": "Antes de cerrar, revisa que tu trabajo se entienda y se use sin que tú tengas que explicarlo."
+            },
+            {
+                "title": "Anticipa las dudas",
+                "body": "Antes de enviar, lista las preguntas que generará tu entrega y respóndelas de antemano."
+            },
+            {
+                "title": "La cara oculta de la cerca",
+                "body": "Cuida lo que nadie importante revisará con el mismo estándar que lo visible."
+            },
+            {
+                "title": "Cuida cómo se recibe",
+                "body": "Trabaja la forma en que llega tu trabajo (formato, claridad, orden), no solo que esté correcto."
+            }
+        ]
     },
     {
-      letter: 'O', name: 'Crecer', etiqueta: 'CRECER',
-      plan: 'Desarrollarte antes de que la siguiente etapa te lo exija.',
-      questions: [
-        'Desarrollo activamente una habilidad.',
-        'Practico algo que aún no domino.',
-        'Pido feedback honesto.',
-        'Sé qué debo mejorar.'
-      ],
-      actions: [
-        { title: 'Una tarea incómoda', body: 'Elige algo que todavía no dominas y dedícale tiempo deliberado esta semana.' },
-        { title: 'Feedback de lo malo', body: 'Pide feedback honesto sobre lo que haces mal, no confirmación de lo que haces bien.' },
-        { title: 'Elige la opción difícil', body: 'Cuando dudes entre lo cómodo y lo que te hace crecer, elige lo segundo.' },
-        { title: 'Nombra tu avance', body: 'Al cerrar el mes escribe algo concreto que aprendiste o mejoraste.' }
-      ]
+        "letter": "O",
+        "name": "Obsesión por crecer",
+        "etiqueta": "CRECER",
+        "plan": "Elige esta semana la tarea incómoda donde está el aprendizaje y pide feedback sobre lo que haces mal.",
+        "questions": [
+            "Identifico qué capacidad debo fortalecer para mi siguiente etapa profesional.",
+            "Practico habilidades que aún no domino, aunque implique exponerme a errores.",
+            "Busco feedback o referentes que me ayuden a mejorar lo que necesito aprender.",
+            "Convierto lo aprendido en una mejora visible en mi próxima entrega, reunión o decisión."
+        ],
+        "actions": [
+            {
+                "title": "Una tarea incómoda",
+                "body": "Elige algo que todavía no dominas y dedícale tiempo deliberado esta semana."
+            },
+            {
+                "title": "Feedback de lo malo",
+                "body": "Pide a alguien feedback honesto sobre lo que haces mal, no confirmación de lo que haces bien."
+            },
+            {
+                "title": "Elige la opción difícil",
+                "body": "Cuando dudes entre lo cómodo y lo que te hace crecer, elige lo segundo."
+            },
+            {
+                "title": "Nombra tu avance",
+                "body": "Al cerrar el mes escribe algo concreto que aprendiste o mejoraste."
+            }
+        ]
     },
     {
-      letter: 'S', name: 'Consistencia', etiqueta: 'CONSISTENCIA',
-      plan: 'Sostener tu estándar cuando la semana se complica.',
-      questions: [
-        'Mantengo mi estándar incluso en semanas difíciles.',
-        'En semanas difíciles, cumplo lo prometido.',
-        'La gente sabe qué esperar de mí.',
-        'Mantengo mi estándar en el tiempo.'
-      ],
-      actions: [
-        { title: 'Define tu mínimo', body: 'Escribe un mínimo no negociable semanal, visible y verificable.' },
-        { title: 'Sostenlo en el día malo', body: 'Cúmplelo aunque estés cansado o desmotivado: el estándar no depende del ánimo.' },
-        { title: 'Hazte predecible', body: 'Trabaja para que la gente sepa qué versión tuya va a encontrar.' },
-        { title: 'Tu estándar, no su mirada', body: 'Mantén el nivel aunque nadie te observe; si fallas, repórtalo tú.' }
-      ]
+        "letter": "S",
+        "name": "Sostener la consistencia",
+        "etiqueta": "CONSISTENCIA",
+        "plan": "Define tu mínimo no negociable y sostenlo en tu peor día. Eres tan confiable como tu peor día, no como tu mejor día.",
+        "questions": [
+            "Tengo definido qué estándar mínimo voy a proteger cuando la semana se vuelve difícil.",
+            "Hago seguimiento activo, aviso a tiempo y dejo claros los próximos pasos.",
+            "Mantengo una forma de trabajar confiable incluso bajo presión, urgencia o desorden.",
+            "Cuando fallo, me atraso o algo cambia, respondo con responsabilidad y recupero el estándar."
+        ],
+        "actions": [
+            {
+                "title": "Define tu mínimo",
+                "body": "Escribe un mínimo no negociable semanal, visible y verificable."
+            },
+            {
+                "title": "Sostenlo en el día malo",
+                "body": "Cúmplelo aunque estés cansado o desmotivado: el estándar no depende del ánimo."
+            },
+            {
+                "title": "Hazte predecible",
+                "body": "Trabaja para que la gente sepa qué versión tuya va a encontrar."
+            },
+            {
+                "title": "Tu estándar, no su mirada",
+                "body": "Mantén el nivel aunque nadie te observe; si fallas, repórtalo tú."
+            }
+        ]
+    }
+];
+
+  const thresholds = [
+    {
+        "min": 0,
+        "num": 0,
+        "name": "—",
+        "desc": "Responde las 24 afirmaciones (1 a 5) para ver tu resultado y tu hexágono.",
+        "phrase": ""
+    },
+    {
+        "min": 24,
+        "num": 1,
+        "name": "Talento invisible",
+        "desc": "Tienes capacidad, pero todavía no se traduce con suficiente claridad en conductas observables.",
+        "phrase": "Punto de partida: elige una letra y conviértela en una conducta visible esta semana."
+    },
+    {
+        "min": 48,
+        "num": 2,
+        "name": "Profesional cumplidor",
+        "desc": "Respondes, avanzas y probablemente haces bien varias cosas, pero tu reputación todavía depende demasiado del contexto.",
+        "phrase": "Punto de partida: trabaja la letra más baja hasta que deje de aparecer solo en buenos días."
+    },
+    {
+        "min": 72,
+        "num": 3,
+        "name": "Profesional confiable",
+        "desc": "Tu forma de trabajar ya empieza a construir expectativa. Otros pueden reconocer valor, responsabilidad o claridad.",
+        "phrase": "Punto de partida: no intentes mejorar todo; protege tu letra más débil."
+    },
+    {
+        "min": 96,
+        "num": 4,
+        "name": "Referente en construcción",
+        "desc": "Tu nombre ya empieza a significar algo concreto. Hay señales que se repiten y una reputación que comienza a sostener decisiones.",
+        "phrase": "Punto de partida: define qué conducta quieres que otros asocien con tu nombre."
+    },
+    {
+        "min": 112,
+        "num": 5,
+        "name": "Genio en movimiento",
+        "desc": "Tu forma de trabajar muestra un patrón fuerte de valor, consistencia y visibilidad.",
+        "phrase": "Punto de partida: evita la complacencia y convierte tu letra menos sólida en tu siguiente estándar."
     }
   ];
 
-  const thresholds = [
-    { min: 0,   num: 0, name: '—',        desc: 'Responde las 24 afirmaciones para ver tu resultado.', phrase: '' },
-    { min: 24,  num: 1, name: 'Operador', desc: 'Tu atención se concentra en ejecutar tareas inmediatas y todavía dependes demasiado de instrucciones.', phrase: 'Hoy soy Operador, y por eso tengo el mayor margen de crecimiento de todos.' },
-    { min: 44,  num: 2, name: 'Cumplidor', desc: 'Respondes y entregas, pero aún existen pocas señales que te diferencien con claridad.', phrase: 'Soy Cumplidor camino a Confiable.' },
-    { min: 63,  num: 3, name: 'Confiable', desc: 'Varias conductas ya aparecen con regularidad, aunque uno o dos ejes todavía limitan tu impacto.', phrase: 'Soy Confiable trabajando para llegar a Impacto.' },
-    { min: 82,  num: 4, name: 'Impacto',  desc: 'Tu trabajo suele producir valor más allá de la tarea y las personas comienzan a buscarte por tu criterio.', phrase: 'Genero Impacto y ahora construyo mi sello.' },
-    { min: 102, num: 5, name: 'Genio',    desc: 'Las seis conductas aparecen con alta frecuencia en tu autoevaluación.', phrase: 'Soy un Genio sosteniendo el estándar que me trajo hasta aquí.' }
-  ];
-
   const riskTable = {
-    1: { riesgo: 'Quedar atado a la tarea.', prioridad: 'Elegir una letra y practicar una conducta visible durante 30 días.', pregunta: '¿Qué puedo comenzar a hacer sin esperar una instrucción más detallada?' },
-    2: { riesgo: 'La invisibilidad profesional.', prioridad: 'Convertir una fortaleza general en una contribución que otros puedan reconocer y describir.', pregunta: '¿Por qué problema específico quiero que las personas comiencen a buscarme?' },
-    3: { riesgo: 'Instalarte en una reputación positiva que dejó de evolucionar.', prioridad: 'Fortalecer tus letras más bajas y buscar evidencia externa de cambio.', pregunta: '¿Qué conducta me impide pasar de ser confiable a ser una elección evidente?' },
-    4: { riesgo: 'Depender de momentos excepcionales.', prioridad: 'Convertir tus fortalezas en un patrón sostenible y reconocible.', pregunta: '¿Qué debo sostener para que mi impacto deje de depender de la ocasión?' },
-    5: { riesgo: 'Confundir autopercepción con reputación.', prioridad: 'Contrastar el resultado y evitar que el reconocimiento reduzca tu estándar.', pregunta: '¿Qué evidencia tienen los demás para confirmar la puntuación que acabo de asignarme?' }
+    "1": {
+        "riesgo": "tener capacidad, pero no dejar suficiente conducta observable.",
+        "prioridad": "elegir una letra y convertirla en una conducta visible durante la primera semana del plan.",
+        "pregunta": "¿Qué conducta concreta puedo mostrar esta semana para reducir incertidumbre?"
+    },
+    "2": {
+        "riesgo": "que tu reputación dependa demasiado del contexto o de tus buenos días.",
+        "prioridad": "trabajar la letra más baja hasta que aparezca incluso bajo presión.",
+        "pregunta": "¿Qué conducta debo sostener cuando el día no ayuda?"
+    },
+    "3": {
+        "riesgo": "querer mejorar todo y perder foco.",
+        "prioridad": "proteger tu letra más débil y repetir una conducta visible.",
+        "pregunta": "¿Qué letra está dejando más incertidumbre en la sala?"
+    },
+    "4": {
+        "riesgo": "no definir con precisión qué conducta quieres que otros asocien con tu nombre.",
+        "prioridad": "convertir una señal positiva en un patrón reconocible.",
+        "pregunta": "¿Qué conducta quiero que otros recuerden cuando mi nombre aparezca?"
+    },
+    "5": {
+        "riesgo": "relajarte por un índice alto y dejar sin trabajar tu punto menos sólido.",
+        "prioridad": "evitar la complacencia y convertir tu letra menos sólida en tu siguiente estándar.",
+        "pregunta": "¿Qué evidencia nueva debo construir para no depender de mi reputación pasada?"
+    }
   };
 
   const profiles = {
-    1: { name: 'El Profesional Invisible', riesgo: 'Asumir que la calidad hablará por sí sola.', entrada: 'E', pregunta: '¿Comprendo realmente qué necesita quien recibe mi trabajo?' },
-    2: { name: 'El Cumplidor Perfecto',    riesgo: 'Ser confiable pero intercambiable.', entrada: 'G', pregunta: '¿Qué problema quiero que las personas asocien con mi nombre?' },
-    3: { name: 'El Talento Impredecible',  riesgo: 'Que admiren tu potencial sin confiarte lo más importante.', entrada: 'S', pregunta: '¿Qué estándar mínimo debo sostener incluso durante una semana difícil?' },
-    4: { name: 'El Ocupado Invisible',     riesgo: 'Convertir actividad en invisibilidad.', entrada: 'G', pregunta: '¿Qué decisión, solución o avance habilita lo que estoy haciendo?' },
-    5: { name: 'El Especialista Desconectado', riesgo: 'Crear una buena solución que el entorno no logra usar.', entrada: 'E', pregunta: '¿Estoy resolviendo el problema real o el que resulta más cómodo?' },
-    6: { name: 'El Rescatista Agotado',    riesgo: 'Volverte indispensable para los problemas equivocados.', entrada: 'I o S', pregunta: '¿Estoy mejorando el resultado o evitando que otros asuman su responsabilidad?' },
-    7: { name: 'El Genio Emergente',       riesgo: 'Relajarte ante los primeros resultados.', entrada: 'tu segunda letra más baja', pregunta: '¿Qué comportamiento debo fortalecer antes de que se convierta en mi próximo límite?' }
-  };
+    "1": {
+        "name": "El Profesional Invisible",
+        "riesgo": "asumir que la calidad hablará por sí sola.",
+        "entrada": "E",
+        "pregunta": "¿Comprendo realmente qué necesita la persona que recibe mi trabajo?"
+    },
+    "2": {
+        "name": "El Cumplidor Perfecto",
+        "riesgo": "ser confiable, aunque intercambiable.",
+        "entrada": "G",
+        "pregunta": "¿Qué problema quiero que las personas asocien con mi nombre?"
+    },
+    "3": {
+        "name": "El Talento Impredecible",
+        "riesgo": "que admiren tu potencial sin confiarte lo más importante.",
+        "entrada": "S",
+        "pregunta": "¿Qué estándar mínimo debo sostener incluso durante una semana difícil?"
+    },
+    "4": {
+        "name": "El Ocupado Invisible",
+        "riesgo": "convertir actividad en invisibilidad.",
+        "entrada": "G",
+        "pregunta": "¿Qué decisión, solución o avance habilita lo que estoy haciendo?"
+    },
+    "5": {
+        "name": "El Especialista Desconectado",
+        "riesgo": "crear una buena solución que el entorno no logra usar.",
+        "entrada": "E",
+        "pregunta": "¿Estoy resolviendo el problema real o el que resulta más cómodo para mí?"
+    },
+    "6": {
+        "name": "El Rescatista Agotado",
+        "riesgo": "volverte indispensable para los problemas equivocados.",
+        "entrada": "I o S",
+        "pregunta": "¿Estoy mejorando el resultado o evitando que otros asuman su responsabilidad?"
+    },
+    "7": {
+        "name": "El Genio Emergente",
+        "riesgo": "relajarte ante los primeros resultados.",
+        "entrada": "tu segunda letra más baja",
+        "pregunta": "¿Qué comportamiento debo fortalecer antes de que se convierta en mi próximo límite?"
+    }
+};
 
   const weeklyPlan = [
-    { title: 'SEMANA 1 · G — Generar valor', body: 'Conducta: antes de una entrega importante, define en una frase qué decisión, solución o avance debe facilitar.\nEvidencia: alguien pudo decidir, comprender o avanzar con menos fricción.\nPróxima repetición: ¿dónde más aplicarás la misma pregunta esta semana?' },
-    { title: 'SEMANA 2 · E — Escuchar', body: 'Conducta: en una conversación donde sueles responder rápido, formula una segunda pregunta y verifica lo que entendiste antes de proponer.\nEvidencia: apareció información que cambió tu respuesta o tu interpretación del problema.\nPróxima repetición: ¿en qué conversación necesitas comprender antes de demostrar que sabes?' },
-    { title: 'SEMANA 3 · N — Involucrarte', body: 'Conducta: frente a un riesgo sin dueño que afecta el resultado, hazlo visible, propón un primer paso e involucra a quien corresponde.\nEvidencia: el problema pasó de la observación a una conversación, una decisión o una acción.\nPróxima repetición: ¿qué límite respetarás para no convertirte en rescatista?' },
-    { title: 'SEMANA 4 · I — Detalle', body: 'Conducta: revisa tu entrega más importante desde el lugar de quien la usará con cuatro pasadas: orientación, decisión, fricción, confianza.\nEvidencia: el receptor pudo comprender y actuar sin reconstruir el contexto.\nPróxima repetición: ¿qué fricción eliminarás primero en tu próxima entrega?' },
-    { title: 'SEMANA 5 · O — Crecer', body: 'Conducta: practica 30 minutos una capacidad ligada a una brecha de valor, pide retroalimentación específica y aplícala en una situación real.\nEvidencia: hiciste algo que antes evitabas o no podías hacer.\nPróxima repetición: ¿qué corregirás y volverás a practicar antes de subir la dificultad?' },
-    { title: 'SEMANA 6 · S — Consistencia', body: 'Conducta: elige una responsabilidad que se deteriora con el cansancio; define tu máximo, estándar y mínimo, comunica riesgos a tiempo.\nEvidencia: otros pudieron anticipar cómo responderías aun en condiciones no ideales.\nPróxima repetición: ¿qué mínimo protegerás en tu próximo ciclo?' }
-  ];
+    {
+        "title": "SEMANA 1 · G — Generar valor",
+        "body": "Conducta: antes de una entrega importante, define en una frase qué decisión, solución o avance debe facilitar; elimina lo que no aporta a eso.\nEvidencia: alguien pudo decidir, comprender o avanzar con menos fricción.\nPróxima repetición: ¿dónde más aplicarás la misma pregunta esta semana?"
+    },
+    {
+        "title": "SEMANA 2 · E — Escuchar para entender",
+        "body": "Conducta: en una conversación donde sueles responder rápido, formula una segunda pregunta y verifica lo que entendiste antes de proponer.\nEvidencia: apareció información que cambió tu respuesta o tu interpretación del problema.\nPróxima repetición: ¿en qué conversación necesitas comprender antes de demostrar que sabes?"
+    },
+    {
+        "title": "SEMANA 3 · N — Nivel de involucramiento",
+        "body": "Conducta: frente a un riesgo sin dueño que afecta el resultado, hazlo visible, propón un primer paso e involucra a quien corresponde, sin apropiarte de todo.\nEvidencia: el problema pasó de la observación a una conversación, una decisión o una acción.\nPróxima repetición: ¿qué límite respetarás para no convertirte en rescatista?"
+    },
+    {
+        "title": "SEMANA 4 · I — Intención en el detalle",
+        "body": "Conducta: revisa tu entrega más importante desde el lugar de quien la usará, con las cuatro pasadas (orientación, decisión, fricción, confianza); elimina, no agregues.\nEvidencia: el receptor pudo comprender y actuar sin reconstruir el contexto.\nPróxima repetición: ¿qué fricción eliminarás primero en tu próxima entrega?"
+    },
+    {
+        "title": "SEMANA 5 · O — Obsesión por crecer",
+        "body": "Conducta: practica 30 minutos una capacidad ligada a una brecha de valor, pide retroalimentación específica y aplícala en una situación real; no acumules cursos.\nEvidencia: hiciste algo que antes evitabas o no podías hacer.\nPróxima repetición: ¿qué corregirás y volverás a practicar antes de subir la dificultad?"
+    },
+    {
+        "title": "SEMANA 6 · S — Sostener la consistencia",
+        "body": "Conducta: elige una responsabilidad que se deteriora con el cansancio; define tu máximo, estándar y mínimo, comunica riesgos a tiempo y, si fallas, recupera el patrón en 24 horas.\nEvidencia: otros pudieron anticipar cómo responderías aun en condiciones no ideales.\nPróxima repetición: ¿qué mínimo protegerás en tu próximo ciclo?"
+    }
+];
 
   let answers  = loadJSON(STORAGE_KEY, {});
   let planDone = loadJSON(PLAN_KEY, {});
-  let participantName = localStorage.getItem(NAME_KEY) || '';
+  let respondentName = localStorage.getItem(NAME_KEY) || '';
 
   /* ── UTILITIES ── */
   function loadJSON(key, fallback) {
@@ -1572,18 +1813,20 @@
   }
   function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(answers)); }
   function savePlan()  { localStorage.setItem(PLAN_KEY,    JSON.stringify(planDone)); }
-  function saveName()  { localStorage.setItem(NAME_KEY, participantName); }
-  function getParticipantName() { return participantName.trim(); }
-
-  function initNameInput() {
-    const input = document.getElementById('participantName');
-    if (!input) return;
-    input.value = participantName;
-    input.addEventListener('input', e => {
-      participantName = e.target.value;
-      saveName();
-      updateAll();
-    });
+  function saveName()  { localStorage.setItem(NAME_KEY, respondentName); }
+  function getRespondentName() {
+    const input = document.getElementById('respondentName');
+    return (input ? input.value : respondentName).trim();
+  }
+  function ensureNameForReport() {
+    const input = document.getElementById('respondentName');
+    if (getRespondentName()) return true;
+    if (input) {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => input.focus(), 250);
+    }
+    toast('Escribe tu nombre para que aparezca en el reporte final.');
+    return false;
   }
 
   /* ── RENDER QUESTIONS ── */
@@ -1616,12 +1859,12 @@
         const opts = [1,2,3,4,5].map(v => `
           <span>
             <input type="radio" name="${key}" id="${key}-${v}" value="${v}" ${answers[key] === v ? 'checked' : ''}>
-            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'Casi nunca' : v === 2 ? 'Pocas veces' : v === 3 ? 'Algunas veces' : v === 4 ? 'Con frecuencia' : 'Siempre'}">${v}</label>
+            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'Nunca. No aparece en mi conducta reciente.' : v === 2 ? 'Casi nunca. Aparece en casos aislados.' : v === 3 ? 'A veces. Depende del día, del contexto o de la presión.' : v === 4 ? 'Casi siempre. Es parte habitual de mi forma de trabajar.' : 'Siempre o casi siempre. Es un patrón reconocible en mí.'}">${v}</label>
           </span>`).join('');
         q.innerHTML = `
           <p><span class="q-num">${globalIndex}</span>${question}</p>
           <div class="scale" role="radiogroup" aria-label="Respuesta ${globalIndex}">${opts}</div>
-          <div class="scale-help"><span>1 · Casi nunca</span><span>5 · Siempre o casi siempre</span></div>
+          <div class="scale-help"><span>1 · Nunca</span><span>5 · Siempre o casi siempre</span></div>
         `;
         q.querySelectorAll('input').forEach(input => {
           input.addEventListener('change', e => {
@@ -1637,7 +1880,7 @@
     });
   }
 
-  /* ── RENDER PLAN ── */
+  /* ── RENDER WEEKLY PLAN ── */
   function renderPlan() {
     const root = document.getElementById('planGrid');
     root.innerHTML = '';
@@ -1660,7 +1903,7 @@
         planDone[key] = cb.checked;
         card.classList.toggle('done', cb.checked);
         savePlan();
-        toast(cb.checked ? '✓ Semana marcada como lista.' : 'Semana desmarcada.');
+        toast(cb.checked ? '✓ Paso marcado como listo.' : 'Paso desmarcado.');
       });
       root.appendChild(card);
     });
@@ -1679,7 +1922,41 @@
     const focusIndex    = complete ? indexOfMin(dimScores.map(d => d.score)) : -1;
     const strengthIndex = complete ? indexOfMax(dimScores.map(d => d.score)) : -1;
     const profileIndex  = complete ? getProfileIndex(dimScores, total) : 0;
-    return { answered, dimScores, total, complete, level, focusIndex, strengthIndex, profileIndex };
+    const capital = calculateCapital(dimScores, complete);
+    return { answered, dimScores, total, complete, level, focusIndex, strengthIndex, profileIndex, capital };
+  }
+
+  function calculateCapital(dimScores, complete) {
+    const byLetter = Object.fromEntries(dimScores.map(d => [d.letter, d.score]));
+    const valor = ((byLetter.G || 0) + (byLetter.E || 0)) / 2;
+    const consistencia = ((byLetter.N || 0) + (byLetter.S || 0)) / 2;
+    const visibilidad = ((byLetter.I || 0) + (byLetter.O || 0)) / 2;
+    const raw = Math.round(valor * consistencia * visibilidad);
+    const maxRaw = 8000;
+    const index = Math.max(0, Math.min(100, Math.round(raw / 80)));
+    const factors = [
+      { key: 'Valor', value: valor },
+      { key: 'Consistencia', value: consistencia },
+      { key: 'Visibilidad', value: visibilidad }
+    ];
+    const weakest = factors.reduce((min, item) => item.value < min.value ? item : min, factors[0]);
+    return {
+      valor,
+      consistencia,
+      visibilidad,
+      raw,
+      maxRaw,
+      index,
+      weakest: weakest.key,
+      diagnosis: complete ? interpretCapital(index) : 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado.'
+    };
+  }
+
+  function interpretCapital(index) {
+    if (index <= 25) return 'Capital Reputacional débil. Hay capacidad, pero la evidencia no aparece con suficiente fuerza, repetición o visibilidad.';
+    if (index <= 50) return 'Capital Reputacional en formación. Hay señales valiosas, pero todavía no forman un patrón suficientemente claro.';
+    if (index <= 75) return 'Capital Reputacional funcionando. Tu forma de trabajar ya empieza a dejar una expectativa reconocible.';
+    return 'Capital Reputacional fuerte. Tu nombre empieza a significar algo concreto para otros. El desafío es sostener el estándar.';
   }
 
   function getLevel(total) {
@@ -1710,6 +1987,7 @@
     updateProgress(state);
     updateSubtotals(state);
     updateResult(state);
+    updateCapital(state);
     updateRadar(state);
     updateBars(state);
     updatePlanIntro(state);
@@ -1737,9 +2015,6 @@
 
   function updateCompleteBanner({ complete }) {
     const banner = document.getElementById('completeBanner');
-    const title = document.getElementById('completeTitle');
-    const participant = getParticipantName();
-    if (title) title.textContent = participant ? `¡Diagnóstico completo, ${participant}!` : '¡Diagnóstico completo!';
     banner.classList.toggle('show', complete);
   }
 
@@ -1755,10 +2030,6 @@
   }
 
   function updateResult({ complete, total, level, dimScores, focusIndex, strengthIndex, profileIndex }) {
-    const participant = getParticipantName();
-    const resultTitle = document.getElementById('resultTitle');
-    if (resultTitle) resultTitle.textContent = participant ? `Resultado de ${participant}` : 'En tiempo real';
-
     document.getElementById('kpiScore').textContent     = total;
     document.getElementById('kpiLevel').textContent     = complete ? level.num : '—';
     document.getElementById('kpiLevelName').textContent = complete ? level.name : 'Completa';
@@ -1778,7 +2049,26 @@
     document.getElementById('profileName').textContent  = profile ? profile.name : 'Completa las 24 respuestas';
     document.getElementById('profileBody').innerHTML    = profile
       ? `<strong>Riesgo:</strong> ${profile.riesgo}<br><br><strong>Punto de entrada:</strong> ${profile.entrada}<br><br><em>${profile.pregunta}</em>`
-      : 'El sistema sugerirá un perfil a partir de tus seis promedios. No es una etiqueta fija.';
+      : 'El sistema sugerirá un perfil a partir de tus seis resultados. No es una etiqueta fija.';
+  }
+
+  function updateCapital({ complete, capital }) {
+    const setMetric = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+    if (!complete) {
+      setMetric('capitalValor', '—');
+      setMetric('capitalConsistencia', '—');
+      setMetric('capitalVisibilidad', '—');
+      setMetric('capitalRaw', '—');
+      setMetric('capitalIndex', '—');
+      document.getElementById('capitalDiagnosis').textContent = 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado. El ÷80 es solo la conversión matemática hacia escala /100.';
+      return;
+    }
+    setMetric('capitalValor', `${capital.valor.toFixed(1)}/20`);
+    setMetric('capitalConsistencia', `${capital.consistencia.toFixed(1)}/20`);
+    setMetric('capitalVisibilidad', `${capital.visibilidad.toFixed(1)}/20`);
+    setMetric('capitalRaw', capital.raw.toLocaleString('es-CL'));
+    setMetric('capitalIndex', `${capital.index}/100`);
+    document.getElementById('capitalDiagnosis').textContent = `Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000. Conversión: resultado bruto ÷ 80 = ${capital.index}/100. Lectura: ${capital.diagnosis} Factor más bajo: ${capital.weakest}.`;
   }
 
   /* ── RADAR ── */
@@ -1896,12 +2186,10 @@
 
   function buildReportText() {
     const state = calculate();
-    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
-    const participant = getParticipantName();
-    const lines = ['SOMOS G.E.N.I.O.S. · Reporte de diagnóstico'];
-    if (participant) lines.push(`Participante: ${participant}`);
-    lines.push('');
-    lines.push(`Respondidas: ${answered}/24`, `Puntaje: ${total}/120`);
+    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
+    const name = getRespondentName();
+    const lines = ['SOMOS G.E.N.I.O.S. · Reporte de diagnóstico', ''];
+    lines.push(`Nombre: ${name || 'Sin nombre'}`, `Respondidas: ${answered}/24`, `Puntaje: ${total}/120`);
     if (!complete) { lines.push('Resultado: diagnóstico incompleto.'); return lines.join('\n'); }
     const focus    = dimScores[focusIndex];
     const strength = dimScores[strengthIndex];
@@ -1910,6 +2198,14 @@
     lines.push(`Nivel: ${level.num} · ${level.name}`, `Frase: ${level.phrase}`, '', 'Subtotales:');
     dimScores.forEach(d => lines.push(`- ${d.letter} · ${d.name}: ${d.score}/20 · promedio ${d.avg.toFixed(2)}`));
     lines.push('', `Fortaleza: ${strength.letter} · ${strength.name}`, `Foco de entrada: ${focus.letter} · ${focus.name}`,
+      '', 'Capital Reputacional aproximado:',
+      `- Valor: ${capital.valor.toFixed(1)}/20`,
+      `- Consistencia: ${capital.consistencia.toFixed(1)}/20`,
+      `- Visibilidad: ${capital.visibilidad.toFixed(1)}/20`,
+      `- Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000`,
+      `- Conversión a índice: resultado bruto ÷ 80`,
+      `- Índice de Capital Reputacional: ${capital.index}/100`,
+      `- Lectura: ${capital.diagnosis}`,
       '', `Riesgo: ${risk.riesgo}`, `Prioridad: ${risk.prioridad}`, `Pregunta de avance: ${risk.pregunta}`,
       '', `Perfil sugerido: ${profile.name}`, `Riesgo del perfil: ${profile.riesgo}`,
       `Punto de entrada del perfil: ${profile.entrada}`, `Pregunta clave del perfil: ${profile.pregunta}`,
@@ -1921,13 +2217,12 @@
 
   function buildPrintableReportHTML() {
     const state = calculate();
-    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
+    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
+    const name = getRespondentName();
     const date = new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' });
-    const participant = getParticipantName();
-    const participantLabel = participant ? participant : 'Sin nombre';
     const scoreLabel = complete ? `${total}/120` : `${answered}/24`;
     const coverSubtitle = complete
-      ? 'Tu mapa de reputación profesional, nivel, foco de entrada y plan de acción personalizado.'
+      ? 'Tu mapa de reputación profesional, nivel, foco de entrada, Capital Reputacional y plan de 6 semanas.'
       : 'Reporte preliminar. Completa las 24 respuestas para desbloquear tu resultado final.';
 
     let html = `
@@ -1937,7 +2232,7 @@
           <h1>SOMOS<br><span>G.E.N.I.O.S.</span></h1>
           <p>${coverSubtitle}</p>
           <div class="pdf-cover-meta">
-            <div class="pdf-cover-box"><small>Participante</small><strong>${escapeHTML(participantLabel)}</strong></div>
+            <div class="pdf-cover-box"><small>Nombre</small><strong>${escapeHTML(name || 'Sin nombre')}</strong></div>
             <div class="pdf-cover-box"><small>Fecha</small><strong>${escapeHTML(date)}</strong></div>
             <div class="pdf-cover-box"><small>Resultado</small><strong>${escapeHTML(scoreLabel)}</strong></div>
             <div class="pdf-cover-box"><small>Nivel</small><strong>${complete ? `${level.num} · ${escapeHTML(level.name)}` : 'Pendiente'}</strong></div>
@@ -1948,9 +2243,9 @@
           <div class="pdf-title-row">
             <div>
               <div class="pdf-eyebrow">Resumen ejecutivo</div>
-              <h2>${participant ? `Diagnóstico de ${escapeHTML(participant)}` : 'Tu diagnóstico G.E.N.I.O.S.'}</h2>
+              <h2>Tu diagnóstico G.E.N.I.O.S.</h2>
             </div>
-            <div class="pdf-small">@somosgenios</div>
+            <div class="pdf-small">${escapeHTML(name || 'Sin nombre')}<br>@somosgenios</div>
           </div>`;
 
     if (!complete) {
@@ -1995,6 +2290,18 @@
 
     html += `
           </div>
+        </section>
+
+        <section class="pdf-section pdf-card">
+          <div class="pdf-eyebrow">Capital Reputacional aproximado</div>
+          <h2>Valor × Consistencia × Visibilidad</h2>
+          <div class="pdf-kpis">
+            <div class="pdf-kpi"><span>Valor</span><strong>${capital.valor.toFixed(1)}/20</strong></div>
+            <div class="pdf-kpi"><span>Consistencia</span><strong>${capital.consistencia.toFixed(1)}/20</strong></div>
+            <div class="pdf-kpi"><span>Visibilidad</span><strong>${capital.visibilidad.toFixed(1)}/20</strong></div>
+            <div class="pdf-kpi"><span>Índice /100</span><strong>${capital.index}/100</strong></div>
+          </div>
+          <div class="pdf-muted-box" style="margin-top:10px;">Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000. Conversión: resultado bruto ÷ 80 = ${capital.index}/100. Lectura: ${escapeHTML(capital.diagnosis)} Factor más bajo: ${escapeHTML(capital.weakest)}.</div>
         </section>
 
         <section class="pdf-section pdf-two-col">
@@ -2076,9 +2383,11 @@
   }
 
   function openPDFDialog() {
+    if (!ensureNameForReport()) return;
     updatePrintReport();
     const previousTitle = document.title;
-    document.title = 'Reporte Diagnostico GENIOS';
+    const safeName = getRespondentName().replace(/[^\p{L}\p{N}\s_-]/gu, '').trim();
+    document.title = safeName ? `Reporte Diagnostico GENIOS - ${safeName}` : 'Reporte Diagnostico GENIOS';
     setTimeout(() => {
       window.print();
       setTimeout(() => { document.title = previousTitle; }, 500);
@@ -2107,6 +2416,7 @@
   }
 
   async function copyReport() {
+    if (!ensureNameForReport()) return;
     const text = buildReportText();
     try {
       await navigator.clipboard.writeText(text);
@@ -2141,6 +2451,15 @@
 
   /* ── INIT ── */
   function initEvents() {
+    const nameInput = document.getElementById('respondentName');
+    if (nameInput) {
+      nameInput.value = respondentName;
+      nameInput.addEventListener('input', e => {
+        respondentName = e.target.value;
+        saveName();
+        updatePrintReport();
+      });
+    }
     document.getElementById('btnReset').addEventListener('click', resetAll);
     document.getElementById('btnResetTop').addEventListener('click', resetAll);
     document.getElementById('btnScrollResults').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' }));
@@ -2151,7 +2470,6 @@
 
   renderQuestions();
   renderPlan();
-  initNameInput();
   initEvents();
   initScrollSpy();
   updateAll();
