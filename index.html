@@ -298,7 +298,6 @@
       line-height: 1;
     }
     .scale-item .lbl { display: block; width: 100%; text-align: center; font-size: .72rem; color: var(--muted); line-height: 1.2; }
-    .scale-item .lbl strong { color: var(--primary); font-weight: 900; }
 
     /* ── PROGRESS ── */
     .progress-wrap { display: grid; gap: 8px; margin-bottom: 20px; }
@@ -1221,6 +1220,204 @@
         font-size: 9pt !important;
         line-height: 1.45 !important;
       }
+
+      .pdf-hero-summary {
+        border: 1px solid #dcd5c9;
+        border-radius: 16px;
+        padding: 14px;
+        background: #fbfaf7 !important;
+        margin-top: 10px;
+      }
+
+      .pdf-hero-summary strong {
+        color: #172033 !important;
+        font-size: 11pt;
+      }
+
+      .pdf-hero-summary p {
+        color: #4d566b !important;
+        font-size: 9.2pt !important;
+        line-height: 1.48 !important;
+        margin-top: 5px !important;
+      }
+
+      .pdf-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+
+      .pdf-pill {
+        border: 1px solid #dcd5c9;
+        border-radius: 999px;
+        padding: 5px 9px;
+        background: #ffffff !important;
+        color: #1c335c !important;
+        font-size: 7.8pt !important;
+        font-weight: 900;
+      }
+
+      .pdf-reading-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .pdf-reading-card {
+        border: 1px solid #e3ded4;
+        border-radius: 13px;
+        padding: 10px;
+        background: #fbfaf7 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .pdf-reading-card span {
+        display: block;
+        color: #b88a3b !important;
+        font-size: 7.2pt;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .pdf-reading-card strong {
+        display: block;
+        color: #172033 !important;
+        font-size: 10.2pt;
+        line-height: 1.15 !important;
+        margin-bottom: 4px;
+      }
+
+      .pdf-reading-card p {
+        color: #687086 !important;
+        font-size: 8.3pt !important;
+        line-height: 1.42 !important;
+      }
+
+      .pdf-factor-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .pdf-factor-card {
+        border: 1px solid #e3ded4;
+        border-radius: 13px;
+        padding: 10px;
+        background: #ffffff !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .pdf-factor-card small {
+        display: block;
+        color: #687086 !important;
+        font-size: 7.2pt;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .pdf-factor-card strong {
+        display: block;
+        color: #1c335c !important;
+        font-size: 15pt;
+        line-height: 1.05 !important;
+      }
+
+      .pdf-factor-card p {
+        color: #4d566b !important;
+        font-size: 8.4pt !important;
+        line-height: 1.42 !important;
+        margin-top: 5px !important;
+      }
+
+      .pdf-dimension-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .pdf-dimension-card {
+        border: 1px solid #e3ded4;
+        border-radius: 13px;
+        padding: 10px;
+        background: #fbfaf7 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .pdf-dimension-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+
+      .pdf-dimension-head strong {
+        color: #172033 !important;
+        font-size: 9.5pt;
+        line-height: 1.2 !important;
+      }
+
+      .pdf-score-chip {
+        border-radius: 999px;
+        padding: 3px 7px;
+        background: #f4ead8 !important;
+        color: #4b3412 !important;
+        font-size: 7.5pt !important;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .pdf-dimension-card p {
+        color: #687086 !important;
+        font-size: 8.2pt !important;
+        line-height: 1.42 !important;
+      }
+
+      .pdf-priority-banner {
+        border: 1px solid #d6c8ae;
+        border-left: 5px solid #b88a3b;
+        border-radius: 12px;
+        padding: 11px 12px;
+        background: #fffaf0 !important;
+        margin-top: 10px;
+      }
+
+      .pdf-priority-banner strong {
+        color: #172033 !important;
+        font-size: 10pt;
+      }
+
+      .pdf-priority-banner p {
+        color: #4b3412 !important;
+        font-size: 8.8pt !important;
+        line-height: 1.45 !important;
+        margin-top: 4px !important;
+      }
+
+      .pdf-section-intro {
+        color: #687086 !important;
+        font-size: 9pt !important;
+        line-height: 1.45 !important;
+        margin-top: 5px !important;
+      }
+
+      .pdf-number-note {
+        color: #687086 !important;
+        font-size: 8pt !important;
+        line-height: 1.4 !important;
+        margin-top: 8px !important;
+      }
     }
 
     /* ── ACCESSIBILITY ── */
@@ -1292,11 +1489,11 @@
         <div class="name-hint">Antes de descargar, imprimir o copiar el reporte, escribe tu nombre. Aparecerá en la portada y en el resumen final.</div>
       </div>
       <div class="scale-legend">
-        <div class="scale-item"><span class="val">1</span><span class="lbl"><strong>Nunca</strong><br>No aparece en mi conducta reciente.</span></div>
-        <div class="scale-item"><span class="val">2</span><span class="lbl"><strong>Casi nunca</strong><br>Aparece en casos aislados.</span></div>
-        <div class="scale-item"><span class="val">3</span><span class="lbl"><strong>A veces</strong><br>Depende del día, del contexto o de la presión.</span></div>
-        <div class="scale-item"><span class="val">4</span><span class="lbl"><strong>Casi siempre</strong><br>Es parte habitual de mi forma de trabajar.</span></div>
-        <div class="scale-item"><span class="val">5</span><span class="lbl"><strong>Siempre o casi siempre</strong><br>Es un patrón reconocible en mí.</span></div>
+        <div class="scale-item"><span class="val">1</span><span class="lbl">Casi nunca</span></div>
+        <div class="scale-item"><span class="val">2</span><span class="lbl">Pocas veces</span></div>
+        <div class="scale-item"><span class="val">3</span><span class="lbl">Algunas veces</span></div>
+        <div class="scale-item"><span class="val">4</span><span class="lbl">Con frecuencia</span></div>
+        <div class="scale-item"><span class="val">5</span><span class="lbl">Siempre o casi siempre</span></div>
       </div>
       <div class="next-block" style="margin-top:16px;">
         <span class="next-label">Instrucción clave</span>
@@ -1389,16 +1586,14 @@
     <section class="card card-pad" aria-live="polite">
       <div class="eyebrow">Capital Reputacional</div>
       <h3>Medición aproximada</h3>
-      <p class="small" style="margin-top:6px;">Valor × Consistencia × Visibilidad. El resultado bruto se convierte a índice /100.</p>
+      <p class="small" style="margin-top:6px;">Valor × Consistencia × Visibilidad.</p>
       <div class="capital-grid">
         <div class="capital-metric"><span>Valor</span><strong id="capitalValor">—</strong></div>
         <div class="capital-metric"><span>Consistencia</span><strong id="capitalConsistencia">—</strong></div>
         <div class="capital-metric"><span>Visibilidad</span><strong id="capitalVisibilidad">—</strong></div>
-        <div class="capital-metric"><span>Resultado bruto</span><strong id="capitalRaw">—</strong></div>
-        <div class="capital-metric"><span>Máximo bruto</span><strong>8.000</strong></div>
-        <div class="capital-metric"><span>Índice /100</span><strong id="capitalIndex">—</strong></div>
+        <div class="capital-metric"><span>Capital Reputacional</span><strong id="capitalScore">—</strong></div>
       </div>
-      <div class="capital-formula" id="capitalDiagnosis">Completa las 24 respuestas para ver tu Capital Reputacional aproximado. El ÷80 es solo la conversión matemática hacia escala /100.</div>
+      <div class="capital-formula" id="capitalDiagnosis">Completa las 24 respuestas para ver tu Capital Reputacional aproximado.</div>
     </section>
 
     <!-- HEXÁGONO -->
@@ -1444,12 +1639,12 @@
 
     <!-- PERFIL -->
     <section class="card card-pad">
-      <div class="eyebrow">Perfil sugerido</div>
+      <div class="eyebrow">Paso 4</div>
       <h3>Tu perfil G.E.N.I.O.S.</h3>
       <div class="profile-banner" id="profileBanner">
         <div class="profile-name-label">Perfil sugerido</div>
         <div class="profile-name" id="profileName">Completa las 24 respuestas</div>
-        <div class="profile-meta" id="profileBody">El sistema sugerirá un perfil a partir de tus seis resultados. Úsalo como orientación práctica, no como etiqueta fija.</div>
+        <div class="profile-meta" id="profileBody">El sistema sugerirá un perfil a partir de tus seis promedios. Úsalo como orientación práctica, no como etiqueta fija.</div>
       </div>
       <div class="report-actions">
         <button class="btn btn-outline btn-sm" id="btnCopy" type="button">📋 Copiar reporte</button>
@@ -1669,67 +1864,67 @@
     {
         "min": 24,
         "num": 1,
-        "name": "Talento invisible",
-        "desc": "Tienes capacidad, pero todavía no se traduce con suficiente claridad en conductas observables.",
-        "phrase": "Punto de partida: elige una letra y conviértela en una conducta visible esta semana."
+        "name": "Operador",
+        "desc": "Tu atención se concentra en ejecutar tareas inmediatas y todavía dependes demasiado de instrucciones.",
+        "phrase": "Hoy soy Operador, y por eso tengo el mayor margen de crecimiento de todos."
     },
     {
-        "min": 48,
+        "min": 44,
         "num": 2,
-        "name": "Profesional cumplidor",
-        "desc": "Respondes, avanzas y probablemente haces bien varias cosas, pero tu reputación todavía depende demasiado del contexto.",
-        "phrase": "Punto de partida: trabaja la letra más baja hasta que deje de aparecer solo en buenos días."
+        "name": "Cumplidor",
+        "desc": "Respondes y entregas, pero aún existen pocas señales que te diferencien con claridad.",
+        "phrase": "Soy Cumplidor camino a Confiable."
     },
     {
-        "min": 72,
+        "min": 63,
         "num": 3,
-        "name": "Profesional confiable",
-        "desc": "Tu forma de trabajar ya empieza a construir expectativa. Otros pueden reconocer valor, responsabilidad o claridad.",
-        "phrase": "Punto de partida: no intentes mejorar todo; protege tu letra más débil."
+        "name": "Confiable",
+        "desc": "Varias conductas ya aparecen con regularidad y las personas saben que pueden contar contigo, aunque uno o dos ejes todavía limitan tu impacto.",
+        "phrase": "Soy Confiable trabajando para llegar a Impacto."
     },
     {
-        "min": 96,
+        "min": 82,
         "num": 4,
-        "name": "Referente en construcción",
-        "desc": "Tu nombre ya empieza a significar algo concreto. Hay señales que se repiten y una reputación que comienza a sostener decisiones.",
-        "phrase": "Punto de partida: define qué conducta quieres que otros asocien con tu nombre."
+        "name": "Impacto",
+        "desc": "Tu trabajo suele producir valor más allá de la tarea y las personas comienzan a buscarte por tu criterio.",
+        "phrase": "Genero Impacto y ahora construyo mi sello."
     },
     {
-        "min": 112,
+        "min": 102,
         "num": 5,
-        "name": "Genio en movimiento",
-        "desc": "Tu forma de trabajar muestra un patrón fuerte de valor, consistencia y visibilidad.",
-        "phrase": "Punto de partida: evita la complacencia y convierte tu letra menos sólida en tu siguiente estándar."
+        "name": "Genio",
+        "desc": "Las seis conductas aparecen con alta frecuencia en tu autoevaluación, pero el puntaje no demuestra que los demás vivan la misma experiencia.",
+        "phrase": "Soy un Genio sosteniendo el estándar que me trajo hasta aquí."
     }
-  ];
+];
 
   const riskTable = {
     "1": {
-        "riesgo": "tener capacidad, pero no dejar suficiente conducta observable.",
-        "prioridad": "elegir una letra y convertirla en una conducta visible durante la primera semana del plan.",
-        "pregunta": "¿Qué conducta concreta puedo mostrar esta semana para reducir incertidumbre?"
+        "riesgo": "quedar atado a la tarea.",
+        "prioridad": "elegir una letra y practicar una conducta visible durante treinta días.",
+        "pregunta": "¿Qué puedo comenzar a hacer sin esperar una instrucción más detallada?"
     },
     "2": {
-        "riesgo": "que tu reputación dependa demasiado del contexto o de tus buenos días.",
-        "prioridad": "trabajar la letra más baja hasta que aparezca incluso bajo presión.",
-        "pregunta": "¿Qué conducta debo sostener cuando el día no ayuda?"
+        "riesgo": "la invisibilidad profesional.",
+        "prioridad": "convertir una fortaleza general en una contribución que otros puedan reconocer y describir.",
+        "pregunta": "¿Por qué problema específico quiero que las personas comiencen a buscarme?"
     },
     "3": {
-        "riesgo": "querer mejorar todo y perder foco.",
-        "prioridad": "proteger tu letra más débil y repetir una conducta visible.",
-        "pregunta": "¿Qué letra está dejando más incertidumbre en la sala?"
+        "riesgo": "instalarte en una reputación positiva que dejó de evolucionar.",
+        "prioridad": "fortalecer tus letras más bajas y buscar evidencia externa de cambio.",
+        "pregunta": "¿Qué conducta me impide pasar de ser confiable a ser una elección evidente?"
     },
     "4": {
-        "riesgo": "no definir con precisión qué conducta quieres que otros asocien con tu nombre.",
-        "prioridad": "convertir una señal positiva en un patrón reconocible.",
-        "pregunta": "¿Qué conducta quiero que otros recuerden cuando mi nombre aparezca?"
+        "riesgo": "depender de momentos excepcionales.",
+        "prioridad": "convertir tus fortalezas en un patrón sostenible y reconocible.",
+        "pregunta": "¿Qué debo sostener para que mi impacto deje de depender de la ocasión?"
     },
     "5": {
-        "riesgo": "relajarte por un índice alto y dejar sin trabajar tu punto menos sólido.",
-        "prioridad": "evitar la complacencia y convertir tu letra menos sólida en tu siguiente estándar.",
-        "pregunta": "¿Qué evidencia nueva debo construir para no depender de mi reputación pasada?"
+        "riesgo": "confundir autopercepción con reputación.",
+        "prioridad": "contrastar el resultado y evitar que el reconocimiento reduzca tu estándar.",
+        "pregunta": "¿Qué evidencia tienen los demás para confirmar la puntuación que acabo de asignarme?"
     }
-  };
+};
 
   const profiles = {
     "1": {
@@ -1859,12 +2054,12 @@
         const opts = [1,2,3,4,5].map(v => `
           <span>
             <input type="radio" name="${key}" id="${key}-${v}" value="${v}" ${answers[key] === v ? 'checked' : ''}>
-            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'Nunca. No aparece en mi conducta reciente.' : v === 2 ? 'Casi nunca. Aparece en casos aislados.' : v === 3 ? 'A veces. Depende del día, del contexto o de la presión.' : v === 4 ? 'Casi siempre. Es parte habitual de mi forma de trabajar.' : 'Siempre o casi siempre. Es un patrón reconocible en mí.'}">${v}</label>
+            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'Casi nunca' : v === 2 ? 'Pocas veces' : v === 3 ? 'Algunas veces' : v === 4 ? 'Con frecuencia' : 'Siempre'}">${v}</label>
           </span>`).join('');
         q.innerHTML = `
           <p><span class="q-num">${globalIndex}</span>${question}</p>
           <div class="scale" role="radiogroup" aria-label="Respuesta ${globalIndex}">${opts}</div>
-          <div class="scale-help"><span>1 · Nunca</span><span>5 · Siempre o casi siempre</span></div>
+          <div class="scale-help"><span>1 · Casi nunca</span><span>5 · Siempre o casi siempre</span></div>
         `;
         q.querySelectorAll('input').forEach(input => {
           input.addEventListener('change', e => {
@@ -1880,7 +2075,7 @@
     });
   }
 
-  /* ── RENDER WEEKLY PLAN ── */
+  /* ── RENDER PLAN ── */
   function renderPlan() {
     const root = document.getElementById('planGrid');
     root.innerHTML = '';
@@ -1903,7 +2098,7 @@
         planDone[key] = cb.checked;
         card.classList.toggle('done', cb.checked);
         savePlan();
-        toast(cb.checked ? '✓ Paso marcado como listo.' : 'Paso desmarcado.');
+        toast(cb.checked ? '✓ Semana marcada como lista.' : 'Semana desmarcada.');
       });
       root.appendChild(card);
     });
@@ -1931,9 +2126,7 @@
     const valor = ((byLetter.G || 0) + (byLetter.E || 0)) / 2;
     const consistencia = ((byLetter.N || 0) + (byLetter.S || 0)) / 2;
     const visibilidad = ((byLetter.I || 0) + (byLetter.O || 0)) / 2;
-    const raw = Math.round(valor * consistencia * visibilidad);
-    const maxRaw = 8000;
-    const index = Math.max(0, Math.min(100, Math.round(raw / 80)));
+    const score = Math.round(valor * consistencia * visibilidad);
     const factors = [
       { key: 'Valor', value: valor },
       { key: 'Consistencia', value: consistencia },
@@ -1944,19 +2137,17 @@
       valor,
       consistencia,
       visibilidad,
-      raw,
-      maxRaw,
-      index,
+      score,
       weakest: weakest.key,
-      diagnosis: complete ? interpretCapital(index) : 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado.'
+      diagnosis: complete ? interpretCapital(score) : 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado.'
     };
   }
 
-  function interpretCapital(index) {
-    if (index <= 25) return 'Capital Reputacional débil. Hay capacidad, pero la evidencia no aparece con suficiente fuerza, repetición o visibilidad.';
-    if (index <= 50) return 'Capital Reputacional en formación. Hay señales valiosas, pero todavía no forman un patrón suficientemente claro.';
-    if (index <= 75) return 'Capital Reputacional funcionando. Tu forma de trabajar ya empieza a dejar una expectativa reconocible.';
-    return 'Capital Reputacional fuerte. Tu nombre empieza a significar algo concreto para otros. El desafío es sostener el estándar.';
+  function interpretCapital(score) {
+    if (score < 800) return 'Hay un factor demasiado bajo que puede estar anulando el resto. Trabaja primero tu letra más débil.';
+    if (score <= 2500) return 'Capital en formación. Hay avance, pero un eslabón limita el conjunto. Enfócate durante 90 días.';
+    if (score <= 5000) return 'Capital funcionando. Tu tarea es sostenerlo y proteger el factor más bajo.';
+    return 'Zona de alto rendimiento. Tu Sello Profesional puede estar activo. El riesgo ahora es la complacencia.';
   }
 
   function getLevel(total) {
@@ -2049,7 +2240,7 @@
     document.getElementById('profileName').textContent  = profile ? profile.name : 'Completa las 24 respuestas';
     document.getElementById('profileBody').innerHTML    = profile
       ? `<strong>Riesgo:</strong> ${profile.riesgo}<br><br><strong>Punto de entrada:</strong> ${profile.entrada}<br><br><em>${profile.pregunta}</em>`
-      : 'El sistema sugerirá un perfil a partir de tus seis resultados. No es una etiqueta fija.';
+      : 'El sistema sugerirá un perfil a partir de tus seis promedios. No es una etiqueta fija.';
   }
 
   function updateCapital({ complete, capital }) {
@@ -2058,17 +2249,15 @@
       setMetric('capitalValor', '—');
       setMetric('capitalConsistencia', '—');
       setMetric('capitalVisibilidad', '—');
-      setMetric('capitalRaw', '—');
-      setMetric('capitalIndex', '—');
-      document.getElementById('capitalDiagnosis').textContent = 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado. El ÷80 es solo la conversión matemática hacia escala /100.';
+      setMetric('capitalScore', '—');
+      document.getElementById('capitalDiagnosis').textContent = 'Completa las 24 respuestas para ver tu Capital Reputacional aproximado.';
       return;
     }
     setMetric('capitalValor', `${capital.valor.toFixed(1)}/20`);
     setMetric('capitalConsistencia', `${capital.consistencia.toFixed(1)}/20`);
     setMetric('capitalVisibilidad', `${capital.visibilidad.toFixed(1)}/20`);
-    setMetric('capitalRaw', capital.raw.toLocaleString('es-CL'));
-    setMetric('capitalIndex', `${capital.index}/100`);
-    document.getElementById('capitalDiagnosis').textContent = `Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000. Conversión: resultado bruto ÷ 80 = ${capital.index}/100. Lectura: ${capital.diagnosis} Factor más bajo: ${capital.weakest}.`;
+    setMetric('capitalScore', capital.score.toLocaleString('es-CL'));
+    document.getElementById('capitalDiagnosis').textContent = `Diagnóstico: ${capital.diagnosis} Factor más bajo: ${capital.weakest}.`;
   }
 
   /* ── RADAR ── */
@@ -2184,34 +2373,90 @@
     return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   }
 
+  function dimensionBand(score) {
+    if (score >= 17) return 'Fortaleza consolidada';
+    if (score >= 14) return 'Conducta visible';
+    if (score >= 10) return 'Conducta irregular';
+    return 'Prioridad de desarrollo';
+  }
+
+  function dimensionReading(dim) {
+    const readings = {
+      G: 'Mide si tu trabajo facilita decisiones, avances o soluciones, no solo cumplimiento de tareas.',
+      E: 'Mide si comprendes el problema real antes de responder, proponer o actuar.',
+      N: 'Mide tu capacidad de involucrarte con el resultado sin invadir ni cargar con todo.',
+      I: 'Mide si tus entregas son claras, usables y confiables incluso cuando no estás para explicarlas.',
+      O: 'Mide si conviertes aprendizaje en mejora visible, no solo en intención o acumulación de información.',
+      S: 'Mide si otros pueden anticipar tu estándar, especialmente bajo presión o en días difíciles.'
+    };
+    return readings[dim.letter] || 'Dimensión de conducta profesional observable.';
+  }
+
+  function dimensionRecommendation(dim) {
+    const recommendations = {
+      G: 'Antes de entregar, agrega una recomendación o define qué decisión debe facilitar tu trabajo.',
+      E: 'Haz una segunda pregunta y confirma lo entendido antes de dar una respuesta.',
+      N: 'Elige un riesgo que afecte el resultado, hazlo visible y propone el primer paso.',
+      I: 'Revisa tu próxima entrega desde quien la recibe: contexto, claridad, siguiente paso y fricción.',
+      O: 'Practica una capacidad incómoda y aplica el aprendizaje en una entrega real.',
+      S: 'Define un mínimo no negociable y protégelo durante una semana difícil.'
+    };
+    return recommendations[dim.letter] || dim.plan;
+  }
+
+  function factorReading(key, value) {
+    const band = value >= 17 ? 'muy alto' : value >= 14 ? 'sólido' : value >= 10 ? 'intermedio' : 'en desarrollo';
+    const texts = {
+      Valor: `Tu capacidad de generar utilidad reconocible está en nivel ${band}. Este factor combina Generar valor y Escuchar para entender.`,
+      Consistencia: `Tu capacidad de sostener confianza en el tiempo está en nivel ${band}. Este factor combina Nivel de involucramiento y Sostener la consistencia.`,
+      Visibilidad: `Tu capacidad de dejar evidencia observable está en nivel ${band}. Este factor combina Intención en el detalle y Obsesión por crecer.`
+    };
+    return texts[key] || `Factor en nivel ${band}.`;
+  }
+
+  function capitalSummary(capital) {
+    if (capital.score < 800) return 'Tu Capital Reputacional todavía depende de fortalecer una base mínima. No necesitas hacer más de todo: necesitas subir primero el factor más bajo.';
+    if (capital.score <= 2500) return 'Tu Capital Reputacional está en construcción. Ya hay conductas presentes, pero una parte del sistema limita la confianza que otros pueden formar sobre ti.';
+    if (capital.score <= 5000) return 'Tu Capital Reputacional funciona. El desafío no es partir de cero, sino sostener el estándar y evitar que el factor más bajo limite tu crecimiento.';
+    return 'Tu Capital Reputacional muestra una base alta. El desafío es no relajarte: contrasta tu autoevaluación con evidencia externa y protege tu estándar.';
+  }
+
+  function buildExecutiveReading(level, strength, focus, capital, profile) {
+    return `Tu resultado sugiere un nivel ${level.num} · ${level.name}. Tu fortaleza principal aparece en ${strength.letter} · ${strength.name}, mientras que tu mayor oportunidad de avance está en ${focus.letter} · ${focus.name}. En términos de Capital Reputacional, el factor que más conviene cuidar ahora es ${capital.weakest}. Tu perfil sugerido es ${profile.name}: úsalo como una lectura de trabajo, no como una etiqueta fija.`;
+  }
+
   function buildReportText() {
     const state = calculate();
     const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
     const name = getRespondentName();
     const lines = ['SOMOS G.E.N.I.O.S. · Reporte de diagnóstico', ''];
-    lines.push(`Nombre: ${name || 'Sin nombre'}`, `Respondidas: ${answered}/24`, `Puntaje: ${total}/120`);
-    if (!complete) { lines.push('Resultado: diagnóstico incompleto.'); return lines.join('\n'); }
+    lines.push(`Nombre: ${name || 'Sin nombre'}`, `Respuestas completadas: ${answered}/24`);
+    if (!complete) { lines.push('', 'Resultado: diagnóstico incompleto. Completa las 24 afirmaciones para generar una lectura personalizada.'); return lines.join('\n'); }
     const focus    = dimScores[focusIndex];
     const strength = dimScores[strengthIndex];
     const risk     = riskTable[level.num];
     const profile  = profiles[profileIndex];
-    lines.push(`Nivel: ${level.num} · ${level.name}`, `Frase: ${level.phrase}`, '', 'Subtotales:');
-    dimScores.forEach(d => lines.push(`- ${d.letter} · ${d.name}: ${d.score}/20 · promedio ${d.avg.toFixed(2)}`));
-    lines.push('', `Fortaleza: ${strength.letter} · ${strength.name}`, `Foco de entrada: ${focus.letter} · ${focus.name}`,
-      '', 'Capital Reputacional aproximado:',
-      `- Valor: ${capital.valor.toFixed(1)}/20`,
-      `- Consistencia: ${capital.consistencia.toFixed(1)}/20`,
-      `- Visibilidad: ${capital.visibilidad.toFixed(1)}/20`,
-      `- Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000`,
-      `- Conversión a índice: resultado bruto ÷ 80`,
-      `- Índice de Capital Reputacional: ${capital.index}/100`,
-      `- Lectura: ${capital.diagnosis}`,
-      '', `Riesgo: ${risk.riesgo}`, `Prioridad: ${risk.prioridad}`, `Pregunta de avance: ${risk.pregunta}`,
-      '', `Perfil sugerido: ${profile.name}`, `Riesgo del perfil: ${profile.riesgo}`,
-      `Punto de entrada del perfil: ${profile.entrada}`, `Pregunta clave del perfil: ${profile.pregunta}`,
-      '', `Letra de entrada: ${focus.letter} · ${focus.name}`);
+    lines.push('', 'LECTURA PRINCIPAL', buildExecutiveReading(level, strength, focus, capital, profile));
+    lines.push('', 'NIVEL GENERAL', `${level.num} · ${level.name}`, level.desc, `Frase guía: ${level.phrase}`);
+    lines.push('', 'CAPITAL REPUTACIONAL APROXIMADO', 'Fórmula: Valor × Consistencia × Visibilidad', capitalSummary(capital));
+    lines.push(`Valor: ${capital.valor.toFixed(1)}/20 · ${factorReading('Valor', capital.valor)}`);
+    lines.push(`Consistencia: ${capital.consistencia.toFixed(1)}/20 · ${factorReading('Consistencia', capital.consistencia)}`);
+    lines.push(`Visibilidad: ${capital.visibilidad.toFixed(1)}/20 · ${factorReading('Visibilidad', capital.visibilidad)}`);
+    lines.push(`Capital Reputacional: ${capital.score.toLocaleString('es-CL')}`);
+    lines.push(`Factor a cuidar primero: ${capital.weakest}`);
+    lines.push('', 'LECTURA POR DIMENSIÓN');
+    dimScores.forEach(d => {
+      lines.push(`${d.letter} · ${d.name}: ${dimensionBand(d.score)} (${d.score}/20). ${dimensionReading(d)} Recomendación: ${dimensionRecommendation(d)}`);
+    });
+    lines.push('', 'FORTALEZA PRINCIPAL', `${strength.letter} · ${strength.name}: úsala como base para construir evidencia profesional.`);
+    lines.push('', 'LETRA DE ENTRADA', `${focus.letter} · ${focus.name}: empieza aquí porque una mejora concreta puede mover el resto del sistema.`);
+    lines.push('', 'RIESGO Y PRIORIDAD', `Riesgo: ${risk.riesgo}`, `Prioridad: ${risk.prioridad}`, `Pregunta de avance: ${risk.pregunta}`);
+    lines.push('', 'PERFIL SUGERIDO', profile.name, `Riesgo del perfil: ${profile.riesgo}`, `Punto de entrada: ${profile.entrada}`, `Pregunta clave: ${profile.pregunta}`);
+    lines.push('', 'ACCIONES CONCRETAS PARA TU LETRA DE ENTRADA');
     focus.actions.forEach((a, i) => lines.push(`${i+1}. ${a.title}: ${a.body}`));
-    lines.push('', '@somosgenios');
+    lines.push('', 'PLAN DE 6 SEMANAS');
+    weeklyPlan.forEach((week, i) => lines.push(`${i+1}. ${week.title}: ${week.body.replace(/\n/g, ' ')}`));
+    lines.push('', 'Nota: este diagnóstico es una autoevaluación orientativa. La reputación se confirma cuando otras personas pueden reconocer conductas consistentes en tu trabajo real.', '', '@somosgenios');
     return lines.join('\n');
   }
 
@@ -2220,9 +2465,9 @@
     const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
     const name = getRespondentName();
     const date = new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' });
-    const scoreLabel = complete ? `${total}/120` : `${answered}/24`;
+    const scoreLabel = complete ? `${level.num} · ${level.name}` : `${answered}/24`;
     const coverSubtitle = complete
-      ? 'Tu mapa de reputación profesional, nivel, foco de entrada, Capital Reputacional y plan de 6 semanas.'
+      ? 'Una lectura clara de tus conductas profesionales, tu Capital Reputacional aproximado y tu próximo paso de avance.'
       : 'Reporte preliminar. Completa las 24 respuestas para desbloquear tu resultado final.';
 
     let html = `
@@ -2235,7 +2480,7 @@
             <div class="pdf-cover-box"><small>Nombre</small><strong>${escapeHTML(name || 'Sin nombre')}</strong></div>
             <div class="pdf-cover-box"><small>Fecha</small><strong>${escapeHTML(date)}</strong></div>
             <div class="pdf-cover-box"><small>Resultado</small><strong>${escapeHTML(scoreLabel)}</strong></div>
-            <div class="pdf-cover-box"><small>Nivel</small><strong>${complete ? `${level.num} · ${escapeHTML(level.name)}` : 'Pendiente'}</strong></div>
+            <div class="pdf-cover-box"><small>Estado</small><strong>${complete ? 'Reporte completo' : 'Pendiente'}</strong></div>
           </div>
         </section>
 
@@ -2243,7 +2488,7 @@
           <div class="pdf-title-row">
             <div>
               <div class="pdf-eyebrow">Resumen ejecutivo</div>
-              <h2>Tu diagnóstico G.E.N.I.O.S.</h2>
+              <h2>Tu lectura principal</h2>
             </div>
             <div class="pdf-small">${escapeHTML(name || 'Sin nombre')}<br>@somosgenios</div>
           </div>`;
@@ -2251,7 +2496,7 @@
     if (!complete) {
       html += `
           <div class="pdf-muted-box">
-            Para generar un PDF completo y personalizado, responde las 24 afirmaciones del diagnóstico con la escala 1 a 5. Actualmente llevas ${answered} de 24 respuestas.
+            Para generar un reporte completo y personalizado, responde las 24 afirmaciones del diagnóstico con la escala 1 a 5. Actualmente llevas ${answered} de 24 respuestas.
           </div>
         </section>
       </article>`;
@@ -2262,29 +2507,65 @@
     const strength = dimScores[strengthIndex];
     const risk     = riskTable[level.num];
     const profile  = profiles[profileIndex];
+    const factorItems = [
+      { key: 'Valor', value: capital.valor },
+      { key: 'Consistencia', value: capital.consistencia },
+      { key: 'Visibilidad', value: capital.visibilidad }
+    ];
 
     html += `
-          <div class="pdf-kpis">
-            <div class="pdf-kpi"><span>Puntaje</span><strong>${total}/120</strong></div>
-            <div class="pdf-kpi"><span>Nivel</span><strong>${level.num} · ${escapeHTML(level.name)}</strong></div>
-            <div class="pdf-kpi"><span>Fortaleza</span><strong>${strength.letter}</strong></div>
-            <div class="pdf-kpi"><span>Foco</span><strong>${focus.letter}</strong></div>
+          <div class="pdf-hero-summary">
+            <strong>${escapeHTML(buildExecutiveReading(level, strength, focus, capital, profile))}</strong>
+            <p>${escapeHTML(level.desc)}</p>
+            <div class="pdf-pill-row">
+              <span class="pdf-pill">Nivel ${level.num} · ${escapeHTML(level.name)}</span>
+              <span class="pdf-pill">Fortaleza: ${strength.letter} · ${escapeHTML(strength.name)}</span>
+              <span class="pdf-pill">Foco: ${focus.letter} · ${escapeHTML(focus.name)}</span>
+              <span class="pdf-pill">Capital Reputacional: ${capital.score.toLocaleString('es-CL')}</span>
+            </div>
           </div>
           <div class="pdf-quote">“${escapeHTML(level.phrase)}”</div>
         </section>
 
         <section class="pdf-section pdf-card">
-          <div class="pdf-eyebrow">Mapa de conducta</div>
-          <h2>Subtotales por letra</h2>
-          <div class="pdf-bars">`;
+          <div class="pdf-eyebrow">Capital Reputacional aproximado</div>
+          <h2>Valor × Consistencia × Visibilidad</h2>
+          <p class="pdf-section-intro">El Capital Reputacional no se lee como una nota aislada. Se interpreta como una estimación de cómo tus conductas generan utilidad, confianza sostenida y evidencia visible.</p>
+          <div class="pdf-factor-grid">`;
+
+    factorItems.forEach(item => {
+      html += `
+            <div class="pdf-factor-card">
+              <small>${escapeHTML(item.key)}</small>
+              <strong>${item.value.toFixed(1)}/20</strong>
+              <p>${escapeHTML(factorReading(item.key, item.value))}</p>
+            </div>`;
+    });
+
+    html += `
+          </div>
+          <div class="pdf-priority-banner">
+            <strong>Capital Reputacional aproximado: ${capital.score.toLocaleString('es-CL')}</strong>
+            <p>${escapeHTML(capitalSummary(capital))} Factor a cuidar primero: ${escapeHTML(capital.weakest)}.</p>
+          </div>
+          <p class="pdf-number-note">La fórmula funciona como una lectura aproximada: cuando un factor baja demasiado, limita el resultado completo aunque los otros factores sean altos.</p>
+        </section>
+
+        <section class="pdf-section pdf-card">
+          <div class="pdf-eyebrow">Mapa G.E.N.I.O.S.</div>
+          <h2>Lectura por dimensión</h2>
+          <p class="pdf-section-intro">Estos resultados muestran qué conductas ya aparecen como evidencia y cuáles conviene practicar con más intención.</p>
+          <div class="pdf-dimension-grid">`;
 
     dimScores.forEach(d => {
-      const pct = Math.max(0, Math.min(100, Math.round((d.score / 20) * 100)));
       html += `
-            <div class="pdf-bar">
-              <div class="pdf-bar-name">${d.letter} · ${escapeHTML(d.name)}</div>
-              <div class="pdf-bar-rail"><span class="pdf-bar-fill" style="width:${pct}%"></span></div>
-              <div class="pdf-bar-score">${d.score}/20</div>
+            <div class="pdf-dimension-card">
+              <div class="pdf-dimension-head">
+                <strong>${d.letter} · ${escapeHTML(d.name)}</strong>
+                <span class="pdf-score-chip">${dimensionBand(d.score)} · ${d.score}/20</span>
+              </div>
+              <p>${escapeHTML(dimensionReading(d))}</p>
+              <p><strong>Próximo ajuste:</strong> ${escapeHTML(dimensionRecommendation(d))}</p>
             </div>`;
     });
 
@@ -2293,54 +2574,42 @@
         </section>
 
         <section class="pdf-section pdf-card">
-          <div class="pdf-eyebrow">Capital Reputacional aproximado</div>
-          <h2>Valor × Consistencia × Visibilidad</h2>
-          <div class="pdf-kpis">
-            <div class="pdf-kpi"><span>Valor</span><strong>${capital.valor.toFixed(1)}/20</strong></div>
-            <div class="pdf-kpi"><span>Consistencia</span><strong>${capital.consistencia.toFixed(1)}/20</strong></div>
-            <div class="pdf-kpi"><span>Visibilidad</span><strong>${capital.visibilidad.toFixed(1)}/20</strong></div>
-            <div class="pdf-kpi"><span>Índice /100</span><strong>${capital.index}/100</strong></div>
-          </div>
-          <div class="pdf-muted-box" style="margin-top:10px;">Resultado bruto: ${capital.raw.toLocaleString('es-CL')} de 8.000. Conversión: resultado bruto ÷ 80 = ${capital.index}/100. Lectura: ${escapeHTML(capital.diagnosis)} Factor más bajo: ${escapeHTML(capital.weakest)}.</div>
-        </section>
-
-        <section class="pdf-section pdf-two-col">
-          <div class="pdf-card">
-            <div class="pdf-eyebrow">Fortaleza</div>
-            <h3>${strength.letter} · ${escapeHTML(strength.name)}</h3>
-            <p class="pdf-small">Es la conducta que aparece con mayor fuerza en tu autoevaluación. Úsala como base para construir evidencia profesional.</p>
-          </div>
-          <div class="pdf-card">
-            <div class="pdf-eyebrow">Letra de entrada</div>
-            <h3>${focus.letter} · ${escapeHTML(focus.name)}</h3>
-            <p class="pdf-small">Es el punto donde una mejora concreta puede aumentar con más velocidad tu reputación observable.</p>
+          <div class="pdf-eyebrow">Fortaleza y punto de avance</div>
+          <h2>Qué aprovechar y qué trabajar primero</h2>
+          <div class="pdf-reading-grid">
+            <div class="pdf-reading-card">
+              <span>Fortaleza principal</span>
+              <strong>${strength.letter} · ${escapeHTML(strength.name)}</strong>
+              <p>Es la conducta que aparece con mayor fuerza. Úsala como base para construir evidencia profesional más reconocible.</p>
+            </div>
+            <div class="pdf-reading-card">
+              <span>Letra de entrada</span>
+              <strong>${focus.letter} · ${escapeHTML(focus.name)}</strong>
+              <p>Es el punto donde una mejora concreta puede mover con más velocidad tu reputación observable.</p>
+            </div>
+            <div class="pdf-reading-card">
+              <span>Perfil sugerido</span>
+              <strong>${escapeHTML(profile.name)}</strong>
+              <p>No es una etiqueta fija. Es una hipótesis útil para elegir mejor tu próxima conducta.</p>
+            </div>
           </div>
         </section>
 
         <section class="pdf-section pdf-card">
           <div class="pdf-eyebrow">Riesgo, prioridad y pregunta</div>
-          <h2>Tu siguiente paso</h2>
+          <h2>Tu siguiente conversación contigo</h2>
           <div class="pdf-list">
-            <div class="pdf-list-item"><strong>Riesgo</strong><span>${escapeHTML(risk.riesgo)}</span></div>
-            <div class="pdf-list-item"><strong>Prioridad</strong><span>${escapeHTML(risk.prioridad)}</span></div>
+            <div class="pdf-list-item"><strong>Riesgo a evitar</strong><span>${escapeHTML(risk.riesgo)}</span></div>
+            <div class="pdf-list-item"><strong>Prioridad práctica</strong><span>${escapeHTML(risk.prioridad)}</span></div>
             <div class="pdf-list-item"><strong>Pregunta de avance</strong><span>${escapeHTML(risk.pregunta)}</span></div>
-          </div>
-        </section>
-
-        <section class="pdf-section pdf-card">
-          <div class="pdf-eyebrow">Perfil sugerido</div>
-          <h2>${escapeHTML(profile.name)}</h2>
-          <div class="pdf-list">
-            <div class="pdf-list-item"><strong>Riesgo del perfil</strong><span>${escapeHTML(profile.riesgo)}</span></div>
-            <div class="pdf-list-item"><strong>Punto de entrada</strong><span>${escapeHTML(profile.entrada)}</span></div>
-            <div class="pdf-list-item"><strong>Pregunta clave</strong><span>${escapeHTML(profile.pregunta)}</span></div>
+            <div class="pdf-list-item"><strong>Pregunta del perfil</strong><span>${escapeHTML(profile.pregunta)}</span></div>
           </div>
         </section>
 
         <section class="pdf-section pdf-card">
           <div class="pdf-eyebrow">Acciones concretas</div>
           <h2>Practica tu letra de entrada</h2>
-          <p class="pdf-small">Trabaja ${focus.letter} · ${escapeHTML(focus.name)} con acciones pequeñas, visibles y repetibles.</p>
+          <p class="pdf-section-intro">Trabaja ${focus.letter} · ${escapeHTML(focus.name)} con acciones pequeñas, visibles y repetibles. El objetivo no es prometer cambio: es dejar evidencia.</p>
           <div class="pdf-actions-grid">`;
 
     focus.actions.forEach((a, i) => {
@@ -2357,7 +2626,8 @@
 
         <section class="pdf-section pdf-card">
           <div class="pdf-eyebrow">Plan de 6 semanas</div>
-          <h2>Una letra por semana</h2>
+          <h2>Una conducta por semana</h2>
+          <p class="pdf-section-intro">El plan ordena la práctica para que cada semana produzca una señal concreta: conducta, evidencia y próxima repetición.</p>
           <div class="pdf-list">`;
 
     weeklyPlan.forEach((week, i) => {
@@ -2370,7 +2640,7 @@
 
     html += `
           </div>
-          <div class="pdf-footer-note">Basado en el libro «Somos G.E.N.I.O.S.» de Kevin Lück · @somosgenios</div>
+          <div class="pdf-footer-note">Nota: este diagnóstico es una autoevaluación orientativa. La reputación se confirma cuando otras personas pueden reconocer conductas consistentes en tu trabajo real. Basado en el libro «Somos G.E.N.I.O.S.» de Kevin Lück · @somosgenios</div>
         </section>
       </article>`;
 
