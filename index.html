@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diagnóstico G.E.N.I.O.S. · Capital Reputacional</title>
-  <meta name="description" content="Diagnóstico web del sistema G.E.N.I.O.S.: 24 conductas, hexágono, Capital Reputacional /100, letra de entrada y plan de seis semanas para convertir talento en evidencia profesional." />
+  <title>Diagnóstico G.E.N.I.O.S. · Tu conducta profesional</title>
+  <meta name="description" content="Diagnóstico web del sistema G.E.N.I.O.S.: 24 afirmaciones, mapa de seis conductas, letra de entrada y un plan práctico de seis semanas." />
+  <meta name="theme-color" content="#1c335c" />
+  <meta name="color-scheme" content="light" />
   <style>
     :root {
       --bg: #f4f1eb;
@@ -22,6 +24,7 @@
       --success-light: #e8f4f0;
       --danger: #a84538;
       --shadow: 0 18px 50px rgba(28,51,92,.12);
+      --shadow-soft: 0 8px 28px rgba(28,51,92,.075);
       --radius: 22px;
       --radius-sm: 14px;
       --max: 1280px;
@@ -32,7 +35,10 @@
     html { scroll-behavior: smooth; }
     body {
       color: var(--ink);
-      background: #f4f1eb;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(184,138,59,.09), transparent 24rem),
+        radial-gradient(circle at 92% 24%, rgba(28,51,92,.07), transparent 28rem),
+        var(--bg);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       line-height: 1.55;
       min-height: 100vh;
@@ -40,6 +46,23 @@
 
     button, input, select, textarea { font: inherit; }
     a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent-2); color: var(--ink); }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 500;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--primary);
+      font-weight: 900;
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-150%);
+      transition: transform .15s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
 
     .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
@@ -117,6 +140,27 @@
     .hero-actions {
       display: flex; flex-wrap: wrap; gap: 10px;
     }
+    .privacy-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      color: rgba(255,255,255,.64);
+      font-size: .78rem;
+      font-weight: 650;
+    }
+    .privacy-note::before {
+      content: '✓';
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: rgba(125,217,181,.15);
+      color: #9be6c8;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
 
     /* Hero stats */
     .hero-stats {
@@ -179,7 +223,7 @@
       transition: all .15s ease;
     }
     .s-tab:hover { color: white; background: rgba(255,255,255,.08); }
-    .s-tab.active { color: var(--accent-2); background: rgba(184,138,59,.15); border-color: rgba(184,138,59,.25); }
+    .s-tab.active, .s-tab[aria-current="page"] { color: var(--accent-2); background: rgba(184,138,59,.15); border-color: rgba(184,138,59,.25); }
 
     .sticky-progress {
       display: flex; align-items: center; gap: 10px;
@@ -225,7 +269,7 @@
       background: rgba(255,255,255,.95);
       border: 1px solid rgba(28,51,92,.09);
       border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(28,51,92,.07);
+      box-shadow: var(--shadow-soft);
       overflow: hidden;
     }
     .card-pad { padding: clamp(18px, 3vw, 26px); }
@@ -242,6 +286,7 @@
     }
     .btn:hover { transform: translateY(-1px); }
     .btn:active { transform: translateY(0); }
+    .btn:disabled { cursor: not-allowed; opacity: .48; transform: none; box-shadow: none; }
     .btn-primary { background: var(--accent); color: #16120b; box-shadow: 0 8px 22px rgba(184,138,59,.3); }
     .btn-primary:hover { box-shadow: 0 12px 28px rgba(184,138,59,.4); }
     .btn-ghost-white { background: rgba(255,255,255,.1); color: white; border: 1px solid rgba(255,255,255,.18); }
@@ -418,6 +463,10 @@
       box-shadow: 0 8px 20px rgba(28,51,92,.22);
       transform: translateY(-1px);
     }
+    .scale input:focus-visible + label {
+      outline: 3px solid rgba(184,138,59,.5);
+      outline-offset: 2px;
+    }
     .scale-help {
       display: flex; justify-content: space-between;
       color: var(--muted); font-size: .73rem; margin-top: 2px;
@@ -486,7 +535,7 @@
     .info-box .val { font-weight: 800; font-size: .92rem; color: var(--ink); }
     .info-box p { color: var(--muted); font-size: .82rem; margin-top: 4px; }
 
-    /* ── NAME INPUT + CAPITAL ── */
+    /* ── NAME INPUT + WORK DECISION ── */
     .name-panel { margin: 0 0 16px; }
     .field-label {
       display: block;
@@ -515,44 +564,46 @@
     }
     .name-hint { color: var(--muted); font-size: .82rem; margin-top: 7px; line-height: 1.45; }
 
-    .capital-grid {
+    .decision-panel {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
       margin-top: 14px;
+      padding: 16px;
+      border: 1px solid rgba(184,138,59,.28);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #fffdf8, var(--accent-light));
     }
-    .capital-metric {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--panel-2);
-      padding: 12px;
-    }
-    .capital-metric span {
-      display: block;
-      color: var(--muted);
-      font-size: .66rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+    .decision-letter {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, var(--primary), var(--primary-2));
+      color: #fff;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.55rem;
       font-weight: 900;
-      line-height: 1.2;
+      box-shadow: 0 8px 20px rgba(28,51,92,.2);
     }
-    .capital-metric strong {
+    .decision-title {
       display: block;
       color: var(--primary);
-      font-size: 1.25rem;
-      font-weight: 950;
-      letter-spacing: -.03em;
-      margin-top: 5px;
+      font-size: .98rem;
+      line-height: 1.3;
     }
-    .capital-formula {
-      border: 1px dashed rgba(184,138,59,.35);
-      background: var(--accent-light);
-      color: #4b3412;
-      border-radius: 14px;
-      padding: 12px;
+    .decision-body {
+      margin-top: 5px;
+      color: var(--muted);
       font-size: .84rem;
-      line-height: 1.45;
+      line-height: 1.48;
+    }
+    .decision-cta {
       margin-top: 12px;
+      width: 100%;
+      justify-content: center;
     }
 
     /* ── RADAR ── */
@@ -676,6 +727,12 @@
     .complete-icon { font-size: 2.2rem; margin-bottom: 10px; }
     .complete-banner h3 { color: white; font-size: 1.2rem; font-family: Georgia, serif; margin-bottom: 6px; }
     .complete-banner p { opacity: .8; font-size: .88rem; }
+    .complete-banner .btn {
+      margin-top: 14px;
+      background: #fff;
+      color: var(--primary);
+      box-shadow: 0 8px 20px rgba(0,0,0,.14);
+    }
 
     /* ── FOOTER ── */
     .footer {
@@ -718,7 +775,6 @@
       .hero-stat { min-width: 80px; }
       .plan-grid, .sidebar, .kpi-grid { grid-template-columns: 1fr; }
       .info-row { grid-template-columns: 1fr; }
-      .capital-grid { grid-template-columns: 1fr; }
       .scale { gap: 5px; }
       .scale label { height: 42px; }
       .scale-legend { grid-template-columns: repeat(5, 1fr); gap: 4px; }
@@ -762,6 +818,7 @@
       }
       .hero-actions { display: grid; grid-template-columns: 1fr; gap: 9px; }
       .hero-actions .btn { width: 100%; justify-content: center; }
+      .privacy-note { justify-content: center; text-align: left; }
       .hero-stats {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -804,28 +861,32 @@
       .progress-meta .small { font-size: .8rem; }
 
       .scale-legend {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 6px;
+        grid-template-columns: 1fr;
+        gap: 7px;
       }
       .scale-item {
         display: grid;
-        justify-items: center;
-        align-content: start;
-        gap: 6px;
-        text-align: center;
-        padding: 9px 4px;
-        min-height: 78px;
+        grid-template-columns: 34px minmax(0, 1fr);
+        justify-items: start;
+        align-items: center;
+        gap: 10px;
+        text-align: left;
+        padding: 9px 11px;
+        min-height: 0;
       }
       .scale-item .val {
-        margin: 0 auto;
-        width: 30px; height: 30px;
+        margin: 0;
+        width: 32px; height: 32px;
         line-height: 1;
       }
       .scale-item .lbl {
-        font-size: .64rem;
-        line-height: 1.14;
-        letter-spacing: -.01em;
+        text-align: left;
+        font-size: .74rem;
+        line-height: 1.25;
+        letter-spacing: 0;
       }
+      .scale-item .lbl br { display: none; }
+      .scale-item .lbl small { display: inline; margin: 0 0 0 4px; font-size: .68rem; }
 
       .dimension { padding-top: 20px; margin-top: 20px; }
       .dimension-header {
@@ -884,6 +945,8 @@
       #radarSvg { max-width: 260px; }
       .bar-row { grid-template-columns: 22px 1fr 38px; gap: 7px; }
       .next-block, .info-box, .week-card, .action-item { border-radius: 14px; }
+      .decision-panel { grid-template-columns: 48px minmax(0, 1fr); padding: 14px; gap: 12px; }
+      .decision-letter { width: 48px; height: 48px; border-radius: 15px; font-size: 1.3rem; }
       .profile-banner { border-radius: 15px; padding: 14px; }
       .report-actions { display: grid; grid-template-columns: 1fr; }
       .report-actions .btn { width: 100%; justify-content: center; }
@@ -912,10 +975,10 @@
       .card-pad { padding: 16px 12px; }
       .scale { gap: 4px; }
       .scale label { height: 44px; font-size: .86rem; }
-      .scale-legend { gap: 4px; }
-      .scale-item { padding: 8px 3px; min-height: 76px; }
+      .scale-legend { gap: 6px; }
+      .scale-item { padding: 8px 9px; min-height: 0; }
       .scale-item .val { width: 28px; height: 28px; font-size: .86rem; }
-      .scale-item .lbl { font-size: .58rem; line-height: 1.12; }
+      .scale-item .lbl { font-size: .7rem; line-height: 1.2; }
       .kpi-grid { grid-template-columns: 1fr; }
     }
     @page {
@@ -1299,46 +1362,6 @@
         line-height: 1.42 !important;
       }
 
-      .pdf-factor-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin-top: 10px;
-      }
-
-      .pdf-factor-card {
-        border: 1px solid #e3ded4;
-        border-radius: 13px;
-        padding: 10px;
-        background: #ffffff !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-
-      .pdf-factor-card small {
-        display: block;
-        color: #687086 !important;
-        font-size: 7.2pt;
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        font-weight: 900;
-        margin-bottom: 4px;
-      }
-
-      .pdf-factor-card strong {
-        display: block;
-        color: #1c335c !important;
-        font-size: 15pt;
-        line-height: 1.05 !important;
-      }
-
-      .pdf-factor-card p {
-        color: #4d566b !important;
-        font-size: 8.4pt !important;
-        line-height: 1.42 !important;
-        margin-top: 5px !important;
-      }
-
       .pdf-dimension-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1385,27 +1408,6 @@
         line-height: 1.42 !important;
       }
 
-      .pdf-priority-banner {
-        border: 1px solid #d6c8ae;
-        border-left: 5px solid #b88a3b;
-        border-radius: 12px;
-        padding: 11px 12px;
-        background: #fffaf0 !important;
-        margin-top: 10px;
-      }
-
-      .pdf-priority-banner strong {
-        color: #172033 !important;
-        font-size: 10pt;
-      }
-
-      .pdf-priority-banner p {
-        color: #4b3412 !important;
-        font-size: 8.8pt !important;
-        line-height: 1.45 !important;
-        margin-top: 4px !important;
-      }
-
       .pdf-section-intro {
         color: #687086 !important;
         font-size: 9pt !important;
@@ -1413,12 +1415,6 @@
         margin-top: 5px !important;
       }
 
-      .pdf-number-note {
-        color: #687086 !important;
-        font-size: 8pt !important;
-        line-height: 1.4 !important;
-        margin-top: 8px !important;
-      }
     }
 
     /* ── ACCESSIBILITY ── */
@@ -1433,6 +1429,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#diagnostico">Saltar al diagnóstico</a>
+
 <!-- HERO -->
 <header class="hero">
   <div class="shell">
@@ -1443,17 +1441,18 @@
           Diagnóstico de reputación profesional
         </div>
         <h1>SOMOS<br><em>G·E·N·I·O·S</em></h1>
-        <p class="hero-desc">Evalúa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu letra de entrada, tu Índice de Capital Reputacional /100 y un plan concreto de seis semanas para avanzar.</p>
+        <p class="hero-desc">Observa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu letra de entrada y un plan concreto de seis semanas para avanzar.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#diagnostico">Empezar diagnóstico</a>
-          <button class="btn btn-ghost-white" id="btnScrollResults" type="button">Ver resultado en vivo</button>
+          <button class="btn btn-ghost-white" id="btnScrollResults" type="button">Ver ejemplo de resultado</button>
           <button class="btn btn-ghost-white btn-sm" id="btnResetTop" type="button">Reiniciar</button>
         </div>
+        <p class="privacy-note">Tus respuestas se guardan únicamente en este navegador.</p>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><b>24</b><span>conductas medidas</span></div>
-        <div class="hero-stat"><b>6</b><span>dimensiones G.E.N.I.O.S.</span></div>
-        <div class="hero-stat"><b>/100</b><span>Capital Reputacional</span></div>
+        <div class="hero-stat"><b>24</b><span>afirmaciones</span></div>
+        <div class="hero-stat"><b>6</b><span>conductas G.E.N.I.O.S.</span></div>
+        <div class="hero-stat"><b>6</b><span>semanas de práctica</span></div>
       </div>
     </div>
   </div>
@@ -1463,7 +1462,7 @@
 <nav class="sticky-bar" aria-label="Navegación y progreso">
   <div class="shell sticky-inner">
     <div class="sticky-tabs">
-      <a class="s-tab active" href="#diagnostico">Diagnóstico</a>
+      <a class="s-tab active" href="#diagnostico" aria-current="page">Diagnóstico</a>
       <a class="s-tab" href="#resultado">Resultado</a>
       <a class="s-tab" href="#plan">Plan 6 semanas</a>
       <a class="s-tab" href="#mejorar">Entrada</a>
@@ -1477,7 +1476,7 @@
 
 <!-- MAIN LAYOUT -->
 <div class="shell layout">
-  <main class="main">
+  <main class="main" id="contenido">
 
     <!-- INTRO CARD -->
     <section class="card card-pad" id="intro">
@@ -1486,8 +1485,8 @@
       <p class="small" style="margin-bottom:16px;">Lee cada afirmación y marca del 1 al 5 según la frecuencia con que esa conducta aparece en tu trabajo real. No respondas desde lo que sabes, lo que valoras o lo que te gustaría hacer: responde desde lo que otros podrían observar en tu comportamiento habitual.</p>
       <div class="next-block name-panel">
         <label class="field-label" for="respondentName">Nombre para el reporte final</label>
-        <input class="name-input" id="respondentName" type="text" maxlength="80" placeholder="Escribe tu nombre completo" autocomplete="name" />
-        <div class="name-hint">Antes de descargar, imprimir o copiar el reporte, escribe tu nombre. Aparecerá en la portada y en el resumen final.</div>
+        <input class="name-input" id="respondentName" type="text" maxlength="80" placeholder="Escribe tu nombre completo" autocomplete="name" aria-describedby="nameHint" />
+        <div class="name-hint" id="nameHint">Puedes responder sin escribirlo. Solo será necesario al copiar, imprimir o guardar el reporte final.</div>
       </div>
       <div class="scale-legend">
         <div class="scale-item"><span class="val">1</span><span class="lbl">Nunca<br><small>Sin evidencia</small></span></div>
@@ -1498,7 +1497,7 @@
       </div>
       <div class="next-block" style="margin-top:16px;">
         <span class="next-label">Instrucción clave</span>
-        <div class="next-text">Responde por hechos, no por intención. Si dudas entre dos números, elige el más bajo. Busca evidencia reciente: el diagnóstico funciona mejor cuando mide tu promedio real, no tu mejor día. Tus respuestas quedan guardadas solo en este navegador y no se envían a ningún servidor.</div>
+        <div class="next-text">Responde por hechos, no por intención. Si dudas entre dos números, elige el más bajo. Busca evidencia reciente: el diagnóstico funciona mejor cuando refleja tu promedio real, no tu mejor día. Tus respuestas quedan guardadas solo en este navegador y no se envían a ningún servidor.</div>
       </div>
     </section>
 
@@ -1524,6 +1523,7 @@
         <div class="complete-icon">🎯</div>
         <h3>¡Diagnóstico completo!</h3>
         <p>Tu hexágono, perfil y plan de 6 semanas están listos. Revisa primero tu letra de entrada: ahí está tu mayor oportunidad de avance.</p>
+        <button class="btn btn-sm" id="btnCompleteResult" type="button">Ver mi resultado</button>
       </div>
 
       <div id="questionContainer"></div>
@@ -1562,7 +1562,7 @@
           <div class="eyebrow">Tu resultado</div>
           <h3>En tiempo real</h3>
         </div>
-        <span class="live-pill"><span class="live-dot"></span> En vivo</span>
+        <span class="live-pill" id="liveStatus"><span class="live-dot"></span> En vivo</span>
       </div>
       <div class="card-pad" style="padding-top:14px;">
         <div class="kpi-grid">
@@ -1587,18 +1587,19 @@
     </section>
 
 
-    <!-- CAPITAL REPUTACIONAL -->
+    <!-- WORK DECISION -->
     <section class="card card-pad" aria-live="polite">
-      <div class="eyebrow">Capital Reputacional</div>
-      <h3>Medición aproximada</h3>
-      <p class="small" style="margin-top:6px;">Valor × Consistencia × Visibilidad ÷ 80 = Índice /100.</p>
-      <div class="capital-grid">
-        <div class="capital-metric"><span>Valor</span><strong id="capitalValor">—</strong></div>
-        <div class="capital-metric"><span>Consistencia</span><strong id="capitalConsistencia">—</strong></div>
-        <div class="capital-metric"><span>Visibilidad</span><strong id="capitalVisibilidad">—</strong></div>
-        <div class="capital-metric"><span>Índice /100</span><strong id="capitalScore">—</strong></div>
+      <div class="eyebrow">Tu decisión de trabajo</div>
+      <h3>Convierte el resultado en una acción</h3>
+      <p class="small" style="margin-top:6px;">Al completar el diagnóstico, aquí aparecerá la conducta que conviene practicar primero.</p>
+      <div class="decision-panel">
+        <div class="decision-letter" id="decisionLetter">—</div>
+        <div>
+          <strong class="decision-title" id="decisionTitle">Completa las 24 respuestas</strong>
+          <p class="decision-body" id="decisionBody">Tu letra de entrada señalará una oportunidad concreta, visible y repetible.</p>
+        </div>
       </div>
-      <div class="capital-formula" id="capitalDiagnosis">Completa las 24 respuestas para ver tu Índice de Capital Reputacional /100.</div>
+      <button class="btn btn-dark btn-sm decision-cta" id="decisionCta" type="button" disabled>Ir a mis acciones</button>
     </section>
 
     <!-- HEXÁGONO -->
@@ -1644,7 +1645,7 @@
 
     <!-- PERFIL -->
     <section class="card card-pad">
-      <div class="eyebrow">Paso 4</div>
+      <div class="eyebrow">Lectura complementaria</div>
       <h3>Tu perfil G.E.N.I.O.S.</h3>
       <div class="profile-banner" id="profileBanner">
         <div class="profile-name-label">Perfil sugerido</div>
@@ -2045,7 +2046,7 @@
       section.className = 'dimension';
       section.id = `dim-${dim.letter}`;
       section.innerHTML = `
-        <div class="dimension-header" role="button" tabindex="0" aria-label="${dim.letter} · ${dim.name}">
+        <div class="dimension-header">
           <div class="dim-letter">${dim.letter}</div>
           <div class="dim-info">
             <h3>${dim.letter} · ${dim.name}</h3>
@@ -2074,10 +2075,15 @@
         `;
         q.querySelectorAll('input').forEach(input => {
           input.addEventListener('change', e => {
+            const wasComplete = Object.values(answers).filter(v => Number.isFinite(v)).length >= 24;
             answers[key] = Number(e.target.value);
             saveState();
             q.classList.add('answered');
-            updateAll();
+            const state = updateAll();
+            if (!wasComplete && state.complete) {
+              toast('✓ Resultado listo. Revisa tu letra de entrada.');
+              setTimeout(() => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }), 180);
+            }
           });
         });
         list.appendChild(q);
@@ -2128,39 +2134,7 @@
     const focusIndex    = complete ? indexOfMin(dimScores.map(d => d.score)) : -1;
     const strengthIndex = complete ? indexOfMax(dimScores.map(d => d.score)) : -1;
     const profileIndex  = complete ? getProfileIndex(dimScores, total) : 0;
-    const capital = calculateCapital(dimScores, complete);
-    return { answered, dimScores, total, complete, level, focusIndex, strengthIndex, profileIndex, capital };
-  }
-
-  function calculateCapital(dimScores, complete) {
-    const byLetter = Object.fromEntries(dimScores.map(d => [d.letter, d.score]));
-    const valor = ((byLetter.G || 0) + (byLetter.E || 0)) / 2;
-    const consistencia = ((byLetter.N || 0) + (byLetter.S || 0)) / 2;
-    const visibilidad = ((byLetter.I || 0) + (byLetter.O || 0)) / 2;
-    const bruto = valor * consistencia * visibilidad;
-    const score = Math.round(bruto / 80);
-    const factors = [
-      { key: 'Valor', value: valor },
-      { key: 'Consistencia', value: consistencia },
-      { key: 'Visibilidad', value: visibilidad }
-    ];
-    const weakest = factors.reduce((min, item) => item.value < min.value ? item : min, factors[0]);
-    return {
-      valor,
-      consistencia,
-      visibilidad,
-      bruto,
-      score,
-      weakest: weakest.key,
-      diagnosis: complete ? interpretCapital(score) : 'Completa las 24 respuestas para ver tu Índice de Capital Reputacional /100.'
-    };
-  }
-
-  function interpretCapital(score) {
-    if (score <= 25) return 'Débil. Hay un factor demasiado bajo que puede estar anulando el resto. Trabaja primero tu letra más débil.';
-    if (score <= 50) return 'En formación. Hay señales valiosas, pero todavía no forman un patrón suficientemente claro.';
-    if (score <= 75) return 'Funcionando. Tu forma de trabajar ya empieza a dejar una expectativa reconocible.';
-    return 'Fuerte. Tu nombre empieza a significar algo concreto para otros. El desafío es sostener el estándar.';
+    return { answered, dimScores, total, complete, level, focusIndex, strengthIndex, profileIndex };
   }
 
   function getLevel(total) {
@@ -2189,7 +2163,7 @@
     updateProgress(state);
     updateSubtotals(state);
     updateResult(state);
-    updateCapital(state);
+    updateDecision(state);
     updateRadar(state);
     updateBars(state);
     updatePlanIntro(state);
@@ -2197,6 +2171,7 @@
     updatePrintReport(state);
     updateStickyProgress(state);
     updateCompleteBanner(state);
+    return state;
   }
 
   function updateProgress({ answered }) {
@@ -2236,6 +2211,9 @@
     document.getElementById('kpiLevel').textContent     = complete ? level.num : '—';
     document.getElementById('kpiLevelName').textContent = complete ? level.name : 'Completa';
     document.getElementById('levelQuote').textContent   = complete ? `"${level.phrase}"` : 'Responde las 24 afirmaciones para descubrir tu nivel, tu frase guía y tu punto de avance.';
+    document.getElementById('liveStatus').innerHTML = complete
+      ? '<span class="live-dot"></span> Resultado listo'
+      : '<span class="live-dot"></span> En vivo';
 
     const strength = complete ? dimScores[strengthIndex] : null;
     const focus    = complete ? dimScores[focusIndex]    : null;
@@ -2254,21 +2232,23 @@
       : 'El sistema sugerirá un perfil a partir de tus seis promedios. No es una etiqueta fija.';
   }
 
-  function updateCapital({ complete, capital }) {
-    const setMetric = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+  function updateDecision({ complete, dimScores, focusIndex }) {
+    const letter = document.getElementById('decisionLetter');
+    const title = document.getElementById('decisionTitle');
+    const body = document.getElementById('decisionBody');
+    const cta = document.getElementById('decisionCta');
     if (!complete) {
-      setMetric('capitalValor', '—');
-      setMetric('capitalConsistencia', '—');
-      setMetric('capitalVisibilidad', '—');
-      setMetric('capitalScore', '—');
-      document.getElementById('capitalDiagnosis').textContent = 'Completa las 24 respuestas para ver tu Índice de Capital Reputacional /100.';
+      letter.textContent = '—';
+      title.textContent = 'Completa las 24 respuestas';
+      body.textContent = 'Tu letra de entrada señalará una oportunidad concreta, visible y repetible.';
+      cta.disabled = true;
       return;
     }
-    setMetric('capitalValor', `${capital.valor.toFixed(1)}/20`);
-    setMetric('capitalConsistencia', `${capital.consistencia.toFixed(1)}/20`);
-    setMetric('capitalVisibilidad', `${capital.visibilidad.toFixed(1)}/20`);
-    setMetric('capitalScore', `${capital.score}/100`);
-    document.getElementById('capitalDiagnosis').textContent = `Diagnóstico: ${capital.diagnosis} Bruto: ${Math.round(capital.bruto).toLocaleString('es-CL')} / 8.000. Factor más bajo: ${capital.weakest}.`;
+    const focus = dimScores[focusIndex];
+    letter.textContent = focus.letter;
+    title.textContent = `${focus.letter} · ${focus.name}`;
+    body.textContent = `Empieza con una acción pequeña esta semana: ${focus.actions[0].title.toLowerCase()}.`;
+    cta.disabled = false;
   }
 
   /* ── RADAR ── */
@@ -2393,12 +2373,12 @@
 
   function dimensionReading(dim) {
     const readings = {
-      G: 'Mide si tu trabajo facilita decisiones, avances o soluciones, no solo cumplimiento de tareas.',
-      E: 'Mide si comprendes el problema real antes de responder, proponer o actuar.',
-      N: 'Mide tu capacidad de involucrarte con el resultado sin invadir ni cargar con todo.',
-      I: 'Mide si tus entregas son claras, usables y confiables incluso cuando no estás para explicarlas.',
-      O: 'Mide si conviertes aprendizaje en mejora visible, no solo en intención o acumulación de información.',
-      S: 'Mide si otros pueden anticipar tu estándar, especialmente bajo presión o en días difíciles.'
+      G: 'Observa si tu trabajo facilita decisiones, avances o soluciones, no solo el cumplimiento de tareas.',
+      E: 'Observa si comprendes el problema real antes de responder, proponer o actuar.',
+      N: 'Observa tu capacidad de involucrarte con el resultado sin invadir ni cargar con todo.',
+      I: 'Observa si tus entregas son claras, usables y confiables incluso cuando no estás para explicarlas.',
+      O: 'Observa si conviertes aprendizaje en mejora visible, no solo en intención o acumulación de información.',
+      S: 'Observa si otros pueden anticipar tu estándar, especialmente bajo presión o en días difíciles.'
     };
     return readings[dim.letter] || 'Dimensión de conducta profesional observable.';
   }
@@ -2415,30 +2395,13 @@
     return recommendations[dim.letter] || dim.plan;
   }
 
-  function factorReading(key, value) {
-    const band = value >= 17 ? 'muy alto' : value >= 14 ? 'sólido' : value >= 10 ? 'intermedio' : 'en desarrollo';
-    const texts = {
-      Valor: `Tu capacidad de generar utilidad reconocible está en nivel ${band}. Este factor combina Generar valor y Escuchar para entender.`,
-      Consistencia: `Tu capacidad de sostener confianza en el tiempo está en nivel ${band}. Este factor combina Nivel de involucramiento y Sostener la consistencia.`,
-      Visibilidad: `Tu capacidad de dejar evidencia observable está en nivel ${band}. Este factor combina Intención en el detalle y Obsesión por crecer.`
-    };
-    return texts[key] || `Factor en nivel ${band}.`;
-  }
-
-  function capitalSummary(capital) {
-    if (capital.score <= 25) return 'Tu Capital Reputacional está débil: no necesitas hacer más de todo, necesitas subir primero el factor más bajo.';
-    if (capital.score <= 50) return 'Tu Capital Reputacional está en formación. Ya hay conductas presentes, pero una parte del sistema limita la confianza que otros pueden formar sobre ti.';
-    if (capital.score <= 75) return 'Tu Capital Reputacional funciona. El desafío no es partir de cero, sino sostener el estándar y evitar que el factor más bajo limite tu crecimiento.';
-    return 'Tu Capital Reputacional muestra una base fuerte. El desafío es no relajarte: contrasta tu autoevaluación con evidencia externa y protege tu estándar.';
-  }
-
-  function buildExecutiveReading(level, strength, focus, capital, profile) {
-    return `Tu resultado sugiere un nivel ${level.num} · ${level.name}. Tu fortaleza principal aparece en ${strength.letter} · ${strength.name}, mientras que tu mayor oportunidad de avance está en ${focus.letter} · ${focus.name}. Tu Índice de Capital Reputacional es ${capital.score}/100; el factor que más conviene cuidar ahora es ${capital.weakest}. Tu perfil sugerido es ${profile.name}: úsalo como una lectura de trabajo, no como una etiqueta fija.`;
+  function buildExecutiveReading(level, strength, focus, profile) {
+    return `Tu resultado sugiere un nivel ${level.num} · ${level.name}. Tu fortaleza principal aparece en ${strength.letter} · ${strength.name}, mientras que tu mayor oportunidad de avance está en ${focus.letter} · ${focus.name}. Tu perfil sugerido es ${profile.name}: úsalo como una lectura complementaria, no como una etiqueta fija. Empieza por una acción visible de ${focus.letter} y repítela hasta convertirla en evidencia.`;
   }
 
   function buildReportText() {
     const state = calculate();
-    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
+    const { complete, answered, level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
     const name = getRespondentName();
     const lines = ['SOMOS G.E.N.I.O.S. · Reporte de diagnóstico', ''];
     lines.push(`Nombre: ${name || 'Sin nombre'}`, `Respuestas completadas: ${answered}/24`);
@@ -2447,15 +2410,8 @@
     const strength = dimScores[strengthIndex];
     const risk     = riskTable[level.num];
     const profile  = profiles[profileIndex];
-    lines.push('', 'LECTURA PRINCIPAL', buildExecutiveReading(level, strength, focus, capital, profile));
+    lines.push('', 'LECTURA PRINCIPAL', buildExecutiveReading(level, strength, focus, profile));
     lines.push('', 'NIVEL GENERAL', `${level.num} · ${level.name}`, level.desc, `Frase guía: ${level.phrase}`);
-    lines.push('', 'CAPITAL REPUTACIONAL APROXIMADO', 'Fórmula: Valor × Consistencia × Visibilidad ÷ 80 = Índice /100', capitalSummary(capital));
-    lines.push(`Valor: ${capital.valor.toFixed(1)}/20 · ${factorReading('Valor', capital.valor)}`);
-    lines.push(`Consistencia: ${capital.consistencia.toFixed(1)}/20 · ${factorReading('Consistencia', capital.consistencia)}`);
-    lines.push(`Visibilidad: ${capital.visibilidad.toFixed(1)}/20 · ${factorReading('Visibilidad', capital.visibilidad)}`);
-    lines.push(`Índice de Capital Reputacional: ${capital.score}/100`);
-    lines.push(`Resultado bruto: ${Math.round(capital.bruto).toLocaleString('es-CL')} / 8.000`);
-    lines.push(`Factor a cuidar primero: ${capital.weakest}`);
     lines.push('', 'LECTURA POR DIMENSIÓN');
     dimScores.forEach(d => {
       lines.push(`${d.letter} · ${d.name}: ${dimensionBand(d.score)} (${d.score}/20). ${dimensionReading(d)} Recomendación: ${dimensionRecommendation(d)}`);
@@ -2474,12 +2430,12 @@
 
   function buildPrintableReportHTML() {
     const state = calculate();
-    const { complete, total, answered, level, dimScores, focusIndex, strengthIndex, profileIndex, capital } = state;
+    const { complete, answered, level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
     const name = getRespondentName();
     const date = new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' });
     const scoreLabel = complete ? `${level.num} · ${level.name}` : `${answered}/24`;
     const coverSubtitle = complete
-      ? 'Una lectura clara de tus conductas profesionales, tu Capital Reputacional aproximado y tu próximo paso de avance.'
+      ? 'Una lectura clara de tus seis conductas profesionales, tu letra de entrada y tu próximo paso de avance.'
       : 'Reporte preliminar. Completa las 24 respuestas para desbloquear tu resultado final.';
 
     let html = `
@@ -2519,48 +2475,19 @@
     const strength = dimScores[strengthIndex];
     const risk     = riskTable[level.num];
     const profile  = profiles[profileIndex];
-    const factorItems = [
-      { key: 'Valor', value: capital.valor },
-      { key: 'Consistencia', value: capital.consistencia },
-      { key: 'Visibilidad', value: capital.visibilidad }
-    ];
 
     html += `
           <div class="pdf-hero-summary">
-            <strong>${escapeHTML(buildExecutiveReading(level, strength, focus, capital, profile))}</strong>
+            <strong>${escapeHTML(buildExecutiveReading(level, strength, focus, profile))}</strong>
             <p>${escapeHTML(level.desc)}</p>
             <div class="pdf-pill-row">
               <span class="pdf-pill">Nivel ${level.num} · ${escapeHTML(level.name)}</span>
               <span class="pdf-pill">Fortaleza: ${strength.letter} · ${escapeHTML(strength.name)}</span>
               <span class="pdf-pill">Foco: ${focus.letter} · ${escapeHTML(focus.name)}</span>
-              <span class="pdf-pill">Capital Reputacional: ${capital.score}/100</span>
+              <span class="pdf-pill">Plan: 6 semanas</span>
             </div>
           </div>
           <div class="pdf-quote">“${escapeHTML(level.phrase)}”</div>
-        </section>
-
-        <section class="pdf-section pdf-card">
-          <div class="pdf-eyebrow">Capital Reputacional aproximado</div>
-          <h2>Valor × Consistencia × Visibilidad ÷ 80</h2>
-          <p class="pdf-section-intro">El índice /100 no es una nota definitiva. Convierte el resultado bruto máximo de 8.000 en una lectura práctica de cómo tus conductas generan utilidad, confianza sostenida y evidencia visible.</p>
-          <div class="pdf-factor-grid">`;
-
-    factorItems.forEach(item => {
-      html += `
-            <div class="pdf-factor-card">
-              <small>${escapeHTML(item.key)}</small>
-              <strong>${item.value.toFixed(1)}/20</strong>
-              <p>${escapeHTML(factorReading(item.key, item.value))}</p>
-            </div>`;
-    });
-
-    html += `
-          </div>
-          <div class="pdf-priority-banner">
-            <strong>Índice de Capital Reputacional: ${capital.score}/100</strong>
-            <p>${escapeHTML(capitalSummary(capital))} Resultado bruto: ${Math.round(capital.bruto).toLocaleString('es-CL')} / 8.000. Factor a cuidar primero: ${escapeHTML(capital.weakest)}.</p>
-          </div>
-          <p class="pdf-number-note">La fórmula multiplica los factores: cuando uno baja demasiado, limita el resultado completo aunque los otros sean altos.</p>
         </section>
 
         <section class="pdf-section pdf-card">
@@ -2719,9 +2646,15 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          tabs.forEach(t => t.classList.remove('active'));
+          tabs.forEach(t => {
+            t.classList.remove('active');
+            t.removeAttribute('aria-current');
+          });
           const active = document.querySelector(`.s-tab[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
+          if (active) {
+            active.classList.add('active');
+            active.setAttribute('aria-current', 'page');
+          }
         }
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
@@ -2744,7 +2677,9 @@
     }
     document.getElementById('btnReset').addEventListener('click', resetAll);
     document.getElementById('btnResetTop').addEventListener('click', resetAll);
-    document.getElementById('btnScrollResults').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' }));
+    document.getElementById('btnScrollResults').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.getElementById('btnCompleteResult').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.getElementById('decisionCta').addEventListener('click', () => document.getElementById('mejorar').scrollIntoView({ behavior: 'smooth', block: 'start' }));
     document.getElementById('btnCopy').addEventListener('click', copyReport);
     document.getElementById('btnDownload').addEventListener('click', openPDFDialog);
     document.getElementById('btnPrint').addEventListener('click', openPDFDialog);
