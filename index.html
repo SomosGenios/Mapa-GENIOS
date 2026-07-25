@@ -2,9 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diagnóstico G.E.N.I.O.S. · Tu conducta profesional</title>
-  <meta name="description" content="Diagnóstico web del sistema G.E.N.I.O.S.: 24 afirmaciones, mapa de seis conductas, letra de entrada y un plan práctico de seis semanas." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Diagnóstico G.E.N.I.O.S.</title>
+  <meta name="description" content="Diagnóstico G.E.N.I.O.S. 2.0: 24 conductas observables, evidencias recientes, lectura ejecutiva y plan de acción personalizado." />
+  <meta name="application-name" content="Diagnóstico G.E.N.I.O.S." />
+  <meta name="apple-mobile-web-app-title" content="Diagnóstico G.E.N.I.O.S." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <meta name="theme-color" content="#1c335c" />
   <meta name="color-scheme" content="light" />
   <style>
@@ -471,6 +476,21 @@
       display: flex; justify-content: space-between;
       color: var(--muted); font-size: .73rem; margin-top: 2px;
     }
+
+
+    /* ── EVIDENCIA POR CONDUCTA ── */
+    .dimension-evidence {
+      margin-top: 14px;
+      padding: 15px;
+      border: 1px dashed rgba(28,51,92,.22);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fbfaf7, #fff);
+    }
+    .dimension-evidence label { display:block; font-weight:850; color:var(--primary); font-size:.84rem; margin-bottom:5px; }
+    .dimension-evidence p { color:var(--muted); font-size:.78rem; margin-bottom:8px; line-height:1.4; }
+    .evidence-input { width:100%; min-height:78px; resize:vertical; border:1.5px solid rgba(28,51,92,.14); border-radius:13px; padding:11px 12px; background:#fff; color:var(--ink); outline:none; line-height:1.45; }
+    .evidence-input:focus { border-color:var(--accent); box-shadow:0 0 0 4px rgba(184,138,59,.12); }
+    .evidence-count { display:block; text-align:right; color:var(--muted); font-size:.68rem; margin-top:4px; }
 
     /* ── RESULT SIDEBAR ── */
     .result-header {
@@ -994,7 +1014,7 @@
         print-color-adjust: exact;
       }
 
-      .hero, .sticky-bar, .sidebar, .footer, .toast,
+      .hero, .sticky-bar, .sidebar, .footer, .toast, .skip-link, .mobile-bottom-nav,
       .main > section:not(.print-report) {
         display: none !important;
       }
@@ -1112,6 +1132,11 @@
         margin-bottom: 12px;
         break-inside: avoid;
         page-break-inside: avoid;
+      }
+
+      .pdf-plan-section {
+        break-inside: auto !important;
+        page-break-inside: auto !important;
       }
 
       .pdf-card {
@@ -1233,6 +1258,9 @@
         color: #172033 !important;
         margin-bottom: 3px;
       }
+
+      .pdf-list-item p + p { margin-top: 4px !important; }
+      .pdf-list-item p b { color: #1c335c !important; }
 
       .pdf-list-item span, .pdf-list-item p {
         color: #687086 !important;
@@ -1417,6 +1445,419 @@
 
     }
 
+
+    /* ── UX MÓVIL FINAL ── */
+    .method-note {
+      margin-top: 12px;
+      display: grid;
+      gap: 4px;
+      padding: 13px 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(28,51,92,.14);
+      background: #f6f8fb;
+      color: var(--ink);
+    }
+    .method-note strong { color: var(--primary); font-size: .86rem; }
+    .method-note span { color: var(--muted); font-size: .82rem; line-height: 1.48; }
+
+    .mobile-bottom-nav { display: none; }
+
+    @media (max-width: 640px) {
+      body { padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); }
+      input, textarea, select { font-size: 16px !important; }
+      .sticky-bar { position: sticky; top: 0; }
+      .sticky-tabs { scroll-snap-type: x proximity; }
+      .s-tab { scroll-snap-align: start; min-height: 42px; display: inline-flex; align-items: center; }
+      .btn { min-height: 48px; font-size: .92rem; }
+      .question p { font-size: 1rem; line-height: 1.52; }
+      .scale label { min-height: 50px; font-size: 1rem; }
+      .scale-help { font-size: .72rem; }
+      .week-card { padding: 15px; border-radius: 16px; }
+      .week-card p { font-size: .9rem; line-height: 1.55; }
+      .mobile-bottom-nav {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
+        background: rgba(255,253,248,.97);
+        border-top: 1px solid rgba(28,51,92,.12);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 -8px 24px rgba(28,51,92,.08);
+      }
+      .mobile-bottom-nav a {
+        display: grid;
+        place-items: center;
+        gap: 2px;
+        min-height: 50px;
+        border-radius: 13px;
+        color: var(--muted);
+        font-size: .66rem;
+        font-weight: 850;
+      }
+      .mobile-bottom-nav a b { font-size: 1rem; color: var(--primary); }
+      .mobile-bottom-nav a:active { background: #f4ead8; color: #4b3412; }
+      .toast { bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
+    }
+
+
+    /* ── PLAN EJECUTABLE 10/10 ── */
+    .plan-topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .plan-topline-copy { max-width: 760px; }
+    .plan-save-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid rgba(34,113,92,.2);
+      font-size: .76rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .plan-save-state::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+    .plan-save-state.saving { background: #fff6e5; color: #7b581c; border-color: rgba(184,138,59,.25); }
+
+    .plan-dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 14px;
+    }
+    .plan-metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: var(--panel-2);
+      min-width: 0;
+    }
+    .plan-metric span {
+      display: block;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 4px;
+    }
+    .plan-metric strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.08rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+    .plan-progress-box {
+      border: 1px solid rgba(184,138,59,.23);
+      border-radius: 17px;
+      background: linear-gradient(145deg, #fffdf8, var(--accent-light));
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .plan-progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: .82rem;
+      font-weight: 850;
+    }
+    .plan-progress-track {
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #ece6db;
+      border: 1px solid rgba(28,51,92,.07);
+    }
+    .plan-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width .25s ease;
+    }
+
+    .plan-editor {
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: #fff;
+      padding: 17px;
+      margin: 14px 0;
+      box-shadow: 0 5px 18px rgba(28,51,92,.045);
+    }
+    .plan-editor.highlight {
+      border-color: rgba(184,138,59,.3);
+      background: linear-gradient(145deg, #fff, #fffaf0);
+    }
+    .plan-editor-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 13px;
+    }
+    .plan-editor-head h3 { font-size: 1.02rem; margin-top: 2px; }
+    .plan-editor-head p { color: var(--muted); font-size: .82rem; line-height: 1.48; margin-top: 5px; max-width: 760px; }
+    .plan-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #f4ead8;
+      color: #4b3412;
+      border: 1px solid rgba(184,138,59,.22);
+      font-size: .7rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .plan-chip.ready { background: #fff6e5; color: #775416; }
+    .plan-chip.done { background: var(--success-light); color: var(--success); border-color: rgba(34,113,92,.22); }
+
+    .plan-field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .plan-field { min-width: 0; }
+    .plan-field.full { grid-column: 1 / -1; }
+    .plan-field label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 850;
+      line-height: 1.3;
+    }
+    .plan-field label small { color: var(--muted); font-size: .67rem; font-weight: 650; }
+    .plan-input, .plan-textarea, .plan-select {
+      width: 100%;
+      border: 1.5px solid rgba(28,51,92,.15);
+      border-radius: 13px;
+      background: #fff;
+      color: var(--ink);
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .plan-textarea { min-height: 92px; resize: vertical; line-height: 1.48; }
+    .plan-textarea.compact { min-height: 72px; }
+    .plan-input:focus, .plan-textarea:focus, .plan-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(184,138,59,.12);
+      background: #fffefa;
+    }
+    .plan-input[readonly] { background: #f7f4ed; color: var(--muted); }
+    .plan-help {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: .72rem;
+      line-height: 1.4;
+    }
+
+    .plan-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 2px;
+    }
+    .plan-tools-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .plan-tools-note { color: var(--muted); font-size: .76rem; line-height: 1.4; }
+
+    .plan-grid { grid-template-columns: 1fr; gap: 12px; }
+    details.week-card {
+      padding: 0;
+      overflow: clip;
+      border-radius: 18px;
+      background: #fff;
+    }
+    details.week-card[open] { border-color: rgba(184,138,59,.28); box-shadow: 0 9px 26px rgba(28,51,92,.07); }
+    details.week-card.done { background: #fbfffd; border-color: rgba(34,113,92,.28); }
+    .week-card summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 15px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      background: linear-gradient(145deg, #fff, #fbfaf7);
+      user-select: none;
+    }
+    .week-card summary::-webkit-details-marker { display: none; }
+    .week-summary-main { min-width: 0; }
+    .week-kicker { display: block; color: var(--accent); font-size: .68rem; text-transform: uppercase; letter-spacing: .09em; font-weight: 900; margin-bottom: 3px; }
+    .week-card summary h3 { font-size: .96rem; line-height: 1.3; }
+    .week-summary-side { display: flex; align-items: center; gap: 8px; }
+    .week-chevron {
+      width: 30px; height: 30px;
+      display: grid; place-items: center;
+      border-radius: 10px;
+      background: #f4f1eb;
+      color: var(--primary);
+      font-weight: 900;
+      transition: transform .18s ease;
+    }
+    details[open] .week-chevron { transform: rotate(180deg); }
+    .week-card-body { padding: 0 16px 17px; border-top: 1px solid var(--line); }
+    .lens-box {
+      margin: 14px 0;
+      padding: 13px 14px;
+      border-radius: 15px;
+      background: linear-gradient(145deg, rgba(28,51,92,.055), rgba(184,138,59,.07));
+      border-left: 4px solid var(--accent);
+    }
+    .lens-box strong { display: block; color: var(--primary); font-size: .82rem; margin-bottom: 4px; }
+    .lens-box p { color: var(--ink); font-size: .84rem; line-height: 1.48; }
+    .lens-box p + p { margin-top: 5px; color: var(--muted); }
+    .week-completion-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 13px;
+      padding-top: 13px;
+      border-top: 1px solid var(--line);
+    }
+    .week-completion-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--primary);
+      font-size: .84rem;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .week-check { width: 25px; height: 25px; }
+    .week-requirement { color: var(--muted); font-size: .72rem; text-align: right; line-height: 1.35; }
+
+    .closing-grid { margin-top: 12px; }
+    .method-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+    .method-step {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 10px;
+      background: var(--panel-2);
+      color: var(--muted);
+      font-size: .75rem;
+      line-height: 1.38;
+    }
+    .method-step b { display: block; color: var(--primary); font-size: .78rem; margin-bottom: 2px; }
+
+    @media (max-width: 740px) {
+      .plan-dashboard, .method-strip { grid-template-columns: 1fr 1fr; }
+      .plan-field-grid { grid-template-columns: 1fr; }
+      .plan-field.full { grid-column: auto; }
+    }
+    @media (max-width: 640px) {
+      .plan-topline { display: grid; grid-template-columns: 1fr; gap: 10px; }
+      .plan-save-state { justify-self: start; }
+      .plan-dashboard { grid-template-columns: 1fr; gap: 8px; }
+      .plan-editor { padding: 14px 12px; border-radius: 16px; }
+      .plan-editor-head { display: grid; grid-template-columns: 1fr; gap: 8px; }
+      .plan-chip { justify-self: start; }
+      .plan-tools { display: grid; grid-template-columns: 1fr; }
+      .plan-tools-group { display: grid; grid-template-columns: 1fr; }
+      .plan-tools .btn { width: 100%; justify-content: center; }
+      .week-card summary { padding: 14px 12px; gap: 8px; }
+      .week-summary-side .plan-chip { display: none; }
+      .week-card-body { padding: 0 12px 15px; }
+      .week-completion-row { align-items: flex-start; }
+      .week-requirement { text-align: left; max-width: 190px; }
+      .method-strip { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── PRODUCT 1.1 ── */
+    .plan-dashboard { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .continuity-notice {
+      display: grid;
+      gap: 3px;
+      border: 1px solid rgba(28,51,92,.13);
+      border-radius: 15px;
+      padding: 12px 14px;
+      margin: 0 0 14px;
+      background: #f7f9fc;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+    .continuity-notice strong { color: var(--primary); font-size: .82rem; }
+    .continuity-notice.warning { background: #fff8e9; border-color: rgba(184,138,59,.28); color: #6d501e; }
+    .continuity-notice.success { background: var(--success-light); border-color: rgba(34,113,92,.22); color: #245d4e; }
+    .priority-lock-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 14px;
+      margin-top: 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(184,138,59,.28);
+      background: #fff8e9;
+    }
+    .priority-lock-bar > div:first-child { display: grid; gap: 3px; min-width: 0; }
+    .priority-lock-bar strong { color: var(--primary); font-size: .85rem; }
+    .priority-lock-bar span { color: var(--muted); font-size: .75rem; line-height: 1.4; }
+    .priority-lock-bar.locked { background: var(--success-light); border-color: rgba(34,113,92,.25); }
+    .priority-lock-actions { display: flex; flex-wrap: wrap; gap: 8px; flex: 0 0 auto; }
+    .plan-input.locked-field { background: #eef3f1; border-color: rgba(34,113,92,.2); color: #29493f; cursor: not-allowed; }
+    .plan-chip.consolidated { background: #e7eefb; color: #244777; border-color: rgba(37,71,127,.25); }
+    details.week-card.consolidated { background: #f8fbff; border-color: rgba(37,71,127,.28); }
+    .week-period { display: block; margin-top: 3px; color: var(--muted); font-size: .7rem; font-weight: 700; }
+    .week-progress-mini { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; margin: 10px 0 2px; }
+    .week-progress-mini .rail { height: 7px; border-radius: 99px; background: #ece6db; overflow: hidden; }
+    .week-progress-mini .fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .week-progress-mini small { color: var(--muted); font-size: .7rem; font-weight: 800; }
+    .week-completion-options { display: grid; gap: 8px; }
+    .week-completion-options .week-completion-label + .week-completion-label { color: #244777; }
+    .report-type-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 15px; }
+    .report-type-card { border: 1px solid var(--line); border-radius: 15px; padding: 13px; background: var(--panel-2); }
+    .report-type-card > strong { display: block; color: var(--primary); font-size: .88rem; margin-bottom: 4px; }
+    .report-type-card > span { display: block; color: var(--muted); font-size: .76rem; line-height: 1.42; }
+    .report-type-card .report-actions { margin-top: 10px; }
+    .report-save-note { color: var(--muted); font-size: .72rem; line-height: 1.4; margin-top: 10px; }
+    .legal-details { margin: 14px auto 0; max-width: 760px; text-align: left; border-top: 1px solid rgba(28,51,92,.1); padding-top: 10px; }
+    .legal-details summary { cursor: pointer; color: var(--primary); font-weight: 800; text-align: center; }
+    .legal-details p { margin-top: 8px; font-size: .78rem; line-height: 1.5; }
+    @media (max-width: 980px) { .plan-dashboard { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px) {
+      .priority-lock-bar { display: grid; grid-template-columns: 1fr; }
+      .priority-lock-actions { display: grid; grid-template-columns: 1fr; }
+      .priority-lock-actions .btn { width: 100%; justify-content: center; }
+      .week-completion-row { display: grid; grid-template-columns: 1fr; }
+      .week-requirement { max-width: none; }
+    }
+
     /* ── ACCESSIBILITY ── */
     :focus-visible {
       outline: 2px solid var(--accent);
@@ -1438,13 +1879,14 @@
       <div>
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          Diagnóstico de reputación profesional
+          Versión 3.0 · Alineada con la edición 2026
         </div>
-        <h1>SOMOS<br><em>G·E·N·I·O·S</em></h1>
-        <p class="hero-desc">Observa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu letra de entrada y un plan concreto de seis semanas para avanzar.</p>
+        <h1>Diagnóstico<br><em>G.E.N.I.O.S.</em></h1>
+        <p class="hero-desc">Observa las seis conductas que construyen tu reputación profesional. Responde desde tu comportamiento real de las últimas semanas, no desde tu intención ni desde tu mejor día. El resultado te mostrará tu fortaleza, tu prioridad central y una conducta palanca, una lectura ejecutiva y un plan claro para convertirla en evidencia.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#diagnostico">Empezar diagnóstico</a>
           <button class="btn btn-ghost-white" id="btnScrollResults" type="button">Ver ejemplo de resultado</button>
+          <button class="btn btn-ghost-white btn-sm" id="btnInstallApp" type="button" hidden>Instalar aplicación</button>
           <button class="btn btn-ghost-white btn-sm" id="btnResetTop" type="button">Reiniciar</button>
         </div>
         <p class="privacy-note">Tus respuestas se guardan únicamente en este navegador.</p>
@@ -1464,8 +1906,8 @@
     <div class="sticky-tabs">
       <a class="s-tab active" href="#diagnostico" aria-current="page">Diagnóstico</a>
       <a class="s-tab" href="#resultado">Resultado</a>
-      <a class="s-tab" href="#plan">Plan 6 semanas</a>
-      <a class="s-tab" href="#mejorar">Entrada</a>
+      <a class="s-tab" href="#plan">Plan de acción</a>
+      <a class="s-tab" href="#mejorar">Prioridad</a>
     </div>
     <div class="sticky-progress">
       <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
@@ -1482,22 +1924,26 @@
     <section class="card card-pad" id="intro">
       <div class="eyebrow">Cómo funciona</div>
       <h2 style="margin-bottom:10px;">Instrucciones para responder</h2>
-      <p class="small" style="margin-bottom:16px;">Lee cada afirmación y marca del 1 al 5 según la frecuencia con que esa conducta aparece en tu trabajo real. No respondas desde lo que sabes, lo que valoras o lo que te gustaría hacer: responde desde lo que otros podrían observar en tu comportamiento habitual.</p>
+      <p class="small" style="margin-bottom:16px;">Lee cada afirmación y marca del 1 al 5 según la frecuencia con que esa conducta apareció en la sala elegida durante las últimas cuatro semanas. No respondas desde lo que sabes, lo que valoras o lo que te gustaría hacer: responde desde lo que otros podrían observar en tu comportamiento habitual.</p>
       <div class="next-block name-panel">
         <label class="field-label" for="respondentName">Nombre para el reporte final</label>
         <input class="name-input" id="respondentName" type="text" maxlength="80" placeholder="Escribe tu nombre completo" autocomplete="name" aria-describedby="nameHint" />
         <div class="name-hint" id="nameHint">Puedes responder sin escribirlo. Solo será necesario al copiar, imprimir o guardar el reporte final.</div>
       </div>
       <div class="scale-legend">
-        <div class="scale-item"><span class="val">1</span><span class="lbl">Nunca<br><small>Sin evidencia</small></span></div>
-        <div class="scale-item"><span class="val">2</span><span class="lbl">Rara vez<br><small>Un caso aislado</small></span></div>
-        <div class="scale-item"><span class="val">3</span><span class="lbl">A veces<br><small>Depende del contexto</small></span></div>
-        <div class="scale-item"><span class="val">4</span><span class="lbl">Frecuentemente<br><small>Es parte de cómo trabajo</small></span></div>
-        <div class="scale-item"><span class="val">5</span><span class="lbl">Siempre<br><small>Otros ya lo esperan</small></span></div>
+        <div class="scale-item"><span class="val">1</span><span class="lbl">No apareció<br><small>cuando se necesitó</small></span></div>
+        <div class="scale-item"><span class="val">2</span><span class="lbl">Forma aislada<br><small>apareció una vez</small></span></div>
+        <div class="scale-item"><span class="val">3</span><span class="lbl">Algunas veces<br><small>presencia intermitente</small></span></div>
+        <div class="scale-item"><span class="val">4</span><span class="lbl">Con frecuencia<br><small>aparece habitualmente</small></span></div>
+        <div class="scale-item"><span class="val">5</span><span class="lbl">Patrón reconocible<br><small>otros ya pueden esperarlo</small></span></div>
       </div>
       <div class="next-block" style="margin-top:16px;">
         <span class="next-label">Instrucción clave</span>
-        <div class="next-text">Responde por hechos, no por intención. Si dudas entre dos números, elige el más bajo. Busca evidencia reciente: el diagnóstico funciona mejor cuando refleja tu promedio real, no tu mejor día. Tus respuestas quedan guardadas solo en este navegador y no se envían a ningún servidor.</div>
+        <div class="next-text">Responde por hechos, no por intención. Si dudas entre dos números, elige el más bajo. No marques 4 o 5 sin recordar una escena concreta: el diagnóstico funciona mejor cuando refleja tu promedio real, no tu mejor día. Tus respuestas quedan guardadas solo en este navegador y no se envían a ningún servidor.</div>
+      </div>
+      <div class="method-note" role="note" aria-label="Alcance del diagnóstico">
+        <strong>Alcance de esta herramienta</strong>
+        <span>Es una autoobservación orientativa. No es una prueba psicométrica, no mide talento, desempeño ni reputación, y no debe utilizarse para comparar personas o tomar decisiones laborales.</span>
       </div>
     </section>
 
@@ -1522,30 +1968,163 @@
       <div id="completeBanner" class="complete-banner">
         <div class="complete-icon">🎯</div>
         <h3>¡Diagnóstico completo!</h3>
-        <p>Tu hexágono, perfil y plan de 6 semanas están listos. Revisa primero tu letra de entrada: ahí está tu mayor oportunidad de avance.</p>
+        <p>Tu mapa, tu conducta palanca y tu plan de acción están listos. Revisa tu prioridad central: será la conducta que desarrollarás durante seis fases progresivas.</p>
         <button class="btn btn-sm" id="btnCompleteResult" type="button">Ver mi resultado</button>
       </div>
 
       <div id="questionContainer"></div>
     </section>
 
-    <!-- PLAN -->
+    <!-- PLAN EJECUTABLE -->
     <section class="card card-pad" id="plan">
-      <div class="eyebrow">Plan de 6 semanas</div>
-      <h2>Una letra por semana</h2>
-      <p class="small" style="margin-top:6px;" id="planIntro">Completa las 24 respuestas para activar un plan simple: una conducta G.E.N.I.O.S. por semana, empezando por tu principal oportunidad.</p>
-      <div class="next-block" id="weekZeroBlock">
-        <span class="next-label">Semana 0 · Elegir terreno</span>
-        <div class="next-text">Antes de comenzar, define un proyecto, relación o tarea recurrente donde otra persona pueda notar una diferencia. Escribe tu letra prioritaria, la situación donde se verá y la evidencia que debería quedar.</div>
+      <div class="plan-topline">
+        <div class="plan-topline-copy">
+          <div class="eyebrow">Programa personalizado de 6 semanas</div>
+          <h2>Una conducta palanca, seis fases progresivas</h2>
+          <p class="small" style="margin-top:7px;" id="planIntro">Completa las 24 respuestas para definir una prioridad central. Luego convertirás el resultado en situaciones, evidencia y ajustes registrables durante seis semanas.</p>
+        </div>
+        <span class="plan-save-state" id="planSaveState" role="status" aria-live="polite">Guardado en este dispositivo</span>
       </div>
+
+      <div class="method-strip" aria-label="Método del plan">
+        <div class="method-step"><b>1. Prioridad</b>Elige una sola conducta central para todo el ciclo.</div>
+        <div class="method-step"><b>2. Situación</b>Practícala en trabajo real, no solo como intención.</div>
+        <div class="method-step"><b>3. Evidencia</b>Registra qué cambió para otra persona.</div>
+        <div class="method-step"><b>4. Repetición</b>Haz una segunda práctica y ajusta.</div>
+      </div>
+
+      <div class="plan-dashboard">
+        <div class="plan-metric"><span>Prioridad central</span><strong id="planPriorityMetric">Pendiente</strong></div>
+        <div class="plan-metric"><span>Prácticas realizadas</span><strong id="planWeeksMetric">0 de 6</strong></div>
+        <div class="plan-metric"><span>Semanas consolidadas</span><strong id="planConsolidatedMetric">0 de 6</strong></div>
+        <div class="plan-metric"><span>Semana actual</span><strong id="planCurrentMetric">Sin fecha</strong></div>
+      </div>
+
+      <div class="continuity-notice" id="continuityNotice" role="status" aria-live="polite">
+        <strong>Continuidad del plan</strong>
+        <span id="continuityText">Define la Semana 0 y descarga un respaldo para proteger tu progreso.</span>
+      </div>
+
+      <div class="plan-progress-box">
+        <div class="plan-progress-meta"><span id="planProgressText">Tu plan todavía no comienza</span><span id="planProgressPct">0%</span></div>
+        <div class="plan-progress-track"><div class="plan-progress-fill" id="planProgressFill"></div></div>
+      </div>
+
+      <div class="plan-editor highlight" id="weekZeroBlock">
+        <div class="plan-editor-head">
+          <div>
+            <div class="eyebrow">Semana 0 · Elegir terreno</div>
+            <h3>Define dónde se verá el cambio</h3>
+            <p>Antes de comenzar, elige un contexto real, formula tu prioridad como conducta observable y define la evidencia que debería quedar. Esta decisión será la misma durante las seis semanas.</p>
+          </div>
+          <span class="plan-chip" id="weekZeroStatus">Por definir</span>
+        </div>
+        <div class="plan-field-grid">
+          <div class="plan-field">
+            <label for="planStartDate">Fecha de inicio <small>opcional</small></label>
+            <input class="plan-input" id="planStartDate" type="date" data-plan-section="week0" data-plan-field="startDate" />
+          </div>
+          <div class="plan-field">
+            <label for="planEndDate">Cierre estimado</label>
+            <input class="plan-input" id="planEndDate" type="date" data-plan-section="week0" data-plan-field="endDate" readonly />
+          </div>
+          <div class="plan-field full">
+            <label for="planContext">Proyecto, relación o tarea recurrente <small>¿dónde podrán notar una diferencia?</small></label>
+            <textarea class="plan-textarea compact" id="planContext" data-plan-section="week0" data-plan-field="context" placeholder="Ej.: reuniones semanales con el cliente, entregas al equipo o coordinación de un proyecto crítico."></textarea>
+          </div>
+          <div class="plan-field">
+            <label for="planPriority">Prioridad central</label>
+            <input class="plan-input" id="planPriority" type="text" data-plan-section="week0" data-plan-field="priority" placeholder="Se completa con tu diagnóstico; puedes precisarla." />
+          </div>
+          <div class="plan-field">
+            <label for="planWitness">Quién podrá observarla <small>persona o equipo</small></label>
+            <input class="plan-input" id="planWitness" type="text" data-plan-section="week0" data-plan-field="witness" placeholder="Ej.: mi Jefatura, el equipo o un cliente interno." />
+          </div>
+          <div class="plan-field full">
+            <label for="planBehavior">Conducta concreta que repetirás <small>visible y verificable</small></label>
+            <textarea class="plan-textarea compact" id="planBehavior" data-plan-section="week0" data-plan-field="behavior" placeholder="Describe qué harás, en qué momento y con qué estándar."></textarea>
+          </div>
+          <div class="plan-field full">
+            <label for="planExpectedEvidence">Evidencia central esperada <small>qué debería cambiar para otros</small></label>
+            <textarea class="plan-textarea compact" id="planExpectedEvidence" data-plan-section="week0" data-plan-field="expectedEvidence" placeholder="Ej.: las decisiones se toman con menos fricción, los riesgos quedan visibles antes o mis entregas se usan sin explicación adicional."></textarea>
+          </div>
+        </div>
+        <div class="priority-lock-bar" id="priorityLockBar">
+          <div>
+            <strong id="priorityLockTitle">Prioridad editable</strong>
+            <span id="priorityLockText">Confirma el terreno antes de iniciar la Semana 1. Así las seis semanas desarrollarán la misma conducta palanca con dificultad progresiva.</span>
+          </div>
+          <div class="priority-lock-actions">
+            <button class="btn btn-dark btn-sm" id="btnLockPriority" type="button">Confirmar y bloquear prioridad</button>
+            <button class="btn btn-outline btn-sm" id="btnUnlockPriority" type="button" hidden>Modificar prioridad</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-tools">
+        <div class="plan-tools-group">
+          <button class="btn btn-outline btn-sm" id="btnBackupPlan" type="button">⬇ Descargar respaldo</button>
+          <button class="btn btn-outline btn-sm" id="btnImportPlan" type="button">⬆ Restaurar respaldo</button>
+          <input id="planImportFile" type="file" accept="application/json,.json" hidden />
+          <button class="btn btn-outline btn-sm" id="btnCalendar" type="button">📅 Añadir ciclo al calendario</button>
+          <button class="btn btn-danger btn-sm" id="btnResetPlan" type="button">Reiniciar solo el plan</button>
+        </div>
+        <div class="plan-tools-note">Las respuestas y el plan se guardan localmente en este navegador. El respaldo permite moverlos a otro dispositivo.</div>
+      </div>
+
       <div class="plan-grid" id="planGrid"></div>
+
+      <div class="plan-editor closing-grid" id="planClosure">
+        <div class="plan-editor-head">
+          <div>
+            <div class="eyebrow">Cierre del ciclo</div>
+            <h3>Convierte seis semanas en un estándar</h3>
+            <p>No elijas seis nuevas metas. Decide qué parte de tu prioridad protegerás y qué lente de apoyo seguirás utilizando para sostener tu Sello Profesional.</p>
+          </div>
+          <span class="plan-chip" id="closingStatus">Pendiente</span>
+        </div>
+        <div class="plan-field-grid">
+          <div class="plan-field full">
+            <label for="finalChange">¿Qué cambió para otras personas gracias a tu conducta?</label>
+            <textarea class="plan-textarea compact" id="finalChange" data-plan-section="closing" data-plan-field="change" placeholder="Describe un cambio observable, no solo cómo te sentiste."></textarea>
+          </div>
+          <div class="plan-field full">
+            <label for="finalRepeatedEvidence">¿Qué evidencia apareció más de una vez?</label>
+            <textarea class="plan-textarea compact" id="finalRepeatedEvidence" data-plan-section="closing" data-plan-field="repeatedEvidence" placeholder="Qué señal se repitió en distintas situaciones o fue reconocida por otros."></textarea>
+          </div>
+          <div class="plan-field">
+            <label for="finalProtect">Qué parte de la prioridad protegerás</label>
+            <textarea class="plan-textarea compact" id="finalProtect" data-plan-section="closing" data-plan-field="protect" placeholder="El mínimo que no quieres perder."></textarea>
+          </div>
+          <div class="plan-field">
+            <label for="finalSupportLens">Lente de apoyo que seguirás usando</label>
+            <select class="plan-select" id="finalSupportLens" data-plan-section="closing" data-plan-field="supportLens">
+              <option value="">Selecciona una lente</option>
+              <option>G · Generar valor</option>
+              <option>E · Escuchar para entender</option>
+              <option>N · Nivel de involucramiento</option>
+              <option>I · Intención en el detalle</option>
+              <option>O · Obsesión por crecer</option>
+              <option>S · Sostener la consistencia</option>
+            </select>
+          </div>
+          <div class="plan-field full">
+            <label for="finalNextStandard">Siguiente estándar profesional</label>
+            <textarea class="plan-textarea compact" id="finalNextStandard" data-plan-section="closing" data-plan-field="nextStandard" placeholder="Formula la conducta que quieres que otros asocien con tu nombre de forma consistente."></textarea>
+          </div>
+          <div class="plan-field">
+            <label for="finalReviewDate">Fecha para revisar el estándar <small>opcional</small></label>
+            <input class="plan-input" id="finalReviewDate" type="date" data-plan-section="closing" data-plan-field="reviewDate" />
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- LETRA DE ENTRADA -->
+    <!-- PRIORIDAD CENTRAL -->
     <section class="card card-pad" id="mejorar">
       <div class="eyebrow">Cómo mejorar</div>
-      <h2>Tu letra de entrada</h2>
-      <p class="small" style="margin-top:6px;" id="entryIntro">Cuando termines, esta sección te mostrará tu letra de entrada y acciones concretas para convertir intención en evidencia visible.</p>
+      <h2>Tu prioridad central</h2>
+      <p class="small" style="margin-top:6px;" id="entryIntro">Cuando termines, esta sección te mostrará tu prioridad central y acciones concretas para convertir intención en evidencia visible.</p>
       <div class="actions-list" id="entryActions"></div>
     </section>
 
@@ -1578,9 +2157,9 @@
             <p>Conducta que hoy aparece con más fuerza.</p>
           </div>
           <div class="info-box">
-            <span class="label">Tu foco</span>
+            <span class="label">Tu prioridad</span>
             <div class="val" id="focusText">—</div>
-            <p>Conducta con mayor espacio de mejora.</p>
+            <p>Conducta que conviene fortalecer como prioridad central.</p>
           </div>
         </div>
       </div>
@@ -1596,7 +2175,7 @@
         <div class="decision-letter" id="decisionLetter">—</div>
         <div>
           <strong class="decision-title" id="decisionTitle">Completa las 24 respuestas</strong>
-          <p class="decision-body" id="decisionBody">Tu letra de entrada señalará una oportunidad concreta, visible y repetible.</p>
+          <p class="decision-body" id="decisionBody">Tu prioridad central señalará una oportunidad concreta, visible y repetible.</p>
         </div>
       </div>
       <button class="btn btn-dark btn-sm decision-cta" id="decisionCta" type="button" disabled>Ir a mis acciones</button>
@@ -1652,211 +2231,240 @@
         <div class="profile-name" id="profileName">Completa las 24 respuestas</div>
         <div class="profile-meta" id="profileBody">El sistema sugerirá un perfil a partir de tus seis promedios. Úsalo como orientación práctica, no como etiqueta fija.</div>
       </div>
-      <div class="report-actions">
-        <button class="btn btn-outline btn-sm" id="btnCopy" type="button">📋 Copiar reporte</button>
-        <button class="btn btn-outline btn-sm" id="btnDownload" type="button">⬇ Descargar PDF</button>
-        <button class="btn btn-dark btn-sm" id="btnPrint" type="button">🖨 Imprimir reporte</button>
+      <div class="report-type-grid" aria-label="Tipos de reporte">
+        <div class="report-type-card">
+          <strong>Reporte inicial</strong>
+          <span>Diagnóstico, mapa, fortaleza, prioridad central, acciones y Semana 0.</span>
+          <div class="report-actions">
+            <button class="btn btn-outline btn-sm" id="btnCopyInitial" type="button">📋 Copiar</button>
+            <button class="btn btn-dark btn-sm" id="btnPDFInitial" type="button">⬇ Guardar como PDF</button>
+          </div>
+        </div>
+        <div class="report-type-card">
+          <strong>Reporte de seguimiento</strong>
+          <span>Avance, prácticas, evidencias, ajustes, aprendizajes y cierre del ciclo.</span>
+          <div class="report-actions">
+            <button class="btn btn-outline btn-sm" id="btnCopyFollowup" type="button">📋 Copiar</button>
+            <button class="btn btn-dark btn-sm" id="btnPDFFollowup" type="button">⬇ Guardar como PDF</button>
+          </div>
+        </div>
       </div>
+      <p class="report-save-note">Al guardar, el navegador abrirá la vista de impresión. Selecciona <strong>Guardar como PDF</strong>.</p>
     </section>
 
   </aside>
 </div>
 
+<nav class="mobile-bottom-nav" aria-label="Navegación móvil">
+  <a href="#diagnostico"><b>✓</b><span>Diagnóstico</span></a>
+  <a href="#resultado"><b>⬡</b><span>Resultado</span></a>
+  <a href="#plan"><b>6</b><span>Plan</span></a>
+  <a href="#mejorar"><b>→</b><span>Acciones</span></a>
+</nav>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="shell">
-    Basado en el libro <em>«Somos G.E.N.I.O.S.»</em>: el sistema de comportamientos que convierte talento en reputación profesional · Kevin Lück · <a href="https://www.instagram.com/somosgenios/" target="_blank" rel="noopener">@somosgenios</a>
+    <strong>Diagnóstico G.E.N.I.O.S. · Versión 3.0</strong><br>
+    Basado en el libro <em>«Somos G.E.N.I.O.S.»</em>: el sistema de conductas que convierte talento en reputación profesional · Kevin Lück · <a href="https://www.instagram.com/somosgenios/" target="_blank" rel="noopener">@somosgenios</a>
+    <details class="legal-details">
+      <summary>Privacidad, alcance y condiciones de uso</summary>
+      <p>Las respuestas se procesan y guardan localmente en este navegador. No se envían a un servidor desde esta versión. La herramienta es una autoobservación orientativa: no es una prueba psicométrica, no mide talento, desempeño ni reputación y no debe utilizarse para comparar personas ni tomar decisiones laborales. En navegación privada o al borrar los datos del navegador, el progreso puede perderse; utiliza el respaldo para conservarlo.</p>
+    </details>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-  const STORAGE_KEY = 'somos_genios_webapp_v3';
-  const PLAN_KEY    = 'somos_genios_plan_v3';
-  const NAME_KEY    = 'somos_genios_nombre_v3';
+  const STORAGE_KEY    = 'somos_genios_webapp_v4';
+  const PLAN_KEY       = 'somos_genios_plan_ejecutable_v4';
+  const LEGACY_PLAN_KEY = 'somos_genios_plan_v3';
+  const NAME_KEY       = 'somos_genios_nombre_v3';
+  const APP_VERSION     = '3.0';
+  const APP_EDITION     = 'Edición 2026';
 
   const dimensions = [
-    {
-        "letter": "G",
-        "name": "Generar valor",
-        "etiqueta": "VALOR",
-        "plan": "Abre cada entrega definiendo qué decisión habilita en quien la recibe. Pasa de informar a entregar algo accionable.",
-        "questions": [
-            "Antes de empezar una entrega, defino qué decisión, avance o solución debe facilitar.",
-            "Mi trabajo permite que otros decidan, avancen o resuelvan con mayor claridad.",
-            "Entrego criterio que ordena, prioriza o destraba el trabajo de otros.",
-            "Puedo mostrar qué cambió para otros gracias a mi trabajo."
-        ],
-        "actions": [
-            {
-                "title": "Identifica al receptor",
-                "body": "En cada entrega escribe en una línea quién la usará y qué decisión necesita tomar. Antes de enviar pregúntate: ¿esto le permite decidir, o solo le da datos?"
-            },
-            {
-                "title": "De información a recomendación",
-                "body": "En al menos tres entregas agrega tu postura: «recomiendo X porque Y». No entregues opciones sueltas sin tu criterio."
-            },
-            {
-                "title": "Mide impacto, no horas",
-                "body": "Al cerrar la semana anota qué cambió gracias a tu trabajo (una decisión, un ahorro, un riesgo evitado), no cuántas tareas hiciste."
-            },
-            {
-                "title": "Anticipa la próxima necesidad",
-                "body": "Entrega algo que nadie pidió pero que el negocio va a necesitar. Empieza a construir tu sello."
-            }
-        ]
-    },
-    {
-        "letter": "E",
-        "name": "Escuchar para entender",
-        "etiqueta": "ESCUCHAR",
-        "plan": "Practica el silencio de tres segundos y verifica lo que entendiste antes de opinar. Escucha el problema, no solo las palabras.",
-        "questions": [
-            "No actúo a partir de la primera explicación del problema o la solicitud.",
-            "Hago una segunda pregunta antes de proponer una solución.",
-            "Detecto la preocupación que todavía no se ha dicho con claridad.",
-            "Confirmo lo que entendí antes de proponer o actuar."
-        ],
-        "actions": [
-            {
-                "title": "El silencio de tres segundos",
-                "body": "Antes de responder en reuniones, cuenta hasta tres. Deja que el otro termine de verdad."
-            },
-            {
-                "title": "Parafrasea antes de opinar",
-                "body": "En cada conversación importante resume lo que entendiste («si te entendí, lo clave es…») antes de dar tu solución."
-            },
-            {
-                "title": "Busca lo no dicho",
-                "body": "En tres reuniones identifica qué quería decir el otro y no dijo, y pregúntalo."
-            },
-            {
-                "title": "Sal aprendiendo",
-                "body": "Termina cada reunión anotando una cosa que no sabías al entrar."
-            }
-        ]
-    },
-    {
-        "letter": "N",
-        "name": "Nivel de involucramiento",
-        "etiqueta": "INVOLUCRAMIENTO",
-        "plan": "Hazte cargo de algo que mejore el resultado aunque no sea tu función —proponiendo, no invadiendo—. Conéctalo con el objetivo final.",
-        "questions": [
-            "Nombro los riesgos antes de que afecten el resultado.",
-            "Doy un primer paso concreto cuando un tema importante está frenado.",
-            "Me involucro hasta dejar el problema encaminado, sin convertirlo en carga propia.",
-            "Involucro a quien corresponde para avanzar sin duplicar esfuerzos."
-        ],
-        "actions": [
-            {
-                "title": "Conecta con el objetivo",
-                "body": "Para cada tarea escribe cómo se conecta con el resultado final del equipo, no solo con tu entregable."
-            },
-            {
-                "title": "Hazte cargo de un huérfano",
-                "body": "Toma un problema «que no es de nadie» y que afecta el resultado. Propón una solución, sin invadir."
-            },
-            {
-                "title": "Habla cuando veas algo",
-                "body": "En tres ocasiones di lo que detectaste útil, aunque te expongas o no te lo hayan pedido."
-            },
-            {
-                "title": "Dueño del resultado",
-                "body": "Elige un proyecto y siéntete responsable del resultado completo, no solo de tu parte."
-            }
-        ]
-    },
-    {
-        "letter": "I",
-        "name": "Intención en el detalle",
-        "etiqueta": "DETALLE",
-        "plan": "Antes de cerrar algo, anticipa las dudas que generará y cuídalo aunque nadie importante lo revise.",
-        "questions": [
-            "Reviso que mi entrega pueda entenderse sin explicaciones adicionales.",
-            "Anticipo las dudas principales de quien recibe mi trabajo.",
-            "Presento mis entregas con claridad y dejo visible el siguiente paso.",
-            "Mi trabajo puede usarse correctamente, aunque yo no esté para explicarlo."
-        ],
-        "actions": [
-            {
-                "title": "Que no necesite explicación",
-                "body": "Antes de cerrar, revisa que tu trabajo se entienda y se use sin que tú tengas que explicarlo."
-            },
-            {
-                "title": "Anticipa las dudas",
-                "body": "Antes de enviar, lista las preguntas que generará tu entrega y respóndelas de antemano."
-            },
-            {
-                "title": "La cara oculta de la cerca",
-                "body": "Cuida lo que nadie importante revisará con el mismo estándar que lo visible."
-            },
-            {
-                "title": "Cuida cómo se recibe",
-                "body": "Trabaja la forma en que llega tu trabajo (formato, claridad, orden), no solo que esté correcto."
-            }
-        ]
-    },
-    {
-        "letter": "O",
-        "name": "Obsesión por crecer",
-        "etiqueta": "CRECER",
-        "plan": "Elige esta semana la tarea incómoda donde está el aprendizaje y pide feedback sobre lo que haces mal.",
-        "questions": [
-            "Identifico qué capacidad debo fortalecer para mi siguiente etapa profesional.",
-            "Practico habilidades que aún no domino, aunque implique exponerme a errores.",
-            "Pido feedback específico sobre la capacidad que necesito desarrollar.",
-            "Convierto lo aprendido en una mejora visible dentro de una entrega, reunión o decisión."
-        ],
-        "actions": [
-            {
-                "title": "Una tarea incómoda",
-                "body": "Elige algo que todavía no dominas y dedícale tiempo deliberado esta semana."
-            },
-            {
-                "title": "Feedback de lo malo",
-                "body": "Pide a alguien feedback honesto sobre lo que haces mal, no confirmación de lo que haces bien."
-            },
-            {
-                "title": "Elige la opción difícil",
-                "body": "Cuando dudes entre lo cómodo y lo que te hace crecer, elige lo segundo."
-            },
-            {
-                "title": "Nombra tu avance",
-                "body": "Al cerrar el mes escribe algo concreto que aprendiste o mejoraste."
-            }
-        ]
-    },
-    {
-        "letter": "S",
-        "name": "Sostener la consistencia",
-        "etiqueta": "CONSISTENCIA",
-        "plan": "Define tu mínimo no negociable y sostenlo en tu peor día. Eres tan confiable como tu peor día, no como tu mejor día.",
-        "questions": [
-            "Defino qué estándar mínimo voy a proteger cuando la semana se vuelve difícil.",
-            "Aviso a tiempo cuando algo cambia, se retrasa o puede afectar el resultado.",
-            "Mantengo una forma de trabajar confiable incluso bajo presión, urgencia o desorden.",
-            "Cuando fallo, me atraso o algo cambia, respondo con responsabilidad y recupero el estándar."
-        ],
-        "actions": [
-            {
-                "title": "Define tu mínimo",
-                "body": "Escribe un mínimo no negociable semanal, visible y verificable."
-            },
-            {
-                "title": "Sostenlo en el día malo",
-                "body": "Cúmplelo aunque estés cansado o desmotivado: el estándar no depende del ánimo."
-            },
-            {
-                "title": "Hazte predecible",
-                "body": "Trabaja para que la gente sepa qué versión tuya va a encontrar."
-            },
-            {
-                "title": "Tu estándar, no su mirada",
-                "body": "Mantén el nivel aunque nadie te observe; si fallas, repórtalo tú."
-            }
-        ]
-    }
+  {
+    "letter": "G",
+    "name": "Generar valor",
+    "etiqueta": "VALOR",
+    "plan": "Producir un cambio útil para otra persona, no solo completar una tarea.",
+    "questions": [
+      "Antes de empezar, defino qué decisión, avance o resultado debe facilitar mi trabajo.",
+      "Identifico qué está impidiendo avanzar y actúo sobre ello.",
+      "Cuando tengo suficiente información, hago una recomendación clara.",
+      "Al terminar, compruebo qué cambió para otra persona gracias a mi trabajo."
+    ],
+    "actions": [
+      {
+        "title": "Define el efecto antes de empezar",
+        "body": "Antes de una entrega real, escribe qué decisión, avance o resultado debe facilitar. Usa esa respuesta para ordenar y recortar el trabajo."
+      },
+      {
+        "title": "Nombra qué impide avanzar",
+        "body": "Detecta el obstáculo concreto y realiza una intervención breve que reduzca esa dificultad."
+      },
+      {
+        "title": "Haz visible tu criterio",
+        "body": "Cuando la información sea suficiente, formula una recomendación clara con razón, riesgo y siguiente paso."
+      },
+      {
+        "title": "Comprueba el cambio",
+        "body": "Al cerrar, registra qué pudo hacer otra persona gracias a tu trabajo."
+      }
+    ]
+  },
+  {
+    "letter": "E",
+    "name": "Escuchar para entender",
+    "etiqueta": "ESCUCHAR",
+    "plan": "Comprender el problema correcto antes de proponer o actuar.",
+    "questions": [
+      "Antes de responder, aclaro qué necesita la otra persona.",
+      "Cuando algo no está claro, hago una pregunta antes de proponer una solución.",
+      "Verifico si estoy resolviendo el problema correcto.",
+      "Confirmo con la otra persona que entendimos lo mismo antes de actuar."
+    ],
+    "actions": [
+      {
+        "title": "Aclara la necesidad",
+        "body": "Antes de responder, pregunta qué necesita cambiar, decidir o resolver la otra persona."
+      },
+      {
+        "title": "Haz una pregunta antes de proponer",
+        "body": "Cuando haya más de una interpretación posible, formula una pregunta breve antes de ofrecer una solución."
+      },
+      {
+        "title": "Revisa el problema correcto",
+        "body": "Distingue entre el pedido literal y el problema que realmente necesita resolverse."
+      },
+      {
+        "title": "Confirma el entendimiento",
+        "body": "Resume en una frase lo que entendiste y valida que ambos estén trabajando sobre el mismo problema."
+      }
+    ]
+  },
+  {
+    "letter": "N",
+    "name": "Nivel de involucramiento",
+    "etiqueta": "INVOLUCRAMIENTO",
+    "plan": "Proteger el resultado sin absorber el problema ni permanecer indiferente.",
+    "questions": [
+      "Hago visible un riesgo relevante antes de que afecte el resultado.",
+      "Cuando un tema importante deja de avanzar, doy el primer paso para moverlo.",
+      "Involucro a la persona adecuada cuando su participación es necesaria.",
+      "Me aseguro de que el tema quede con un responsable y un siguiente paso."
+    ],
+    "actions": [
+      {
+        "title": "Haz visible el riesgo",
+        "body": "Nombra el riesgo con evidencia y explica qué podría ocurrir si nadie actúa."
+      },
+      {
+        "title": "Da el primer paso",
+        "body": "Cuando un tema importante deje de avanzar, realiza un movimiento breve que vuelva a ponerlo en marcha."
+      },
+      {
+        "title": "Involucra con criterio",
+        "body": "Incorpora a la persona adecuada cuando su información, autoridad o responsabilidad sea necesaria."
+      },
+      {
+        "title": "Asegura continuidad",
+        "body": "Cierra la conversación confirmando responsable, siguiente paso y momento de revisión."
+      }
+    ]
+  },
+  {
+    "letter": "I",
+    "name": "Intención en el detalle",
+    "etiqueta": "DETALLE",
+    "plan": "Preparar una entrega que funcione para quien la recibe, incluso sin tu explicación.",
+    "questions": [
+      "Organizo la entrega según lo que la otra persona necesita decidir o hacer.",
+      "Destaco la conclusión, los riesgos relevantes y el siguiente paso.",
+      "Reviso qué podría generar dudas, errores o trabajo adicional antes de entregar.",
+      "Compruebo que mi trabajo pueda entenderse sin mi explicación."
+    ],
+    "actions": [
+      {
+        "title": "Diseña desde el receptor",
+        "body": "Organiza la entrega según la decisión o acción que la otra persona necesita realizar."
+      },
+      {
+        "title": "Jerarquiza lo importante",
+        "body": "Haz visibles la conclusión, los riesgos relevantes y el siguiente paso antes del detalle de respaldo."
+      },
+      {
+        "title": "Reduce el costo transferido",
+        "body": "Revisa qué podría obligar al receptor a buscar, interpretar, corregir o perseguir información."
+      },
+      {
+        "title": "Aplica la prueba de ausencia",
+        "body": "Comprueba si el trabajo puede entenderse y utilizarse sin que tú debas traducirlo."
+      }
+    ]
+  },
+  {
+    "letter": "O",
+    "name": "Obsesión por crecer",
+    "etiqueta": "CRECER",
+    "plan": "Practicar hoy las conductas que construyen la capacidad que tu siguiente etapa exigirá.",
+    "questions": [
+      "Identifico la capacidad que necesito desarrollar para mi siguiente etapa.",
+      "Defino la conducta que necesito practicar para desarrollarla.",
+      "Practico esa conducta en situaciones reales antes de necesitarla.",
+      "Pido retroalimentación específica y la aplico en un nuevo intento."
+    ],
+    "actions": [
+      {
+        "title": "Detecta la capacidad futura",
+        "body": "Observa tu siguiente etapa y elige una capacidad concreta que todavía no está respaldada por evidencia reciente."
+      },
+      {
+        "title": "Tradúcela a conducta",
+        "body": "Define qué acción observable debes practicar para construir esa capacidad."
+      },
+      {
+        "title": "Practica antes de necesitarla",
+        "body": "Elige una situación real de baja o mediana exposición y realiza la conducta deliberadamente."
+      },
+      {
+        "title": "Contrasta y repite",
+        "body": "Pide retroalimentación específica, ajusta una parte y vuelve a intentarlo pronto."
+      }
+    ]
+  },
+  {
+    "letter": "S",
+    "name": "Sostener la consistencia",
+    "etiqueta": "CONSISTENCIA",
+    "plan": "Proteger un estándar reconocible bajo presión y recuperarlo después de fallar.",
+    "questions": [
+      "Mantengo mi estándar incluso cuando aumenta la presión.",
+      "Aviso a tiempo cuando un compromiso está en riesgo.",
+      "Cuando incumplo, lo reconozco y explico cómo lo corregiré.",
+      "Después de fallar, reparo lo posible y mantengo el seguimiento hasta volver a cumplir."
+    ],
+    "actions": [
+      {
+        "title": "Define el estándar que protegerás",
+        "body": "Elige dos mínimos visibles que deben mantenerse incluso durante una semana difícil."
+      },
+      {
+        "title": "Avisa antes del incumplimiento",
+        "body": "Cuando un compromiso esté en riesgo, comunica estado, impacto y siguiente paso antes de que otra persona deba perseguirte."
+      },
+      {
+        "title": "Reconoce y corrige",
+        "body": "Si incumples, nómbralo sin esconderlo detrás del contexto y explica cómo lo corregirás."
+      },
+      {
+        "title": "Recupera con repetición",
+        "body": "Repara lo posible y sostén el seguimiento hasta que el estándar vuelva a ser creíble."
+      }
+    ]
+  }
 ];
 
   const thresholds = [
@@ -1889,7 +2497,7 @@
         "max": 95,
         "num": 3,
         "name": "Profesional confiable",
-        "desc": "Tu forma de trabajar ya empieza a construir expectativa. No intentes mejorar todo: protege tu letra más débil.",
+        "desc": "Tu forma de trabajar ya empieza a construir expectativa. No intentes mejorar todo: protege tu prioridad central.",
         "phrase": "Mi reputación ya tiene base; ahora debo fortalecer la letra que más incertidumbre deja."
     },
     {
@@ -1904,7 +2512,7 @@
         "min": 112,
         "max": 120,
         "num": 5,
-        "name": "Genio en movimiento",
+        "name": "Patrón consolidado",
         "desc": "Tu forma de trabajar muestra un patrón fuerte de valor, consistencia y visibilidad. Evita la complacencia.",
         "phrase": "Ser un Genio es volverme confiablemente valioso muchas veces."
     }
@@ -1918,12 +2526,12 @@
     },
     "2": {
         "riesgo": "quedar en el lugar del profesional correcto, pero poco defendible.",
-        "prioridad": "trabajar la letra más baja hasta que no aparezca solo en buenos días.",
+        "prioridad": "trabajar la prioridad central hasta que no aparezca solo en buenos días.",
         "pregunta": "¿Qué debe cambiar para alguien gracias a mi trabajo esta semana?"
     },
     "3": {
         "riesgo": "confiar demasiado en una reputación positiva que todavía puede ser frágil.",
-        "prioridad": "proteger la letra más débil y buscar evidencia externa de cambio.",
+        "prioridad": "proteger la prioridad central y buscar evidencia externa de cambio.",
         "pregunta": "¿Qué conducta, si la sostengo, reduciría más incertidumbre sobre mi nombre?"
     },
     "4": {
@@ -1933,7 +2541,7 @@
     },
     "5": {
         "riesgo": "confundir un buen puntaje con evidencia externa sostenida.",
-        "prioridad": "evitar la complacencia y convertir tu letra menos sólida en tu siguiente estándar.",
+        "prioridad": "evitar la complacencia y convertir tu prioridad central en tu siguiente estándar.",
         "pregunta": "¿Qué evidencia tienen otros para confirmar lo que mi autoevaluación dice de mí?"
     }
 };
@@ -1978,48 +2586,149 @@
     "7": {
         "name": "El Genio Emergente",
         "riesgo": "relajarte ante los primeros resultados.",
-        "entrada": "tu segunda letra más baja",
+        "entrada": "tu segunda prioridad central",
         "pregunta": "¿Qué comportamiento debo fortalecer antes de que se convierta en mi próximo límite?"
     }
 };
 
-  const weeklyPlan = [
-    {
-        "title": "SEMANA 1 · G — Generar valor",
-        "body": "Conducta: antes de una entrega importante, define qué decisión, solución o avance debe facilitar; elimina lo que no aporta a ese efecto.\nEvidencia: alguien pudo decidir, comprender o avanzar con menos fricción.\nFrase de sala: con esto ya podemos avanzar.\nPróxima repetición: ¿dónde más aplicarás la misma pregunta esta semana?"
-    },
-    {
-        "title": "SEMANA 2 · E — Escuchar para entender",
-        "body": "Conducta: en una conversación donde sueles responder rápido, formula una segunda pregunta y verifica lo que entendiste antes de proponer.\nEvidencia: el problema salió mejor nombrado de lo que entró.\nFrase de sala: con esa pregunta ordenamos mejor el problema.\nPróxima repetición: ¿en qué conversación necesitas comprender antes de demostrar que sabes?"
-    },
-    {
-        "title": "SEMANA 3 · N — Nivel de involucramiento",
-        "body": "Conducta: frente a un riesgo que afecta el resultado, nómbralo, involucra a quien corresponde y confirma un siguiente paso, sin cargarlo todo.\nEvidencia: el riesgo quedó visible, con dueño o próximo paso.\nFrase de sala: lo vio antes de que se transformara en problema.\nPróxima repetición: ¿qué límite respetarás para no convertirte en rescatista?"
-    },
-    {
-        "title": "SEMANA 4 · I — Intención en el detalle",
-        "body": "Conducta: revisa tu entrega desde el lugar de quien deberá usarla; haz visible qué importa, qué se decide y qué fricción puedes quitar.\nEvidencia: tu entrega funcionó sin traducción constante.\nFrase de sala: no tuve que perseguir claridad.\nPróxima repetición: ¿qué fricción eliminarás primero en tu próxima entrega?"
-    },
-    {
-        "title": "SEMANA 5 · O — Obsesión por crecer",
-        "body": "Conducta: practica una capacidad que tu siguiente etapa ya evaluará, pide retroalimentación específica y llévala a una situación real.\nEvidencia: toleraste ser principiante en una habilidad importante y generaste una prueba pequeña de avance.\nFrase de sala: está desarrollando justo lo que su siguiente etapa exige.\nPróxima repetición: ¿qué corregirás y volverás a practicar antes de subir la dificultad?"
-    },
-    {
-        "title": "SEMANA 6 · S — Sostener la consistencia",
-        "body": "Conducta: protege un estándar realista —avisar temprano, dejar un siguiente paso, revisar una entrega crítica o comunicar un riesgo— incluso cuando la semana no ayuda.\nEvidencia: mantuviste un mínimo confiable bajo presión.\nFrase de sala: con esta persona sabemos qué esperar también bajo presión.\nPróxima repetición: ¿qué mínimo protegerás en tu próximo ciclo?"
-    }
-];
+  const programPhases = [
+    { phase: 'OBSERVAR', title: 'Semana 1 · Observar el patrón', aim: 'Reconocer cuándo la conducta aparece, cuándo falta y qué costo produce.', requirement: 'Registra al menos tres escenas reales sin intentar corregirlas todavía.' },
+    { phase: 'DEFINIR', title: 'Semana 2 · Definir el movimiento', aim: 'Convertir la conducta palanca en una acción breve, específica y repetible.', requirement: 'Formula un estándar observable y pruébalo dos veces en contextos de baja presión.' },
+    { phase: 'PRACTICAR', title: 'Semana 3 · Practicar con intención', aim: 'Aumentar la frecuencia de la conducta y recoger evidencia externa.', requirement: 'Realiza dos prácticas deliberadas y pide una observación concreta.' },
+    { phase: 'PRESIÓN', title: 'Semana 4 · Sostener bajo presión', aim: 'Proteger la conducta cuando hay urgencia, cansancio, tensión o información incompleta.', requirement: 'Define una señal de activación y un movimiento de recuperación en menos de 24 horas.' },
+    { phase: 'TRANSFERIR', title: 'Semana 5 · Transferir a otra sala', aim: 'Demostrar que la conducta funciona en más de un contexto y con personas distintas.', requirement: 'Aplica la conducta en una segunda sala y compara la reacción de los demás.' },
+    { phase: 'CONSOLIDAR', title: 'Semana 6 · Convertirla en patrón', aim: 'Repetir la conducta hasta que pueda asociarse con tu nombre y elegir el siguiente estándar.', requirement: 'Reúne tres evidencias, valida el cambio con otra persona y define qué protegerás.' }
+  ];
+
+  const priorityPrograms = {
+    G: [
+      { conduct:'Antes de cada tarea importante, escribe qué decisión, avance o resultado debe facilitar.', evidence:'Puedes nombrar tres situaciones donde el efecto esperado estaba claro antes de empezar.', phrase:'Sabe convertir trabajo en avance.', friction:'Empezar por el entregable y descubrir demasiado tarde para qué debía servir.', recovery:'Detén la ejecución y vuelve a formular el efecto para el receptor.' },
+      { conduct:'Usa una frase estándar: “Al terminar, la otra persona podrá…”.', evidence:'Dos entregas fueron recortadas u ordenadas a partir del efecto definido.', phrase:'Va al punto que permite decidir.', friction:'Confundir más información con más valor.', recovery:'Elimina todo elemento que no cambie una decisión, avance o riesgo.' },
+      { conduct:'Formula una recomendación con razón, riesgo y siguiente paso en dos situaciones reales.', evidence:'Otra persona pudo decidir o avanzar sin construir la conclusión por su cuenta.', phrase:'No solo trae datos; trae criterio.', friction:'Esperar certeza absoluta para tomar posición.', recovery:'Explicita condiciones y límites, pero formula una recomendación.' },
+      { conduct:'Bajo urgencia, protege un mínimo: efecto, recomendación y siguiente paso.', evidence:'La presión no convirtió tu entrega en una lista de antecedentes.', phrase:'Incluso bajo presión, deja dirección.', friction:'Volver a la actividad como refugio cuando el contexto se complica.', recovery:'Comunica una versión breve: situación, criterio y movimiento necesario.' },
+      { conduct:'Aplica el mismo criterio de valor en una sala distinta a la habitual.', evidence:'Una nueva persona pudo describir qué cambió gracias a tu intervención.', phrase:'Hace útil lo complejo en distintos contextos.', friction:'Generar valor solo donde dominas el contexto.', recovery:'Pregunta al nuevo receptor qué necesita poder hacer después.' },
+      { conduct:'Selecciona tres evidencias repetidas y define el estándar de valor que protegerás.', evidence:'Al menos una persona describe espontáneamente un patrón de utilidad asociado contigo.', phrase:'Con su trabajo, las cosas avanzan.', friction:'Dar por consolidada la conducta por una sola buena semana.', recovery:'Mantén el estándar durante un ciclo adicional y revisa la evidencia.' }
+    ],
+    E: [
+      { conduct:'Registra tres conversaciones donde respondiste antes de comprender por completo.', evidence:'Identificas la frase o señal que suele llevarte a completar la historia demasiado rápido.', phrase:'No se queda en la primera respuesta.', friction:'Preparar la solución mientras la otra persona todavía habla.', recovery:'Haz una pausa y pregunta qué necesita quedar resuelto.' },
+      { conduct:'Define una segunda pregunta y una frase de confirmación que puedas repetir.', evidence:'En dos conversaciones apareció información que no estaba en el pedido inicial.', phrase:'Ayuda a nombrar el problema correcto.', friction:'Convertir la escucha en interrogatorio.', recovery:'Haz una sola pregunta que cambie el criterio y luego confirma.' },
+      { conduct:'Practica aclarar necesidad, distinguir problema y confirmar entendimiento.', evidence:'La propuesta final respondió a una necesidad validada, no supuesta.', phrase:'Primero entiende; después propone.', friction:'Preguntar bien y luego volver a la solución que ya tenías preparada.', recovery:'Resume en voz alta qué cambió en tu interpretación.' },
+      { conduct:'Cuando exista presión por cerrar, protege una pregunta antes de actuar.', evidence:'La urgencia no llevó al equipo a resolver el problema equivocado.', phrase:'Bajo presión, no pierde la pregunta correcta.', friction:'Confundir velocidad con avance.', recovery:'Explica que una pregunta breve evitará retrabajo o una decisión incorrecta.' },
+      { conduct:'Aplica la escucha en una conversación distinta: cliente, equipo o jefatura.', evidence:'Dos tipos de interlocutor confirman que comprendiste lo esencial antes de actuar.', phrase:'Ajusta su respuesta a la necesidad real.', friction:'Usar el mismo modo de preguntar con todas las personas.', recovery:'Adapta profundidad, tono y lenguaje al receptor.' },
+      { conduct:'Reúne tres escenas donde una pregunta o confirmación cambió la acción posterior.', evidence:'Otros empiezan a buscarte para ordenar conversaciones ambiguas.', phrase:'Con esta persona, el problema sale mejor definido.', friction:'Creer que escuchar bien significa evitar desacuerdos.', recovery:'Sostén tu criterio después de demostrar que comprendiste.' }
+    ],
+    N: [
+      { conduct:'Observa temas que pierden avance y registra qué haces: callas, absorbes o intervienes con criterio.', evidence:'Reconoces tu patrón dominante y el costo que produce.', phrase:'Ve lo que puede quedar sin dueño.', friction:'Esperar que otra persona se haga cargo o rescatarlo todo tú.', recovery:'Pregunta qué necesita el resultado de ti, no qué tarea puedes tomar.' },
+      { conduct:'Define tu secuencia mínima: nombrar, mover, involucrar y dejar siguiente paso.', evidence:'Dos temas quedaron encaminados sin que asumieras toda la ejecución.', phrase:'Hace aparecer el movimiento correcto.', friction:'Proponer una solución total en vez del primer movimiento útil.', recovery:'Reduce tu intervención al paso que evita que el tema siga detenido.' },
+      { conduct:'Practica hacer visible un riesgo e involucrar a la persona adecuada en dos situaciones.', evidence:'El asunto llegó a quien tenía información, autoridad o responsabilidad.', phrase:'Activa a quien corresponde.', friction:'Involucrar demasiadas personas o escalar antes de tiempo.', recovery:'Elige el canal y a la persona mínima necesaria.' },
+      { conduct:'Bajo presión, protege tres elementos: riesgo visible, responsable y siguiente paso.', evidence:'La urgencia no dejó el tema abandonado ni te convirtió en rescatista.', phrase:'No desaparece cuando nadie sabe qué hacer.', friction:'Retirarte por temor a incomodar o absorber por ansiedad de control.', recovery:'Nombra el riesgo, ofrece un movimiento breve y devuelve la responsabilidad.' },
+      { conduct:'Aplica el involucramiento con criterio en una sala donde normalmente no intervienes.', evidence:'El resultado avanzó y la responsabilidad quedó bien distribuida.', phrase:'Sabe aparecer sin invadir.', friction:'Confundir límites sanos con indiferencia elegante.', recovery:'Aclara tu aporte, el dueño formal y el momento de revisión.' },
+      { conduct:'Selecciona tres escenas donde protegiste el resultado sin apropiarte del problema.', evidence:'Otros pueden describirte como alguien que evita que lo importante quede abandonado.', phrase:'Con esta persona, los temas encuentran dueño.', friction:'Convertirte en punto único de dependencia.', recovery:'Diseña una salida explícita después de activar al responsable.' }
+    ],
+    I: [
+      { conduct:'Revisa tres entregas desde la experiencia del receptor y detecta costos de búsqueda, interpretación o seguimiento.', evidence:'Identificas el costo que sueles transferir a quien recibe tu trabajo.', phrase:'Piensa en quien tendrá que usarlo.', friction:'Evaluar la calidad solo desde tu propio esfuerzo.', recovery:'Mira la entrega durante treinta segundos como si no pudieras pedir aclaraciones.' },
+      { conduct:'Define una plantilla mínima: conclusión, riesgo, siguiente paso y respaldo.', evidence:'Dos entregas muestran la jerarquía antes del detalle.', phrase:'Hace fácil encontrar lo importante.', friction:'Agregar contenido sin mejorar el uso.', recovery:'Mueve al inicio lo que permite orientarse y decidir.' },
+      { conduct:'Aplica la Prueba de Treinta Segundos y la Prueba de Ausencia en dos entregas.', evidence:'El receptor utiliza el trabajo sin pedirte que traduzcas la lógica.', phrase:'Entrega algo que funciona sin perseguir claridad.', friction:'Perfeccionar aspectos estéticos sin reducir una dificultad real.', recovery:'Corrige solo el detalle que cambia la experiencia del receptor.' },
+      { conduct:'Bajo urgencia, protege un formato breve con estado, riesgo y siguiente paso.', evidence:'La presión no enterró la información decisiva ni generó dependencia adicional.', phrase:'Incluso rápido, deja claridad.', friction:'Eliminar estructura por falta de tiempo.', recovery:'Usa una versión mínima viable de la jerarquía.' },
+      { conduct:'Adapta una entrega a un receptor distinto sin perder trazabilidad.', evidence:'Dos perfiles diferentes pueden usar la misma información desde entradas adecuadas.', phrase:'Organiza según quién debe decidir.', friction:'Confundir adaptación con ocultar o simplificar en exceso.', recovery:'Mantén el respaldo completo y cambia únicamente la puerta de entrada.' },
+      { conduct:'Reúne tres escenas donde tu trabajo funcionó sin explicación posterior.', evidence:'Otros describen tus entregas como claras, utilizables y autónomas.', phrase:'Cuando entrega, el trabajo ya viene pensado.', friction:'Creer que una buena plantilla reemplaza el criterio.', recovery:'Revisa siempre receptor, decisión y contexto antes de reutilizarla.' }
+    ],
+    O: [
+      { conduct:'Observa tu siguiente etapa y detecta una capacidad cuya ausencia ya limita oportunidades.', evidence:'Puedes nombrar una brecha concreta y las situaciones donde se vuelve visible.', phrase:'Mira antes lo que el siguiente nivel exigirá.', friction:'Elegir una capacidad amplia o aspiracional.', recovery:'Tradúcela a una situación y una conducta que otra persona pueda observar.' },
+      { conduct:'Define una conducta observable, un nivel de exposición y una señal de éxito.', evidence:'La capacidad deja de ser una intención y se convierte en un movimiento practicable.', phrase:'Convierte crecimiento en práctica.', friction:'Diseñar un plan demasiado grande para empezar.', recovery:'Reduce la conducta a un intento de diez minutos o una responsabilidad acotada.' },
+      { conduct:'Practica la conducta dos veces y pide retroalimentación sobre un criterio específico.', evidence:'Existe una diferencia visible entre el primer y el segundo intento.', phrase:'Aprende haciendo, no solo estudiando.', friction:'Pedir opiniones generales o defenderte ante la retroalimentación.', recovery:'Pregunta por una conducta y repite antes de explicar.' },
+      { conduct:'Prueba la conducta en una situación con consecuencia real y reconoce tus límites sin esconderte.', evidence:'La presión no te llevó a volver por completo a la conducta antigua.', phrase:'Se expone antes de sentirse listo.', friction:'Esperar confianza interna antes de actuar.', recovery:'Protege una estructura breve y pide apoyo solo en el punto necesario.' },
+      { conduct:'Transfiere la conducta a otro proyecto, interlocutor o nivel de exposición.', evidence:'La mejora aparece fuera del contexto donde fue ensayada.', phrase:'La capacidad empieza a ser portable.', friction:'Confundir una buena ejecución aislada con dominio.', recovery:'Cambia una variable del contexto y conserva la misma conducta central.' },
+      { conduct:'Reúne evidencias, identifica el cambio observable y define la siguiente exposición.', evidence:'Otra persona puede describir cómo ha cambiado tu forma de actuar.', phrase:'Está construyendo la versión que su siguiente etapa necesita.', friction:'Cerrar el ciclo demasiado pronto o saltar a otra brecha.', recovery:'Sostén la conducta hasta que deje de depender de preparación especial.' }
+    ],
+    S: [
+      { conduct:'Registra qué estándar se rompe primero cuando aumenta la presión y qué costo produce.', evidence:'Identificas dos mínimos profesionales que deben seguir visibles.', phrase:'Sabe cuál es su piso.', friction:'Definir el estándar desde tu mejor día.', recovery:'Elige mínimos realistas que protejan la experiencia de otros.' },
+      { conduct:'Define dos mínimos y la señal temprana que indica que un compromiso está en riesgo.', evidence:'Avisas antes de que otra persona deba perseguirte en dos situaciones.', phrase:'Hace visible el riesgo antes.', friction:'Esperar tener la solución completa antes de comunicar.', recovery:'Envía estado, impacto y siguiente paso aunque el dato final aún falte.' },
+      { conduct:'Practica mantener los mínimos durante una semana normal y registra desviaciones.', evidence:'El estándar aparece con frecuencia sin depender de supervisión.', phrase:'Con esta persona sabemos qué esperar.', friction:'Compensar un incumplimiento con intensidad posterior.', recovery:'Vuelve al piso definido en el siguiente compromiso.' },
+      { conduct:'Aplica el Protocolo de Recuperación ante un atraso, error o cambio inesperado.', evidence:'Reconoces, comunicas, reparas, redefines y recuperas sin desaparecer.', phrase:'Cuando falla, sabemos cómo responderá.', friction:'Justificar antes de reconocer el efecto.', recovery:'Nombra primero el incumplimiento y su impacto; después explica el contexto.' },
+      { conduct:'Protege el estándar en una sala distinta o con una carga mayor.', evidence:'El mismo piso es reconocible en más de un contexto.', phrase:'Su confiabilidad no depende de la situación.', friction:'Mantener la forma aunque el contexto exija adaptarla.', recovery:'Protege el principio y simplifica el formato.' },
+      { conduct:'Reúne tres evidencias repetidas y define cómo sostendrás el estándar el próximo mes.', evidence:'Otros pueden anticipar tu respuesta incluso durante semanas difíciles.', phrase:'Su promedio transmite confianza.', friction:'Confundir seis buenas semanas con una reputación consolidada.', recovery:'Mantén los mínimos y revisa cualquier ruptura en menos de 24 horas.' }
+    ]
+  };
+
+  function getPriorityFocus() {
+    const state = calculate();
+    return state.complete ? state.dimScores[state.focusIndex] : dimensions[0];
+  }
+
+  function getPersonalizedProgram() {
+    const focus = getPriorityFocus();
+    const items = priorityPrograms[focus.letter] || priorityPrograms.G;
+    return programPhases.map((phase, i) => ({
+      ...phase,
+      letter: focus.letter,
+      name: focus.name,
+      title: `${phase.title} · ${focus.letter}`,
+      lens: `${phase.aim} La prioridad durante todo el ciclo es ${focus.letter} · ${focus.name}.`,
+      suggestedConduct: items[i].conduct,
+      suggestedEvidence: items[i].evidence,
+      suggestedPhrase: items[i].phrase,
+      suggestedFriction: items[i].friction,
+      suggestedRecovery: items[i].recovery,
+      requirement: phase.requirement
+    }));
+  }
+
+  const weeklyPlan = programPhases;
+
+  function createEmptyPlanData() {
+    return {
+      week0: { startDate: '', endDate: '', context: '', priority: '', witness: '', behavior: '', expectedEvidence: '' },
+      weeks: weeklyPlan.map(() => ({
+        connection: '', situation1: '', expectedEvidence: '', evidenceObtained: '', phrase: '',
+        friction: '', recovery: '', situation2: '', adjustment: '', learning: '', complete: false
+      })),
+      closing: { change: '', repeatedEvidence: '', protect: '', supportLens: '', nextStandard: '', reviewDate: '' }
+    };
+  }
+
+  function normalizePlanData(raw) {
+    const clean = createEmptyPlanData();
+    if (!raw || typeof raw !== 'object') return clean;
+    clean.week0 = { ...clean.week0, ...(raw.week0 || {}) };
+    clean.weeks = clean.weeks.map((week, i) => ({ ...week, ...((raw.weeks || [])[i] || {}) }));
+    clean.closing = { ...clean.closing, ...(raw.closing || {}) };
+    return clean;
+  }
 
   let answers  = loadJSON(STORAGE_KEY, {});
-  let planDone = loadJSON(PLAN_KEY, {});
+  const legacyPlanDone = loadJSON(LEGACY_PLAN_KEY, {});
+  let planData = normalizePlanData(loadJSON(PLAN_KEY, null));
+  planData.weeks.forEach((week, i) => { if (legacyPlanDone[`week-${i+1}`] && !week.complete) week.complete = true; });
   let respondentName = localStorage.getItem(NAME_KEY) || '';
+  let planSaveTimer = null;
 
   /* ── UTILITIES ── */
   function loadJSON(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch { return fallback; }
   }
   function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(answers)); }
-  function savePlan()  { localStorage.setItem(PLAN_KEY,    JSON.stringify(planDone)); }
+  function setPlanSaveState(label = 'Guardado en este dispositivo', saving = false) {
+    const el = document.getElementById('planSaveState');
+    if (!el) return;
+    el.textContent = label;
+    el.classList.toggle('saving', saving);
+  }
+  function savePlan({ refreshReport = true } = {}) {
+    localStorage.setItem(PLAN_KEY, JSON.stringify(planData));
+    setPlanSaveState('Guardado en este dispositivo', false);
+    updatePlanOverview();
+    if (refreshReport) schedulePrintRefresh();
+  }
+  function schedulePlanSave() {
+    setPlanSaveState('Guardando…', true);
+    clearTimeout(planSaveTimer);
+    planSaveTimer = setTimeout(() => savePlan(), 240);
+  }
+  function schedulePrintRefresh() {
+    clearTimeout(schedulePrintRefresh._timer);
+    schedulePrintRefresh._timer = setTimeout(updatePrintReport, 180);
+  }
   function saveName()  { localStorage.setItem(NAME_KEY, respondentName); }
   function getRespondentName() {
     const input = document.getElementById('respondentName');
@@ -2055,6 +2764,12 @@
           <div class="subtotal-badge" id="subtotal-${dim.letter}">0 / 20</div>
         </div>
         <div class="question-list"></div>
+        <div class="dimension-evidence">
+          <label for="evidence-${dim.letter}">Evidencia reciente de ${dim.letter} · ${dim.name}</label>
+          <p>Opcional. Registra una escena breve que respalde tu lectura. Esta evidencia aparecerá en el informe.</p>
+          <textarea class="evidence-input" id="evidence-${dim.letter}" maxlength="320" placeholder="¿Qué ocurrió, qué hiciste y qué cambió para otra persona?">${escapeHTML(answers[`EVID_${dim.letter}`] || '')}</textarea>
+          <span class="evidence-count" id="evidence-count-${dim.letter}">${String(answers[`EVID_${dim.letter}`] || '').length}/320</span>
+        </div>
       `;
       const list = section.querySelector('.question-list');
       dim.questions.forEach((question, qIdx) => {
@@ -2066,12 +2781,12 @@
         const opts = [1,2,3,4,5].map(v => `
           <span>
             <input type="radio" name="${key}" id="${key}-${v}" value="${v}" ${answers[key] === v ? 'checked' : ''}>
-            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'Nunca · Sin evidencia' : v === 2 ? 'Rara vez · Un caso aislado' : v === 3 ? 'A veces · Depende del contexto' : v === 4 ? 'Frecuentemente · Es parte de cómo trabajo' : 'Siempre · Otros ya lo esperan'}">${v}</label>
+            <label for="${key}-${v}" title="${v} · ${v === 1 ? 'No apareció cuando se necesitó' : v === 2 ? 'Apareció de forma aislada' : v === 3 ? 'Apareció algunas veces' : v === 4 ? 'Apareció con frecuencia' : 'Se volvió un patrón reconocible'}">${v}</label>
           </span>`).join('');
         q.innerHTML = `
           <p><span class="q-num">${globalIndex}</span>${question}</p>
           <div class="scale" role="radiogroup" aria-label="Respuesta ${globalIndex}">${opts}</div>
-          <div class="scale-help"><span>1 · Nunca / sin evidencia</span><span>5 · Siempre / otros ya lo esperan</span></div>
+          <div class="scale-help"><span>1 · No apareció cuando se necesitó</span><span>5 · Patrón reconocible</span></div>
         `;
         q.querySelectorAll('input').forEach(input => {
           input.addEventListener('change', e => {
@@ -2081,44 +2796,299 @@
             q.classList.add('answered');
             const state = updateAll();
             if (!wasComplete && state.complete) {
-              toast('✓ Resultado listo. Revisa tu letra de entrada.');
+              toast('✓ Resultado listo. Revisa tu prioridad central.');
               setTimeout(() => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }), 180);
             }
           });
         });
         list.appendChild(q);
       });
+      const evidenceInput = section.querySelector(`#evidence-${dim.letter}`);
+      const evidenceCount = section.querySelector(`#evidence-count-${dim.letter}`);
+      evidenceInput.addEventListener('input', () => {
+        answers[`EVID_${dim.letter}`] = evidenceInput.value.trimStart();
+        evidenceCount.textContent = `${evidenceInput.value.length}/320`;
+        saveState();
+        schedulePrintRefresh();
+      });
       root.appendChild(section);
     });
   }
 
-  /* ── RENDER PLAN ── */
+  /* ── PLAN EJECUTABLE ── */
+  function fieldValue(value, fallback = 'Pendiente') {
+    const text = String(value || '').trim();
+    return text || fallback;
+  }
+
+  function addDaysISO(dateString, days) {
+    if (!dateString) return '';
+    const date = new Date(`${dateString}T12:00:00`);
+    if (Number.isNaN(date.getTime())) return '';
+    date.setDate(date.getDate() + days);
+    return date.toISOString().slice(0, 10);
+  }
+
+  function countFilledPlanFields() {
+    const week0Fields = ['context','priority','witness','behavior','expectedEvidence'];
+    const weekFields = ['connection','situation1','expectedEvidence','evidenceObtained','phrase','friction','recovery','situation2','adjustment','learning'];
+    const closingFields = ['change','repeatedEvidence','protect','supportLens','nextStandard'];
+    let filled = week0Fields.filter(k => fieldValue(planData.week0[k], '')).length;
+    let total = week0Fields.length;
+    planData.weeks.forEach(w => { filled += weekFields.filter(k => fieldValue(w[k], '')).length; total += weekFields.length; });
+    filled += closingFields.filter(k => fieldValue(planData.closing[k], '')).length;
+    total += closingFields.length;
+    return { filled, total, pct: Math.round((filled / total) * 100) };
+  }
+
+  function weekReadiness(week) {
+    const required = ['connection','situation1','evidenceObtained','situation2','adjustment'];
+    const completed = required.filter(k => fieldValue(week[k], '')).length;
+    return { completed, total: required.length, ready: completed === required.length };
+  }
+
+  function updatePlanOverview() {
+    if (!document.getElementById('planWeeksMetric')) return;
+    const state = calculate();
+    const focus = state.complete ? state.dimScores[state.focusIndex] : null;
+    const priority = fieldValue(planData.week0.priority, focus ? `${focus.letter} · ${focus.name}` : 'Pendiente');
+    const completed = planData.weeks.filter(w => w.complete).length;
+    const fieldStats = countFilledPlanFields();
+    const overallPct = Math.round(((completed / 6) * 70) + ((fieldStats.pct / 100) * 30));
+
+    document.getElementById('planPriorityMetric').textContent = priority;
+    document.getElementById('planWeeksMetric').textContent = `${completed} de 6`;
+    document.getElementById('planFieldsMetric').textContent = `${fieldStats.pct}%`;
+    document.getElementById('planProgressPct').textContent = `${overallPct}%`;
+    document.getElementById('planProgressFill').style.width = `${overallPct}%`;
+    document.getElementById('planProgressText').textContent = completed === 6
+      ? 'Seis semanas completadas: cierra el ciclo y define tu siguiente estándar.'
+      : completed > 0
+        ? `${completed} ${completed === 1 ? 'semana completada' : 'semanas completadas'}; continúa con evidencia y segunda práctica.`
+        : 'Define la Semana 0 y comienza la primera situación real.';
+
+    const week0Ready = ['context','priority','behavior','expectedEvidence'].every(k => fieldValue(planData.week0[k], ''));
+    const week0Status = document.getElementById('weekZeroStatus');
+    if (week0Status) {
+      week0Status.textContent = week0Ready ? 'Terreno definido' : 'Por definir';
+      week0Status.className = `plan-chip${week0Ready ? ' ready' : ''}`;
+    }
+
+    const closingReady = ['change','repeatedEvidence','protect','supportLens','nextStandard'].every(k => fieldValue(planData.closing[k], ''));
+    const closingStatus = document.getElementById('closingStatus');
+    if (closingStatus) {
+      closingStatus.textContent = closingReady ? 'Cierre completo' : 'Pendiente';
+      closingStatus.className = `plan-chip${closingReady ? ' done' : ''}`;
+    }
+
+    planData.weeks.forEach((week, i) => {
+      const readiness = weekReadiness(week);
+      const chip = document.getElementById(`weekStatus-${i}`);
+      const details = document.getElementById(`weekCard-${i}`);
+      if (chip) {
+        chip.textContent = week.complete ? 'Completada' : readiness.ready ? 'Lista para cerrar' : readiness.completed ? 'En práctica' : 'Sin iniciar';
+        chip.className = `plan-chip${week.complete ? ' done' : readiness.ready ? ' ready' : ''}`;
+      }
+      if (details) details.classList.toggle('done', Boolean(week.complete));
+    });
+  }
+
+  function planFieldHTML({ label, field, value, placeholder = '', type = 'textarea', full = true, help = '', weekIndex }) {
+    const attrs = `data-plan-section="week" data-week-index="${weekIndex}" data-plan-field="${field}"`;
+    const id = `week-${weekIndex}-${field}`;
+    const cls = `plan-field${full ? ' full' : ''}`;
+    const control = type === 'input'
+      ? `<input class="plan-input" id="${id}" type="text" ${attrs} value="${escapeHTML(value || '')}" placeholder="${escapeHTML(placeholder)}" />`
+      : `<textarea class="plan-textarea compact" id="${id}" ${attrs} placeholder="${escapeHTML(placeholder)}">${escapeHTML(value || '')}</textarea>`;
+    return `<div class="${cls}"><label for="${id}">${label}</label>${control}${help ? `<div class="plan-help">${help}</div>` : ''}</div>`;
+  }
+
   function renderPlan() {
     const root = document.getElementById('planGrid');
     root.innerHTML = '';
-    weeklyPlan.forEach((week, i) => {
-      const key  = `week-${i+1}`;
-      const card = document.createElement('article');
-      card.className = `week-card${planDone[key] ? ' done' : ''}`;
-      card.innerHTML = `
-        <div class="week-card-head">
-          <h3>${week.title}</h3>
-          <input type="checkbox" class="week-check" aria-label="Marcar como completada" ${planDone[key] ? 'checked' : ''}>
-        </div>
-        ${week.body.split('\n').map(line => {
-          const [label, ...rest] = line.split(':');
-          return rest.length ? `<p><strong>${label}:</strong>${rest.join(':')}</p>` : `<p>${line}</p>`;
-        }).join('')}
-      `;
-      const cb = card.querySelector('input');
-      cb.addEventListener('change', () => {
-        planDone[key] = cb.checked;
-        card.classList.toggle('done', cb.checked);
-        savePlan();
-        toast(cb.checked ? '✓ Semana marcada como lista.' : 'Semana desmarcada.');
-      });
-      root.appendChild(card);
+    const firstIncomplete = Math.max(0, planData.weeks.findIndex(w => !w.complete));
+
+    const personalizedProgram = getPersonalizedProgram();
+    personalizedProgram.forEach((weekGuide, i) => {
+      const week = planData.weeks[i];
+      const details = document.createElement('details');
+      details.className = `week-card${week.complete ? ' done' : ''}`;
+      details.id = `weekCard-${i}`;
+      if (i === firstIncomplete) details.open = true;
+      details.innerHTML = `
+        <summary>
+          <div class="week-summary-main">
+            <span class="week-kicker">${weekGuide.phase} · Semana ${i + 1}</span>
+            <h3>${weekGuide.title}</h3>
+          </div>
+          <div class="week-summary-side">
+            <span class="plan-chip" id="weekStatus-${i}">Sin iniciar</span>
+            <span class="week-chevron" aria-hidden="true">⌄</span>
+          </div>
+        </summary>
+        <div class="week-card-body">
+          <div class="lens-box">
+            <strong>Objetivo y práctica de la semana</strong>
+            <p>${weekGuide.lens}</p>
+            <p><b>Conducta sugerida:</b> ${weekGuide.suggestedConduct}</p><p><b>Criterio de cierre:</b> ${weekGuide.requirement}</p>
+          </div>
+          <div class="plan-field-grid">
+            ${planFieldHTML({ label: 'Conexión con mi prioridad central', field: 'connection', value: week.connection, placeholder: `Explica cómo esta fase hará más visible y repetible tu conducta palanca.`, weekIndex: i })}
+            ${planFieldHTML({ label: 'Primera situación real', field: 'situation1', value: week.situation1, placeholder: '¿Dónde, cuándo y con quién la practicarás esta semana?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Evidencia esperada', field: 'expectedEvidence', value: week.expectedEvidence, placeholder: weekGuide.suggestedEvidence, weekIndex: i })}
+            ${planFieldHTML({ label: 'Evidencia realmente obtenida', field: 'evidenceObtained', value: week.evidenceObtained, placeholder: '¿Qué cambió para otra persona? ¿Qué hecho, comentario o resultado lo demuestra?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Frase de sala', field: 'phrase', value: week.phrase, placeholder: weekGuide.suggestedPhrase, type: 'input', full: false, help: 'La frase que te gustaría que otros pudieran decir cuando tú no estás.', weekIndex: i })}
+            ${planFieldHTML({ label: 'Fricción probable', field: 'friction', value: week.friction, placeholder: weekGuide.suggestedFriction, full: false, weekIndex: i })}
+            ${planFieldHTML({ label: 'Movimiento de recuperación', field: 'recovery', value: week.recovery, placeholder: weekGuide.suggestedRecovery, weekIndex: i })}
+            ${planFieldHTML({ label: 'Segunda situación de práctica', field: 'situation2', value: week.situation2, placeholder: '¿Dónde repetirás la misma conducta durante esta semana?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Ajuste después de la segunda práctica', field: 'adjustment', value: week.adjustment, placeholder: '¿Qué corregiste, simplificaste o reforzaste entre el primer y el segundo intento?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Aprendizaje y próximo paso', field: 'learning', value: week.learning, placeholder: '¿Qué mantendrás la próxima semana para seguir fortaleciendo la prioridad central?', weekIndex: i })}
+          </div>
+          <div class="week-completion-row">
+            <label class="week-completion-label">
+              <input type="checkbox" class="week-check" data-week-complete="${i}" ${week.complete ? 'checked' : ''}>
+              Marcar semana como completada
+            </label>
+            <div class="week-requirement">Requiere conexión, primera situación, evidencia obtenida, segunda práctica y ajuste.</div>
+          </div>
+        </div>`;
+      root.appendChild(details);
     });
+
+    hydratePlanFields();
+    bindPlanEvents();
+    updatePlanOverview();
+  }
+
+  function hydratePlanFields() {
+    document.querySelectorAll('[data-plan-section="week0"]').forEach(el => { el.value = planData.week0[el.dataset.planField] || ''; });
+    document.querySelectorAll('[data-plan-section="closing"]').forEach(el => { el.value = planData.closing[el.dataset.planField] || ''; });
+  }
+
+  function updatePlanFieldFromElement(el) {
+    const section = el.dataset.planSection;
+    const field = el.dataset.planField;
+    if (!section || !field) return;
+    if (section === 'week0') {
+      planData.week0[field] = el.value;
+      if (field === 'startDate') {
+        planData.week0.endDate = addDaysISO(el.value, 42);
+        const endInput = document.getElementById('planEndDate');
+        if (endInput) endInput.value = planData.week0.endDate;
+      }
+    } else if (section === 'closing') {
+      planData.closing[field] = el.value;
+    } else if (section === 'week') {
+      const index = Number(el.dataset.weekIndex);
+      if (Number.isInteger(index) && planData.weeks[index]) planData.weeks[index][field] = el.value;
+    }
+    schedulePlanSave();
+    updatePlanOverview();
+  }
+
+  function bindPlanEvents() {
+    document.querySelectorAll('[data-plan-field]').forEach(el => {
+      if (el.dataset.planBound) return;
+      el.dataset.planBound = '1';
+      el.addEventListener('input', () => updatePlanFieldFromElement(el));
+      el.addEventListener('change', () => updatePlanFieldFromElement(el));
+    });
+
+    document.querySelectorAll('[data-week-complete]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const index = Number(cb.dataset.weekComplete);
+        const readiness = weekReadiness(planData.weeks[index]);
+        if (cb.checked && !readiness.ready) {
+          cb.checked = false;
+          planData.weeks[index].complete = false;
+          const card = document.getElementById(`weekCard-${index}`);
+          if (card) card.open = true;
+          toast('Completa conexión, primera situación, evidencia, segunda práctica y ajuste antes de cerrar la semana.');
+          updatePlanOverview();
+          return;
+        }
+        planData.weeks[index].complete = cb.checked;
+        savePlan();
+        toast(cb.checked ? '✓ Semana completada con evidencia y repetición.' : 'Semana reabierta para nuevos ajustes.');
+      });
+    });
+  }
+
+  function syncPlanWithDiagnosis(state) {
+    if (!state.complete) return;
+    const focus = state.dimScores[state.focusIndex];
+    let changed = false;
+    if (!fieldValue(planData.week0.priority, '')) {
+      planData.week0.priority = `${focus.letter} · ${focus.name}`;
+      changed = true;
+    }
+    if (!fieldValue(planData.week0.behavior, '')) {
+      planData.week0.behavior = focus.actions[0].body;
+      changed = true;
+    }
+    if (!fieldValue(planData.week0.expectedEvidence, '')) {
+      planData.week0.expectedEvidence = `Una persona puede reconocer una mejora visible y repetida en ${focus.name.toLowerCase()}.`;
+      changed = true;
+    }
+    if (changed) {
+      hydratePlanFields();
+      savePlan({ refreshReport: false });
+    }
+  }
+
+  function resetPlanOnly() {
+    if (!confirm('¿Reiniciar todo el plan de seis semanas? El diagnóstico se conservará.')) return;
+    planData = createEmptyPlanData();
+    const state = calculate();
+    syncPlanWithDiagnosis(state);
+    savePlan({ refreshReport: false });
+    renderPlan();
+    updatePrintReport();
+    toast('Plan reiniciado. Tu diagnóstico se mantuvo.');
+  }
+
+  function downloadBackup() {
+    const payload = {
+      schema: 'somos-genios-v4',
+      exportedAt: new Date().toISOString(),
+      respondentName: getRespondentName(),
+      answers,
+      planData
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const safeName = (getRespondentName() || 'usuario').replace(/[^\p{L}\p{N}_-]+/gu, '_');
+    a.href = url;
+    a.download = `Respaldo_GENIOS_${safeName}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast('Respaldo descargado. Guárdalo para continuar en otro dispositivo.');
+  }
+
+  async function importBackupFile(file) {
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text());
+      if (!parsed || !parsed.answers || !parsed.planData) throw new Error('Formato inválido');
+      if (!confirm('¿Restaurar este respaldo? Reemplazará las respuestas y el plan guardados en este navegador.')) return;
+      answers = parsed.answers || {};
+      planData = normalizePlanData(parsed.planData);
+      respondentName = String(parsed.respondentName || '');
+      saveState();
+      savePlan({ refreshReport: false });
+      saveName();
+      renderQuestions();
+      renderPlan();
+      const nameInput = document.getElementById('respondentName');
+      if (nameInput) nameInput.value = respondentName;
+      updateAll();
+      toast('✓ Respaldo restaurado correctamente.');
+    } catch (error) {
+      toast('No se pudo restaurar: el archivo no corresponde a un respaldo G.E.N.I.O.S. válido.');
+    }
   }
 
   /* ── CALCULATE ── */
@@ -2168,6 +3138,8 @@
     updateBars(state);
     updatePlanIntro(state);
     updateEntryActions(state);
+    syncPlanWithDiagnosis(state);
+    updatePlanOverview();
     updatePrintReport(state);
     updateStickyProgress(state);
     updateCompleteBanner(state);
@@ -2228,7 +3200,7 @@
     const profile = complete ? profiles[profileIndex] : null;
     document.getElementById('profileName').textContent  = profile ? profile.name : 'Completa las 24 respuestas';
     document.getElementById('profileBody').innerHTML    = profile
-      ? `<strong>Riesgo:</strong> ${profile.riesgo}<br><br><strong>Punto de entrada:</strong> ${profile.entrada}<br><br><em>${profile.pregunta}</em>`
+      ? `<strong>Riesgo:</strong> ${profile.riesgo}<br><br><strong>Prioridad central:</strong> ${profile.entrada}<br><br><em>${profile.pregunta}</em>`
       : 'El sistema sugerirá un perfil a partir de tus seis promedios. No es una etiqueta fija.';
   }
 
@@ -2240,7 +3212,7 @@
     if (!complete) {
       letter.textContent = '—';
       title.textContent = 'Completa las 24 respuestas';
-      body.textContent = 'Tu letra de entrada señalará una oportunidad concreta, visible y repetible.';
+      body.textContent = 'Tu prioridad central señalará una oportunidad concreta, visible y repetible.';
       cta.disabled = true;
       return;
     }
@@ -2332,9 +3304,9 @@
   /* ── PLAN INTRO ── */
   function updatePlanIntro({ complete, dimScores, focusIndex }) {
     const el = document.getElementById('planIntro');
-    if (!complete) { el.textContent = 'Completa las 24 respuestas para activar un plan simple: una conducta G.E.N.I.O.S. por semana, empezando por tu principal oportunidad.'; return; }
+    if (!complete) { el.textContent = 'Completa las 24 respuestas para definir una prioridad central. Durante seis semanas recorrerás las seis letras como lentes para fortalecer esa misma conducta.'; return; }
     const focus = dimScores[focusIndex];
-    el.textContent = `Tu letra más baja fue ${focus.letter} · ${focus.name}. Úsala como filtro principal desde la Semana 0 y pon especial atención en la semana correspondiente.`;
+    el.textContent = `Tu prioridad central es ${focus.letter} · ${focus.name}. Durante las seis semanas, cada letra funcionará como una lente para fortalecer esa misma conducta.`;
   }
 
   /* ── ENTRY ACTIONS ── */
@@ -2342,9 +3314,9 @@
     const intro = document.getElementById('entryIntro');
     const root  = document.getElementById('entryActions');
     root.innerHTML = '';
-    if (!complete) { intro.textContent = 'Cuando termines, esta sección te mostrará tu letra de entrada y acciones concretas para convertir intención en evidencia visible.'; return; }
+    if (!complete) { intro.textContent = 'Cuando termines, esta sección te mostrará tu prioridad central y acciones concretas para convertir intención en evidencia visible.'; return; }
     const focus = dimScores[focusIndex];
-    intro.textContent = `Tu letra de entrada es ${focus.letter} · ${focus.name}. Elige una acción visible para esta semana y repítela hasta dejar evidencia:`;
+    intro.textContent = `Tu prioridad central es ${focus.letter} · ${focus.name}. Elige una conducta visible y utiliza cada lente semanal para fortalecerla hasta dejar evidencia:`;
     focus.actions.forEach((action, i) => {
       const item = document.createElement('div');
       item.className = 'action-item';
@@ -2365,10 +3337,10 @@
   }
 
   function dimensionBand(score) {
-    if (score >= 17) return 'Fortaleza consolidada';
-    if (score >= 14) return 'Conducta visible';
-    if (score >= 10) return 'Conducta irregular';
-    return 'Prioridad de desarrollo';
+    if (score >= 18) return 'Consolidada';
+    if (score >= 14) return 'Reconocible';
+    if (score >= 9) return 'En desarrollo';
+    return 'Poco visible';
   }
 
   function dimensionReading(dim) {
@@ -2396,7 +3368,49 @@
   }
 
   function buildExecutiveReading(level, strength, focus, profile) {
-    return `Tu resultado sugiere un nivel ${level.num} · ${level.name}. Tu fortaleza principal aparece en ${strength.letter} · ${strength.name}, mientras que tu mayor oportunidad de avance está en ${focus.letter} · ${focus.name}. Tu perfil sugerido es ${profile.name}: úsalo como una lectura complementaria, no como una etiqueta fija. Empieza por una acción visible de ${focus.letter} y repítela hasta convertirla en evidencia.`;
+    return `Tu resultado sugiere un nivel ${level.num} · ${level.name}. Tu fortaleza principal aparece en ${strength.letter} · ${strength.name}, mientras que tu mayor oportunidad de avance está en ${focus.letter} · ${focus.name}. Tu perfil sugerido es ${profile.name}: úsalo como una lectura complementaria, no como una etiqueta fija. Convierte ${focus.letter} · ${focus.name} en tu prioridad central y desarrolla esa conducta mediante seis fases progresivas.`;
+  }
+
+  function planReportValue(value) { return fieldValue(value, 'Pendiente de completar'); }
+
+  function completedWeeksCount() { return planData.weeks.filter(w => w.complete).length; }
+
+  function appendPlanToText(lines) {
+    lines.push('', 'PLAN PERSONALIZADO DE 6 SEMANAS');
+    lines.push(`Estado: ${completedWeeksCount()}/6 semanas completadas`);
+    lines.push('', 'SEMANA 0 · TERRENO DE PRÁCTICA',
+      `Inicio: ${planReportValue(planData.week0.startDate)}`,
+      `Cierre estimado: ${planReportValue(planData.week0.endDate)}`,
+      `Contexto: ${planReportValue(planData.week0.context)}`,
+      `Prioridad central: ${planReportValue(planData.week0.priority)}`,
+      `Quién podrá observarla: ${planReportValue(planData.week0.witness)}`,
+      `Conducta concreta: ${planReportValue(planData.week0.behavior)}`,
+      `Evidencia central esperada: ${planReportValue(planData.week0.expectedEvidence)}`
+    );
+    getPersonalizedProgram().forEach((guide, i) => {
+      const week = planData.weeks[i];
+      lines.push('', `${guide.title} · ${week.complete ? 'COMPLETADA' : 'EN PROCESO'}`,
+        `Lente: ${guide.lens}`,
+        `Conexión con la prioridad: ${planReportValue(week.connection)}`,
+        `Primera situación: ${planReportValue(week.situation1)}`,
+        `Evidencia esperada: ${planReportValue(week.expectedEvidence || guide.suggestedEvidence)}`,
+        `Evidencia obtenida: ${planReportValue(week.evidenceObtained)}`,
+        `Frase de sala: ${planReportValue(week.phrase || guide.suggestedPhrase)}`,
+        `Fricción probable: ${planReportValue(week.friction || guide.suggestedFriction)}`,
+        `Movimiento de recuperación: ${planReportValue(week.recovery || guide.suggestedRecovery)}`,
+        `Segunda situación: ${planReportValue(week.situation2)}`,
+        `Ajuste: ${planReportValue(week.adjustment)}`,
+        `Aprendizaje y próximo paso: ${planReportValue(week.learning)}`
+      );
+    });
+    lines.push('', 'CIERRE DEL CICLO',
+      `Cambio para otros: ${planReportValue(planData.closing.change)}`,
+      `Evidencia repetida: ${planReportValue(planData.closing.repeatedEvidence)}`,
+      `Parte de la prioridad que protegeré: ${planReportValue(planData.closing.protect)}`,
+      `Lente de apoyo: ${planReportValue(planData.closing.supportLens)}`,
+      `Siguiente estándar: ${planReportValue(planData.closing.nextStandard)}`,
+      `Fecha de revisión: ${planReportValue(planData.closing.reviewDate)}`
+    );
   }
 
   function buildReportText() {
@@ -2417,14 +3431,13 @@
       lines.push(`${d.letter} · ${d.name}: ${dimensionBand(d.score)} (${d.score}/20). ${dimensionReading(d)} Recomendación: ${dimensionRecommendation(d)}`);
     });
     lines.push('', 'FORTALEZA PRINCIPAL', `${strength.letter} · ${strength.name}: úsala como base para construir evidencia profesional.`);
-    lines.push('', 'LETRA DE ENTRADA', `${focus.letter} · ${focus.name}: empieza aquí porque una mejora concreta puede mover el resto del sistema.`);
+    lines.push('', 'PRIORIDAD CENTRAL', `${focus.letter} · ${focus.name}: empieza aquí porque una mejora concreta puede mover el resto del sistema.`);
     lines.push('', 'RIESGO Y PRIORIDAD', `Riesgo: ${risk.riesgo}`, `Prioridad: ${risk.prioridad}`, `Pregunta de avance: ${risk.pregunta}`);
-    lines.push('', 'PERFIL SUGERIDO', profile.name, `Riesgo del perfil: ${profile.riesgo}`, `Punto de entrada: ${profile.entrada}`, `Pregunta clave: ${profile.pregunta}`);
-    lines.push('', 'ACCIONES CONCRETAS PARA TU LETRA DE ENTRADA');
+    lines.push('', 'PERFIL SUGERIDO', profile.name, `Riesgo del perfil: ${profile.riesgo}`, `Prioridad central: ${profile.entrada}`, `Pregunta clave: ${profile.pregunta}`);
+    lines.push('', 'ACCIONES CONCRETAS PARA TU PRIORIDAD CENTRAL');
     focus.actions.forEach((a, i) => lines.push(`${i+1}. ${a.title}: ${a.body}`));
-    lines.push('', 'PLAN DE 6 SEMANAS');
-    weeklyPlan.forEach((week, i) => lines.push(`${i+1}. ${week.title}: ${week.body.replace(/\n/g, ' ')}`));
-    lines.push('', 'Nota: este diagnóstico es una autoevaluación orientativa. La reputación se confirma cuando otras personas pueden reconocer conductas consistentes en tu trabajo real.', '', '@somosgenios');
+    appendPlanToText(lines);
+    lines.push('', 'Nota: esta herramienta es una autoobservación orientativa. No es una prueba psicométrica, no mide talento, desempeño ni reputación y no debe utilizarse para comparar personas o tomar decisiones laborales.', '', '@somosgenios');
     return lines.join('\n');
   }
 
@@ -2435,20 +3448,20 @@
     const date = new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' });
     const scoreLabel = complete ? `${level.num} · ${level.name}` : `${answered}/24`;
     const coverSubtitle = complete
-      ? 'Una lectura clara de tus seis conductas profesionales, tu letra de entrada y tu próximo paso de avance.'
+      ? 'Una lectura clara de tus seis conductas profesionales, tu conducta palanca y el programa progresivo de seis semanas para convertirla en evidencia.'
       : 'Reporte preliminar. Completa las 24 respuestas para desbloquear tu resultado final.';
 
     let html = `
       <article class="pdf-report-shell">
         <section class="pdf-cover">
-          <div class="pdf-kicker">Diagnóstico de reputación profesional</div>
+          <div class="pdf-kicker">Diagnóstico de conductas profesionales</div>
           <h1>SOMOS<br><span>G.E.N.I.O.S.</span></h1>
           <p>${coverSubtitle}</p>
           <div class="pdf-cover-meta">
             <div class="pdf-cover-box"><small>Nombre</small><strong>${escapeHTML(name || 'Sin nombre')}</strong></div>
             <div class="pdf-cover-box"><small>Fecha</small><strong>${escapeHTML(date)}</strong></div>
             <div class="pdf-cover-box"><small>Resultado</small><strong>${escapeHTML(scoreLabel)}</strong></div>
-            <div class="pdf-cover-box"><small>Estado</small><strong>${complete ? 'Reporte completo' : 'Pendiente'}</strong></div>
+            <div class="pdf-cover-box"><small>Plan</small><strong>${completedWeeksCount()}/6 semanas</strong></div>
           </div>
         </section>
 
@@ -2483,7 +3496,7 @@
             <div class="pdf-pill-row">
               <span class="pdf-pill">Nivel ${level.num} · ${escapeHTML(level.name)}</span>
               <span class="pdf-pill">Fortaleza: ${strength.letter} · ${escapeHTML(strength.name)}</span>
-              <span class="pdf-pill">Foco: ${focus.letter} · ${escapeHTML(focus.name)}</span>
+              <span class="pdf-pill">Prioridad: ${focus.letter} · ${escapeHTML(focus.name)}</span>
               <span class="pdf-pill">Plan: 6 semanas</span>
             </div>
           </div>
@@ -2522,7 +3535,7 @@
               <p>Es la conducta que aparece con mayor fuerza. Úsala como base para construir evidencia profesional más reconocible.</p>
             </div>
             <div class="pdf-reading-card">
-              <span>Letra de entrada</span>
+              <span>Prioridad central</span>
               <strong>${focus.letter} · ${escapeHTML(focus.name)}</strong>
               <p>Es el punto donde una mejora concreta puede mover con más velocidad tu reputación observable.</p>
             </div>
@@ -2547,8 +3560,8 @@
 
         <section class="pdf-section pdf-card">
           <div class="pdf-eyebrow">Acciones concretas</div>
-          <h2>Practica tu letra de entrada</h2>
-          <p class="pdf-section-intro">Trabaja ${focus.letter} · ${escapeHTML(focus.name)} con acciones pequeñas, visibles y repetibles. El objetivo no es prometer cambio: es dejar evidencia.</p>
+          <h2>Fortalece tu prioridad central</h2>
+          <p class="pdf-section-intro">Trabaja ${focus.letter} · ${escapeHTML(focus.name)} como prioridad central. Las seis letras funcionarán como lentes para hacer esa conducta más visible, útil y consistente.</p>
           <div class="pdf-actions-grid">`;
 
     focus.actions.forEach((a, i) => {
@@ -2564,22 +3577,59 @@
         </section>
 
         <section class="pdf-section pdf-card">
-          <div class="pdf-eyebrow">Plan de 6 semanas</div>
-          <h2>Una conducta por semana</h2>
-          <p class="pdf-section-intro">El plan ordena la práctica para que cada semana produzca una señal concreta: conducta, evidencia y próxima repetición.</p>
+          <div class="pdf-eyebrow">Plan de ejecución</div>
+          <h2>Semana 0 · Terreno y prioridad central</h2>
+          <div class="pdf-list">
+            <div class="pdf-list-item"><strong>Periodo</strong><span>${escapeHTML(planReportValue(planData.week0.startDate))} — ${escapeHTML(planReportValue(planData.week0.endDate))}</span></div>
+            <div class="pdf-list-item"><strong>Contexto real</strong><span>${escapeHTML(planReportValue(planData.week0.context))}</span></div>
+            <div class="pdf-list-item"><strong>Prioridad central</strong><span>${escapeHTML(planReportValue(planData.week0.priority))}</span></div>
+            <div class="pdf-list-item"><strong>Quién podrá observarla</strong><span>${escapeHTML(planReportValue(planData.week0.witness))}</span></div>
+            <div class="pdf-list-item"><strong>Conducta concreta</strong><span>${escapeHTML(planReportValue(planData.week0.behavior))}</span></div>
+            <div class="pdf-list-item"><strong>Evidencia central esperada</strong><span>${escapeHTML(planReportValue(planData.week0.expectedEvidence))}</span></div>
+          </div>
+        </section>
+
+        <section class="pdf-section pdf-card pdf-plan-section">
+          <div class="pdf-eyebrow">Programa personalizado de 6 semanas</div>
+          <h2>Una conducta palanca, seis fases progresivas</h2>
+          <p class="pdf-section-intro">Cada semana aumenta la dificultad sobre la misma conducta palanca: observar, definir, practicar, sostener bajo presión, transferir y consolidar. El reporte incorpora práctica, evidencia, recuperación y ajuste.</p>
           <div class="pdf-list">`;
 
-    weeklyPlan.forEach((week, i) => {
+    getPersonalizedProgram().forEach((guide, i) => {
+      const week = planData.weeks[i];
       html += `
             <div class="pdf-list-item">
-              <strong>${escapeHTML(week.title)}</strong>
-              <span>${escapeHTML(week.body).replace(/\n/g, '<br>')}</span>
+              <strong>${escapeHTML(guide.title)} · ${week.complete ? 'Completada' : 'En proceso'}</strong>
+              <p><b>Lente:</b> ${escapeHTML(guide.lens)}</p>
+              <p><b>Conexión con la prioridad:</b> ${escapeHTML(planReportValue(week.connection))}</p>
+              <p><b>Primera situación:</b> ${escapeHTML(planReportValue(week.situation1))}</p>
+              <p><b>Evidencia esperada:</b> ${escapeHTML(planReportValue(week.expectedEvidence || guide.suggestedEvidence))}</p>
+              <p><b>Evidencia obtenida:</b> ${escapeHTML(planReportValue(week.evidenceObtained))}</p>
+              <p><b>Frase de sala:</b> ${escapeHTML(planReportValue(week.phrase || guide.suggestedPhrase))}</p>
+              <p><b>Fricción probable:</b> ${escapeHTML(planReportValue(week.friction || guide.suggestedFriction))}</p>
+              <p><b>Movimiento de recuperación:</b> ${escapeHTML(planReportValue(week.recovery || guide.suggestedRecovery))}</p>
+              <p><b>Segunda situación:</b> ${escapeHTML(planReportValue(week.situation2))}</p>
+              <p><b>Ajuste:</b> ${escapeHTML(planReportValue(week.adjustment))}</p>
+              <p><b>Aprendizaje:</b> ${escapeHTML(planReportValue(week.learning))}</p>
             </div>`;
     });
 
     html += `
           </div>
-          <div class="pdf-footer-note">Nota: este diagnóstico es una autoevaluación orientativa. La reputación se confirma cuando otras personas pueden reconocer conductas consistentes en tu trabajo real. Basado en el libro «Somos G.E.N.I.O.S.» de Kevin Lück · @somosgenios</div>
+        </section>
+
+        <section class="pdf-section pdf-card">
+          <div class="pdf-eyebrow">Cierre del ciclo</div>
+          <h2>Del experimento al Sello Profesional</h2>
+          <div class="pdf-list">
+            <div class="pdf-list-item"><strong>Qué cambió para otros</strong><span>${escapeHTML(planReportValue(planData.closing.change))}</span></div>
+            <div class="pdf-list-item"><strong>Evidencia que se repitió</strong><span>${escapeHTML(planReportValue(planData.closing.repeatedEvidence))}</span></div>
+            <div class="pdf-list-item"><strong>Parte de la prioridad que protegeré</strong><span>${escapeHTML(planReportValue(planData.closing.protect))}</span></div>
+            <div class="pdf-list-item"><strong>Lente de apoyo</strong><span>${escapeHTML(planReportValue(planData.closing.supportLens))}</span></div>
+            <div class="pdf-list-item"><strong>Siguiente estándar profesional</strong><span>${escapeHTML(planReportValue(planData.closing.nextStandard))}</span></div>
+            <div class="pdf-list-item"><strong>Fecha de revisión</strong><span>${escapeHTML(planReportValue(planData.closing.reviewDate))}</span></div>
+          </div>
+          <div class="pdf-footer-note">Nota: esta herramienta es una autoobservación orientativa. No es una prueba psicométrica, no mide talento, desempeño ni reputación y no debe utilizarse para comparar personas o tomar decisiones laborales. Basado en el libro «Somos G.E.N.I.O.S.» de Kevin Lück · @somosgenios</div>
         </section>
       </article>`;
 
@@ -2615,13 +3665,13 @@
 
   /* ── ACTIONS ── */
   function resetAll() {
-    if (!confirm('¿Seguro que quieres reiniciar todas tus respuestas?')) return;
+    if (!confirm('¿Seguro que quieres reiniciar las 24 respuestas del diagnóstico? El plan de seis semanas se conservará.')) return;
     answers = {};
     saveState();
     document.querySelectorAll('#questionContainer input[type="radio"]').forEach(i => i.checked = false);
     document.querySelectorAll('.question').forEach(q => q.classList.remove('answered'));
     updateAll();
-    toast('Diagnóstico reiniciado.');
+    toast('Diagnóstico reiniciado. El plan se conservó.');
   }
 
   async function copyReport() {
@@ -2664,15 +3714,786 @@
     });
   }
 
-  /* ── INIT ── */
+
+  /* ── PRODUCT ENHANCEMENTS 1.1 ── */
+  let activeReportType = 'initial';
+  let deferredInstallPrompt = null;
+
+  function createEmptyPlanData() {
+    return {
+      meta: { version: '1.1', updatedAt: '', lastBackupAt: '' },
+      week0: {
+        startDate: '', endDate: '', context: '', priority: '', witness: '', behavior: '', expectedEvidence: '',
+        priorityLocked: false, priorityLockedAt: ''
+      },
+      weeks: weeklyPlan.map(() => ({
+        connection: '', situation1: '', expectedEvidence: '', evidenceObtained: '', phrase: '',
+        friction: '', recovery: '', situation2: '', adjustment: '', learning: '', complete: false, consolidated: false
+      })),
+      closing: { change: '', repeatedEvidence: '', protect: '', supportLens: '', nextStandard: '', reviewDate: '' }
+    };
+  }
+
+  function normalizePlanData(raw) {
+    const clean = createEmptyPlanData();
+    if (!raw || typeof raw !== 'object') return clean;
+    clean.meta = { ...clean.meta, ...(raw.meta || {}) };
+    clean.week0 = { ...clean.week0, ...(raw.week0 || {}) };
+    clean.weeks = clean.weeks.map((week, i) => ({ ...week, ...((raw.weeks || [])[i] || {}) }));
+    clean.closing = { ...clean.closing, ...(raw.closing || {}) };
+    return clean;
+  }
+
+  function savePlan({ refreshReport = true, touch = true } = {}) {
+    if (touch) planData.meta.updatedAt = new Date().toISOString();
+    localStorage.setItem(PLAN_KEY, JSON.stringify(planData));
+    setPlanSaveState('Guardado en este dispositivo', false);
+    updatePlanOverview();
+    if (refreshReport) schedulePrintRefresh();
+  }
+
+  function dateFromISO(dateString) {
+    if (!dateString) return null;
+    const d = new Date(`${dateString}T12:00:00`);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function formatShortDate(dateString) {
+    const d = dateFromISO(dateString);
+    if (!d) return '';
+    return d.toLocaleDateString('es-CL', { day: '2-digit', month: 'short' }).replace('.', '');
+  }
+
+  function weekDateRange(index) {
+    const start = addDaysISO(planData.week0.startDate, index * 7);
+    const end = addDaysISO(start, 6);
+    return { start, end, label: start ? `${formatShortDate(start)} — ${formatShortDate(end)}` : 'Fechas por definir' };
+  }
+
+  function currentWeekIndex() {
+    const start = dateFromISO(planData.week0.startDate);
+    if (!start) return -1;
+    const today = new Date();
+    today.setHours(12,0,0,0);
+    const diff = Math.floor((today - start) / 86400000);
+    if (diff < 0) return -2;
+    if (diff >= 42) return 6;
+    return Math.floor(diff / 7);
+  }
+
+  function weekReadiness(week) {
+    const all = ['connection','situation1','expectedEvidence','evidenceObtained','phrase','friction','recovery','situation2','adjustment','learning'];
+    const minimal = ['connection','situation1','evidenceObtained','situation2','adjustment'];
+    const filled = all.filter(k => fieldValue(week[k], '')).length;
+    const minimumFilled = minimal.filter(k => fieldValue(week[k], '')).length;
+    return {
+      filled,
+      total: all.length,
+      pct: Math.round((filled / all.length) * 100),
+      completed: minimumFilled,
+      minimumTotal: minimal.length,
+      ready: minimumFilled === minimal.length,
+      consolidatedReady: filled === all.length
+    };
+  }
+
+  function weekStatusLabel(week) {
+    const r = weekReadiness(week);
+    if (week.consolidated) return 'Consolidada';
+    if (week.complete) return 'Práctica realizada';
+    if (r.ready) return 'Lista para registrar';
+    if (r.filled) return 'En práctica';
+    return 'Sin iniciar';
+  }
+
+  function hasWeekActivity(week) {
+    return weekReadiness(week).filled > 0 || week.complete || week.consolidated;
+  }
+
+  function updatePriorityLockUI() {
+    const locked = Boolean(planData.week0.priorityLocked);
+    const input = document.getElementById('planPriority');
+    const bar = document.getElementById('priorityLockBar');
+    const lockBtn = document.getElementById('btnLockPriority');
+    const unlockBtn = document.getElementById('btnUnlockPriority');
+    const title = document.getElementById('priorityLockTitle');
+    const copy = document.getElementById('priorityLockText');
+    if (input) {
+      input.readOnly = locked;
+      input.classList.toggle('locked-field', locked);
+      input.setAttribute('aria-readonly', String(locked));
+    }
+    if (bar) bar.classList.toggle('locked', locked);
+    if (lockBtn) lockBtn.hidden = locked;
+    if (unlockBtn) unlockBtn.hidden = !locked;
+    if (title) title.textContent = locked ? 'Prioridad confirmada y protegida' : 'Prioridad editable';
+    if (copy) copy.textContent = locked
+      ? `Bloqueada ${planData.week0.priorityLockedAt ? `el ${new Date(planData.week0.priorityLockedAt).toLocaleDateString('es-CL')}` : ''}. Las seis semanas desarrollan esta misma conducta palanca con dificultad progresiva.`
+      : 'Confirma el terreno antes de iniciar la Semana 1. Así las seis semanas desarrollarán la misma conducta palanca con dificultad progresiva.';
+  }
+
+  function setPriorityLock(locked) {
+    if (locked) {
+      const required = ['context','priority','behavior','expectedEvidence'];
+      const missing = required.filter(k => !fieldValue(planData.week0[k], ''));
+      if (missing.length) {
+        toast('Completa contexto, prioridad, conducta y evidencia esperada antes de bloquearla.');
+        document.getElementById('weekZeroBlock')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      planData.week0.priorityLocked = true;
+      planData.week0.priorityLockedAt = new Date().toISOString();
+      savePlan();
+      updatePriorityLockUI();
+      toast('✓ Prioridad central confirmada. El ciclo queda protegido.');
+      return;
+    }
+
+    const hasProgress = planData.weeks.some(hasWeekActivity);
+    const warning = hasProgress
+      ? 'Modificar la prioridad puede romper la coherencia del ciclo. Se conservarán tus textos, pero las semanas dejarán de figurar como realizadas o consolidadas. ¿Continuar?'
+      : '¿Desbloquear la prioridad central para modificarla?';
+    if (!confirm(warning)) return;
+    planData.week0.priorityLocked = false;
+    planData.week0.priorityLockedAt = '';
+    if (hasProgress) planData.weeks.forEach(w => { w.complete = false; w.consolidated = false; });
+    savePlan();
+    renderPlan();
+    toast('Prioridad desbloqueada. Reconfírmala antes de continuar el ciclo.');
+  }
+
+  function countFilledPlanFields() {
+    const week0Fields = ['context','priority','witness','behavior','expectedEvidence'];
+    const weekFields = ['connection','situation1','expectedEvidence','evidenceObtained','phrase','friction','recovery','situation2','adjustment','learning'];
+    const closingFields = ['change','repeatedEvidence','protect','supportLens','nextStandard'];
+    let filled = week0Fields.filter(k => fieldValue(planData.week0[k], '')).length;
+    let total = week0Fields.length;
+    planData.weeks.forEach(w => { filled += weekFields.filter(k => fieldValue(w[k], '')).length; total += weekFields.length; });
+    filled += closingFields.filter(k => fieldValue(planData.closing[k], '')).length;
+    total += closingFields.length;
+    return { filled, total, pct: Math.round((filled / total) * 100) };
+  }
+
+  function updateContinuityNotice() {
+    const box = document.getElementById('continuityNotice');
+    const copy = document.getElementById('continuityText');
+    if (!box || !copy) return;
+    box.className = 'continuity-notice';
+    const updated = planData.meta.updatedAt ? new Date(planData.meta.updatedAt) : null;
+    const backup = planData.meta.lastBackupAt ? new Date(planData.meta.lastBackupAt) : null;
+    const inactivity = updated && !Number.isNaN(updated.getTime()) ? Math.floor((Date.now() - updated.getTime()) / 86400000) : 0;
+    const backupAge = backup && !Number.isNaN(backup.getTime()) ? Math.floor((Date.now() - backup.getTime()) / 86400000) : null;
+    const started = planData.weeks.some(hasWeekActivity);
+    const finished = planData.weeks.every(w => w.consolidated);
+
+    if (finished) {
+      box.classList.add('success');
+      copy.textContent = 'Las seis semanas están consolidadas. Completa el cierre del ciclo y guarda un último respaldo.';
+    } else if (started && inactivity >= 5) {
+      box.classList.add('warning');
+      copy.textContent = `Han pasado ${inactivity} días desde el último registro. Retoma la semana actual con una práctica pequeña y observable.`;
+    } else if (started && (backupAge === null || backupAge >= 7)) {
+      box.classList.add('warning');
+      copy.textContent = 'Tu plan tiene avances sin un respaldo reciente. Descarga el archivo para protegerlos y continuar en otro dispositivo.';
+    } else if (planData.week0.priorityLocked) {
+      box.classList.add('success');
+      copy.textContent = 'Prioridad protegida. El progreso se guarda en este navegador; descarga un respaldo al cerrar cada semana.';
+    } else {
+      copy.textContent = 'Confirma la prioridad central y descarga un respaldo antes de iniciar. En navegación privada o al borrar datos del navegador, el progreso puede perderse.';
+    }
+  }
+
+  function updatePlanOverview() {
+    if (!document.getElementById('planWeeksMetric')) return;
+    const state = calculate();
+    const focus = state.complete ? state.dimScores[state.focusIndex] : null;
+    const priority = fieldValue(planData.week0.priority, focus ? `${focus.letter} · ${focus.name}` : 'Pendiente');
+    const completed = planData.weeks.filter(w => w.complete || w.consolidated).length;
+    const consolidated = planData.weeks.filter(w => w.consolidated).length;
+    const fieldStats = countFilledPlanFields();
+    const overallPct = Math.round(((completed / 6) * 45) + ((consolidated / 6) * 35) + ((fieldStats.pct / 100) * 20));
+    const current = currentWeekIndex();
+
+    document.getElementById('planPriorityMetric').textContent = priority;
+    document.getElementById('planWeeksMetric').textContent = `${completed} de 6`;
+    document.getElementById('planConsolidatedMetric').textContent = `${consolidated} de 6`;
+    document.getElementById('planCurrentMetric').textContent = current === -1 ? 'Sin fecha' : current === -2 ? 'Aún no inicia' : current === 6 ? 'Ciclo finalizado' : `Semana ${current + 1}`;
+    document.getElementById('planProgressPct').textContent = `${overallPct}%`;
+    document.getElementById('planProgressFill').style.width = `${overallPct}%`;
+    document.getElementById('planProgressText').textContent = consolidated === 6
+      ? 'Seis semanas consolidadas: completa el cierre y define tu siguiente estándar.'
+      : consolidated > 0
+        ? `${consolidated} ${consolidated === 1 ? 'semana consolidada' : 'semanas consolidadas'}; protege la repetición y el aprendizaje.`
+        : completed > 0
+          ? `${completed} ${completed === 1 ? 'práctica realizada' : 'prácticas realizadas'}; completa todos los campos para consolidarlas.`
+          : 'Define la Semana 0, bloquea la prioridad y comienza la primera situación real.';
+
+    const week0Ready = ['context','priority','behavior','expectedEvidence'].every(k => fieldValue(planData.week0[k], ''));
+    const week0Status = document.getElementById('weekZeroStatus');
+    if (week0Status) {
+      week0Status.textContent = planData.week0.priorityLocked ? 'Prioridad bloqueada' : week0Ready ? 'Lista para confirmar' : 'Por definir';
+      week0Status.className = `plan-chip${planData.week0.priorityLocked ? ' done' : week0Ready ? ' ready' : ''}`;
+    }
+
+    const closingReady = ['change','repeatedEvidence','protect','supportLens','nextStandard'].every(k => fieldValue(planData.closing[k], ''));
+    const closingStatus = document.getElementById('closingStatus');
+    if (closingStatus) {
+      closingStatus.textContent = closingReady ? 'Cierre completo' : 'Pendiente';
+      closingStatus.className = `plan-chip${closingReady ? ' done' : ''}`;
+    }
+
+    planData.weeks.forEach((week, i) => {
+      const readiness = weekReadiness(week);
+      const chip = document.getElementById(`weekStatus-${i}`);
+      const details = document.getElementById(`weekCard-${i}`);
+      const progress = document.getElementById(`weekProgress-${i}`);
+      const progressLabel = document.getElementById(`weekProgressLabel-${i}`);
+      if (chip) {
+        chip.textContent = weekStatusLabel(week);
+        chip.className = `plan-chip${week.consolidated ? ' consolidated' : week.complete ? ' done' : readiness.ready ? ' ready' : ''}`;
+      }
+      if (details) {
+        details.classList.toggle('done', Boolean(week.complete));
+        details.classList.toggle('consolidated', Boolean(week.consolidated));
+      }
+      if (progress) progress.style.width = `${readiness.pct}%`;
+      if (progressLabel) progressLabel.textContent = `${readiness.pct}%`;
+    });
+    updatePriorityLockUI();
+    updateContinuityNotice();
+  }
+
+  function renderPlan() {
+    const root = document.getElementById('planGrid');
+    root.innerHTML = '';
+    let firstOpen = planData.weeks.findIndex(w => !w.consolidated);
+    if (firstOpen < 0) firstOpen = 5;
+
+    const personalizedProgram = getPersonalizedProgram();
+    personalizedProgram.forEach((weekGuide, i) => {
+      const week = planData.weeks[i];
+      const readiness = weekReadiness(week);
+      const period = weekDateRange(i);
+      const details = document.createElement('details');
+      details.className = `week-card${week.complete ? ' done' : ''}${week.consolidated ? ' consolidated' : ''}`;
+      details.id = `weekCard-${i}`;
+      if (i === firstOpen) details.open = true;
+      details.innerHTML = `
+        <summary>
+          <div class="week-summary-main">
+            <span class="week-kicker">${weekGuide.phase} · Semana ${i + 1}</span>
+            <h3>${weekGuide.title}</h3>
+            <span class="week-period">${period.label}</span>
+          </div>
+          <div class="week-summary-side">
+            <span class="plan-chip" id="weekStatus-${i}">${weekStatusLabel(week)}</span>
+            <span class="week-chevron" aria-hidden="true">⌄</span>
+          </div>
+        </summary>
+        <div class="week-card-body">
+          <div class="week-progress-mini" aria-label="Progreso de campos de la semana">
+            <div class="rail"><div class="fill" id="weekProgress-${i}" style="width:${readiness.pct}%"></div></div>
+            <small id="weekProgressLabel-${i}">${readiness.pct}%</small>
+          </div>
+          <div class="lens-box">
+            <strong>Objetivo y práctica de la semana</strong>
+            <p>${weekGuide.lens}</p>
+            <p><b>Conducta sugerida:</b> ${weekGuide.suggestedConduct}</p><p><b>Criterio de cierre:</b> ${weekGuide.requirement}</p>
+          </div>
+          <div class="plan-field-grid">
+            ${planFieldHTML({ label: 'Conexión con mi prioridad central', field: 'connection', value: week.connection, placeholder: `Explica cómo esta fase hará más visible y repetible tu conducta palanca.`, weekIndex: i })}
+            ${planFieldHTML({ label: 'Primera situación real', field: 'situation1', value: week.situation1, placeholder: '¿Dónde, cuándo y con quién la practicarás esta semana?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Evidencia esperada', field: 'expectedEvidence', value: week.expectedEvidence, placeholder: weekGuide.suggestedEvidence, weekIndex: i })}
+            ${planFieldHTML({ label: 'Evidencia realmente obtenida', field: 'evidenceObtained', value: week.evidenceObtained, placeholder: '¿Qué cambió para otra persona? ¿Qué hecho, comentario o resultado lo demuestra?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Frase de sala', field: 'phrase', value: week.phrase, placeholder: weekGuide.suggestedPhrase, type: 'input', full: false, help: 'La frase que te gustaría que otros pudieran decir cuando tú no estás.', weekIndex: i })}
+            ${planFieldHTML({ label: 'Fricción probable', field: 'friction', value: week.friction, placeholder: weekGuide.suggestedFriction, full: false, weekIndex: i })}
+            ${planFieldHTML({ label: 'Movimiento de recuperación', field: 'recovery', value: week.recovery, placeholder: weekGuide.suggestedRecovery, weekIndex: i })}
+            ${planFieldHTML({ label: 'Segunda situación de práctica', field: 'situation2', value: week.situation2, placeholder: '¿Dónde repetirás la misma conducta durante esta semana?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Ajuste después de la segunda práctica', field: 'adjustment', value: week.adjustment, placeholder: '¿Qué corregiste, simplificaste o reforzaste entre el primer y el segundo intento?', weekIndex: i })}
+            ${planFieldHTML({ label: 'Aprendizaje y próximo paso', field: 'learning', value: week.learning, placeholder: '¿Qué mantendrás la próxima semana para seguir fortaleciendo la prioridad central?', weekIndex: i })}
+          </div>
+          <div class="week-completion-row">
+            <div class="week-completion-options">
+              <label class="week-completion-label">
+                <input type="checkbox" class="week-check" data-week-complete="${i}" ${week.complete || week.consolidated ? 'checked' : ''}>
+                Práctica realizada
+              </label>
+              <label class="week-completion-label">
+                <input type="checkbox" class="week-check" data-week-consolidated="${i}" ${week.consolidated ? 'checked' : ''}>
+                Semana consolidada
+              </label>
+            </div>
+            <div class="week-requirement">Práctica realizada: 5 campos mínimos. Consolidada: los 10 campos completos.</div>
+          </div>
+        </div>`;
+      root.appendChild(details);
+    });
+
+    hydratePlanFields();
+    bindPlanEvents();
+    updatePlanOverview();
+  }
+
+  function hydratePlanFields() {
+    document.querySelectorAll('[data-plan-section="week0"]').forEach(el => { el.value = planData.week0[el.dataset.planField] || ''; });
+    document.querySelectorAll('[data-plan-section="closing"]').forEach(el => { el.value = planData.closing[el.dataset.planField] || ''; });
+    updatePriorityLockUI();
+  }
+
+  function updatePlanFieldFromElement(el) {
+    const section = el.dataset.planSection;
+    const field = el.dataset.planField;
+    if (!section || !field) return;
+    if (section === 'week0') {
+      if (field === 'priority' && planData.week0.priorityLocked) {
+        el.value = planData.week0.priority || '';
+        toast('La prioridad está bloqueada. Usa “Modificar prioridad” para cambiarla.');
+        return;
+      }
+      planData.week0[field] = el.value;
+      if (field === 'startDate') {
+        planData.week0.endDate = addDaysISO(el.value, 42);
+        const endInput = document.getElementById('planEndDate');
+        if (endInput) endInput.value = planData.week0.endDate;
+      }
+    } else if (section === 'closing') {
+      planData.closing[field] = el.value;
+    } else if (section === 'week') {
+      const index = Number(el.dataset.weekIndex);
+      if (Number.isInteger(index) && planData.weeks[index]) {
+        planData.weeks[index][field] = el.value;
+        if (planData.weeks[index].consolidated && !weekReadiness(planData.weeks[index]).consolidatedReady) {
+          planData.weeks[index].consolidated = false;
+        }
+      }
+    }
+    schedulePlanSave();
+    updatePlanOverview();
+  }
+
+  function bindPlanEvents() {
+    document.querySelectorAll('[data-plan-field]').forEach(el => {
+      if (el.dataset.planBound) return;
+      el.dataset.planBound = '1';
+      el.addEventListener('input', () => updatePlanFieldFromElement(el));
+      el.addEventListener('change', () => updatePlanFieldFromElement(el));
+    });
+
+    document.querySelectorAll('[data-week-complete]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const index = Number(cb.dataset.weekComplete);
+        const week = planData.weeks[index];
+        const readiness = weekReadiness(week);
+        if (cb.checked && !planData.week0.priorityLocked) {
+          cb.checked = false;
+          toast('Confirma y bloquea la prioridad central antes de registrar una práctica.');
+          document.getElementById('weekZeroBlock')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        if (cb.checked && !readiness.ready) {
+          cb.checked = false;
+          week.complete = false;
+          document.getElementById(`weekCard-${index}`)?.setAttribute('open', '');
+          toast('Completa conexión, primera situación, evidencia obtenida, segunda práctica y ajuste.');
+          updatePlanOverview();
+          return;
+        }
+        week.complete = cb.checked;
+        if (!cb.checked) week.consolidated = false;
+        savePlan();
+        renderPlan();
+        toast(cb.checked ? '✓ Práctica realizada. Completa todos los campos para consolidarla.' : 'Semana reabierta para nuevos ajustes.');
+      });
+    });
+
+    document.querySelectorAll('[data-week-consolidated]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const index = Number(cb.dataset.weekConsolidated);
+        const week = planData.weeks[index];
+        const readiness = weekReadiness(week);
+        if (cb.checked && !planData.week0.priorityLocked) {
+          cb.checked = false;
+          toast('Confirma y bloquea la prioridad central antes de consolidar una semana.');
+          return;
+        }
+        if (cb.checked && !readiness.consolidatedReady) {
+          cb.checked = false;
+          week.consolidated = false;
+          document.getElementById(`weekCard-${index}`)?.setAttribute('open', '');
+          toast(`Completa los ${readiness.total} campos de la semana para consolidarla. Avance actual: ${readiness.pct}%.`);
+          updatePlanOverview();
+          return;
+        }
+        week.consolidated = cb.checked;
+        week.complete = cb.checked ? true : week.complete;
+        savePlan();
+        renderPlan();
+        if (cb.checked) toast('✓ Semana consolidada. Descarga un respaldo para proteger el avance.');
+      });
+    });
+  }
+
+  function downloadCalendarICS() {
+    if (!planData.week0.startDate) {
+      toast('Define la fecha de inicio en la Semana 0 antes de crear el calendario.');
+      document.getElementById('planStartDate')?.focus();
+      return;
+    }
+    const escapeICS = value => String(value || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+    const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+    const events = getPersonalizedProgram().map((guide, i) => {
+      const start = weekDateRange(i).start.replace(/-/g, '');
+      const end = addDaysISO(weekDateRange(i).start, 1).replace(/-/g, '');
+      return [
+        'BEGIN:VEVENT',
+        `UID:genios-${i + 1}-${planData.week0.startDate}@somosgenios`,
+        `DTSTAMP:${now}`,
+        `DTSTART;VALUE=DATE:${start}`,
+        `DTEND;VALUE=DATE:${end}`,
+        `SUMMARY:${escapeICS(`Programa G.E.N.I.O.S. · ${guide.title}`)}`,
+        `DESCRIPTION:${escapeICS(`${guide.lens}\nPrioridad central: ${fieldValue(planData.week0.priority, 'Por definir')}`)}`,
+        'END:VEVENT'
+      ].join('\r\n');
+    }).join('\r\n');
+    const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Diagnostico GENIOS//ES\r\nCALSCALE:GREGORIAN\r\n${events}\r\nEND:VCALENDAR`;
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Ciclo_Diagnostico_GENIOS_6_Semanas.ics';
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    toast('Calendario descargado. Ábrelo para añadir las seis semanas.');
+  }
+
+  function downloadBackup() {
+    planData.meta.lastBackupAt = new Date().toISOString();
+    savePlan({ refreshReport: false, touch: false });
+    const payload = {
+      schema: 'diagnostico-genios-v5',
+      app: 'Diagnóstico G.E.N.I.O.S.',
+      version: APP_VERSION,
+      exportedAt: new Date().toISOString(),
+      respondentName: getRespondentName(),
+      answers,
+      planData
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const safeName = (getRespondentName() || 'usuario').replace(/[^\p{L}\p{N}_-]+/gu, '_');
+    a.href = url;
+    a.download = `Respaldo_Diagnostico_GENIOS_${safeName}.json`;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    toast('✓ Respaldo completo descargado.');
+  }
+
+  function reportHeaderLines(type) {
+    const label = type === 'followup' ? 'REPORTE DE SEGUIMIENTO' : 'REPORTE INICIAL';
+    return [`DIAGNÓSTICO G.E.N.I.O.S. · ${label}`, `Versión ${APP_VERSION} · ${APP_EDITION}`, ''];
+  }
+
+  function appendDiagnosisText(lines, state) {
+    const { level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
+    const focus = dimScores[focusIndex];
+    const strength = dimScores[strengthIndex];
+    const risk = riskTable[level.num];
+    const profile = profiles[profileIndex];
+    lines.push('', 'LECTURA PRINCIPAL', buildExecutiveReading(level, strength, focus, profile));
+    lines.push('', 'NIVEL GENERAL', `${level.num} · ${level.name}`, level.desc, `Frase guía: ${level.phrase}`);
+    lines.push('', 'LECTURA POR DIMENSIÓN');
+    dimScores.forEach(d => lines.push(`${d.letter} · ${d.name}: ${dimensionBand(d.score)} (${d.score}/20). ${dimensionReading(d)} Recomendación: ${dimensionRecommendation(d)}`));
+    lines.push('', 'FORTALEZA PRINCIPAL', `${strength.letter} · ${strength.name}`);
+    lines.push('', 'PRIORIDAD CENTRAL', `${focus.letter} · ${focus.name}`);
+    lines.push('', 'RIESGO Y PREGUNTA', `Riesgo: ${risk.riesgo}`, `Prioridad práctica: ${risk.prioridad}`, `Pregunta: ${risk.pregunta}`);
+    lines.push('', 'ACCIONES CONCRETAS');
+    focus.actions.forEach((a, i) => lines.push(`${i + 1}. ${a.title}: ${a.body}`));
+  }
+
+  function appendWeekZeroText(lines) {
+    lines.push('', 'SEMANA 0 · TERRENO DE PRÁCTICA',
+      `Estado de prioridad: ${planData.week0.priorityLocked ? 'Confirmada y bloqueada' : 'Editable'}`,
+      `Inicio: ${planReportValue(planData.week0.startDate)}`,
+      `Cierre estimado: ${planReportValue(planData.week0.endDate)}`,
+      `Contexto: ${planReportValue(planData.week0.context)}`,
+      `Prioridad central: ${planReportValue(planData.week0.priority)}`,
+      `Quién podrá observarla: ${planReportValue(planData.week0.witness)}`,
+      `Conducta concreta: ${planReportValue(planData.week0.behavior)}`,
+      `Evidencia central esperada: ${planReportValue(planData.week0.expectedEvidence)}`
+    );
+  }
+
+  function buildReportText(type = 'initial') {
+    const state = calculate();
+    const name = getRespondentName();
+    const lines = reportHeaderLines(type);
+    lines.push(`Nombre: ${name || 'Sin nombre'}`, `Respuestas completadas: ${state.answered}/24`);
+    if (!state.complete) {
+      lines.push('', 'Resultado: diagnóstico incompleto. Completa las 24 afirmaciones para generar una lectura personalizada.');
+      return lines.join('\n');
+    }
+    if (type === 'initial') {
+      appendDiagnosisText(lines, state);
+      appendWeekZeroText(lines);
+    } else {
+      const focus = state.dimScores[state.focusIndex];
+      lines.push('', 'RESUMEN DEL CICLO', `Prioridad central: ${planReportValue(planData.week0.priority || `${focus.letter} · ${focus.name}`)}`,
+        `Prácticas realizadas: ${planData.weeks.filter(w => w.complete || w.consolidated).length}/6`,
+        `Semanas consolidadas: ${planData.weeks.filter(w => w.consolidated).length}/6`);
+      appendWeekZeroText(lines);
+      getPersonalizedProgram().forEach((guide, i) => {
+        const week = planData.weeks[i];
+        if (!hasWeekActivity(week)) return;
+        const period = weekDateRange(i).label;
+        lines.push('', `${guide.title} · ${weekStatusLabel(week)} · ${period}`,
+          `Conexión: ${planReportValue(week.connection)}`,
+          `Primera situación: ${planReportValue(week.situation1)}`,
+          `Evidencia esperada: ${planReportValue(week.expectedEvidence || guide.suggestedEvidence)}`,
+          `Evidencia obtenida: ${planReportValue(week.evidenceObtained)}`,
+          `Frase de sala: ${planReportValue(week.phrase || guide.suggestedPhrase)}`,
+          `Fricción: ${planReportValue(week.friction || guide.suggestedFriction)}`,
+          `Recuperación: ${planReportValue(week.recovery || guide.suggestedRecovery)}`,
+          `Segunda situación: ${planReportValue(week.situation2)}`,
+          `Ajuste: ${planReportValue(week.adjustment)}`,
+          `Aprendizaje: ${planReportValue(week.learning)}`);
+      });
+      lines.push('', 'CIERRE DEL CICLO',
+        `Cambio para otros: ${planReportValue(planData.closing.change)}`,
+        `Evidencia repetida: ${planReportValue(planData.closing.repeatedEvidence)}`,
+        `Parte que protegeré: ${planReportValue(planData.closing.protect)}`,
+        `Lente de apoyo: ${planReportValue(planData.closing.supportLens)}`,
+        `Siguiente estándar: ${planReportValue(planData.closing.nextStandard)}`,
+        `Fecha de revisión: ${planReportValue(planData.closing.reviewDate)}`);
+    }
+    lines.push('', 'Nota metodológica: autoobservación orientativa. No es una prueba psicométrica ni debe utilizarse para comparar personas o tomar decisiones laborales.', '', '@somosgenios');
+    return lines.join('\n');
+  }
+
+  function printableCover({ type, name, date, scoreLabel }) {
+    const followup = type === 'followup';
+    return `
+      <section class="pdf-cover">
+        <div class="pdf-kicker">${followup ? 'Reporte de seguimiento' : 'Reporte inicial'}</div>
+        <h1>Diagnóstico<br><span>G.E.N.I.O.S.</span></h1>
+        <p>${followup ? 'Evidencias, ajustes y aprendizajes del ciclo de seis semanas.' : 'Lectura de tus seis conductas profesionales y diseño de una prioridad central.'}</p>
+        <div class="pdf-cover-meta">
+          <div class="pdf-cover-box"><small>Nombre</small><strong>${escapeHTML(name || 'Sin nombre')}</strong></div>
+          <div class="pdf-cover-box"><small>Fecha</small><strong>${escapeHTML(date)}</strong></div>
+          <div class="pdf-cover-box"><small>Resultado</small><strong>${escapeHTML(scoreLabel)}</strong></div>
+          <div class="pdf-cover-box"><small>${followup ? 'Consolidadas' : 'Versión'}</small><strong>${followup ? `${planData.weeks.filter(w => w.consolidated).length}/6` : APP_VERSION}</strong></div>
+        </div>
+      </section>`;
+  }
+
+  function printableWeekZero() {
+    return `
+      <section class="pdf-section pdf-card">
+        <div class="pdf-eyebrow">Plan de ejecución</div>
+        <h2>Semana 0 · Terreno y prioridad central</h2>
+        <div class="pdf-list">
+          <div class="pdf-list-item"><strong>Estado</strong><span>${planData.week0.priorityLocked ? 'Prioridad confirmada y bloqueada' : 'Prioridad todavía editable'}</span></div>
+          <div class="pdf-list-item"><strong>Periodo</strong><span>${escapeHTML(planReportValue(planData.week0.startDate))} — ${escapeHTML(planReportValue(planData.week0.endDate))}</span></div>
+          <div class="pdf-list-item"><strong>Contexto real</strong><span>${escapeHTML(planReportValue(planData.week0.context))}</span></div>
+          <div class="pdf-list-item"><strong>Prioridad central</strong><span>${escapeHTML(planReportValue(planData.week0.priority))}</span></div>
+          <div class="pdf-list-item"><strong>Quién podrá observarla</strong><span>${escapeHTML(planReportValue(planData.week0.witness))}</span></div>
+          <div class="pdf-list-item"><strong>Conducta concreta</strong><span>${escapeHTML(planReportValue(planData.week0.behavior))}</span></div>
+          <div class="pdf-list-item"><strong>Evidencia central esperada</strong><span>${escapeHTML(planReportValue(planData.week0.expectedEvidence))}</span></div>
+        </div>
+      </section>`;
+  }
+
+  function dimensionEvidence(letter) {
+    return String(answers[`EVID_${letter}`] || '').trim();
+  }
+
+  function behaviorLeverageReason(focus, strength) {
+    const scoreGap = Math.max(0, strength.score - focus.score);
+    const base = `Tu prioridad no se elige solo por ser el puntaje más bajo. Se selecciona porque ${focus.letter} · ${focus.name} es la conducta que hoy deja mayor incertidumbre dentro de tu mapa.`;
+    return scoreGap >= 5
+      ? `${base} Existe una brecha de ${scoreGap} puntos respecto de tu fortaleza principal, por lo que una mejora visible aquí puede equilibrar el sistema con rapidez.`
+      : `${base} El mapa es relativamente equilibrado; por eso el foco debe ponerse en convertir esta conducta en un patrón reconocible bajo condiciones reales.`;
+  }
+
+  function sevenDayExperiment(focus) {
+    const action = focus.actions[0];
+    return {
+      conduct: action ? action.body : focus.plan,
+      trigger: `La próxima vez que aparezca una situación donde ${focus.name.toLowerCase()} sea necesaria.`,
+      evidence: `Una persona puede describir qué hiciste y qué cambió después, sin depender de tu intención.`
+    };
+  }
+
+  function buildPrintableReportHTML(type = 'initial') {
+    const state = calculate();
+    const { complete, answered, level, dimScores, focusIndex, strengthIndex, profileIndex } = state;
+    const name = getRespondentName();
+    const date = new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' });
+    const scoreLabel = complete ? `${level.num} · ${level.name}` : `${answered}/24`;
+    let html = `<article class="pdf-report-shell">${printableCover({ type, name, date, scoreLabel })}`;
+
+    if (!complete) {
+      html += `<section class="pdf-section pdf-card"><div class="pdf-muted-box">Completa las 24 afirmaciones para generar el reporte.</div></section></article>`;
+      return html;
+    }
+
+    const focus = dimScores[focusIndex];
+    const strength = dimScores[strengthIndex];
+    const risk = riskTable[level.num];
+    const profile = profiles[profileIndex];
+
+    if (type === 'initial') {
+      html += `
+        <section class="pdf-section pdf-card">
+          <div class="pdf-title-row"><div><div class="pdf-eyebrow">Resumen ejecutivo</div><h2>Tu lectura principal</h2></div><div class="pdf-small">${escapeHTML(name || 'Sin nombre')}<br>Versión ${APP_VERSION}</div></div>
+          <div class="pdf-hero-summary"><strong>${escapeHTML(buildExecutiveReading(level, strength, focus, profile))}</strong><p>${escapeHTML(level.desc)}</p>
+            <div class="pdf-pill-row"><span class="pdf-pill">Nivel ${level.num} · ${escapeHTML(level.name)}</span><span class="pdf-pill">Fortaleza: ${strength.letter}</span><span class="pdf-pill">Prioridad: ${focus.letter}</span></div>
+          </div><div class="pdf-quote">“${escapeHTML(level.phrase)}”</div>
+        </section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Mapa G.E.N.I.O.S.</div><h2>Lectura por dimensión</h2><div class="pdf-dimension-grid">`;
+      dimScores.forEach(d => {
+        html += `<div class="pdf-dimension-card"><div class="pdf-dimension-head"><strong>${d.letter} · ${escapeHTML(d.name)}</strong><span class="pdf-score-chip">${dimensionBand(d.score)} · ${d.score}/20</span></div><p>${escapeHTML(dimensionReading(d))}</p><p><strong>Próximo ajuste:</strong> ${escapeHTML(dimensionRecommendation(d))}</p></div>`;
+      });
+      html += `</div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Evidencias recientes</div><h2>Escenas que respaldan tu lectura</h2><div class="pdf-list">${dimScores.map(d => `<div class="pdf-list-item"><strong>${d.letter} · ${escapeHTML(d.name)}</strong><span>${escapeHTML(dimensionEvidence(d.letter) || 'No registraste una evidencia para esta conducta.')}</span></div>`).join('')}</div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Fortaleza y prioridad</div><h2>Qué aprovechar y qué trabajar primero</h2><div class="pdf-reading-grid">
+          <div class="pdf-reading-card"><span>Fortaleza principal</span><strong>${strength.letter} · ${escapeHTML(strength.name)}</strong><p>Úsala como base para construir evidencia profesional.</p></div>
+          <div class="pdf-reading-card"><span>Prioridad central</span><strong>${focus.letter} · ${escapeHTML(focus.name)}</strong><p>Una mejora concreta aquí puede mover el resto del sistema.</p></div>
+          <div class="pdf-reading-card"><span>Perfil sugerido</span><strong>${escapeHTML(profile.name)}</strong><p>Lectura complementaria, no etiqueta fija.</p></div>
+        </div><div class="pdf-hero-summary"><strong>Por qué esta es tu conducta palanca</strong><p>${escapeHTML(behaviorLeverageReason(focus, strength))}</p></div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Experimento de siete días</div><h2>Convierte la prioridad en evidencia</h2><div class="pdf-list">
+          <div class="pdf-list-item"><strong>Conducta observable</strong><span>${escapeHTML(sevenDayExperiment(focus).conduct)}</span></div>
+          <div class="pdf-list-item"><strong>Momento de activación</strong><span>${escapeHTML(sevenDayExperiment(focus).trigger)}</span></div>
+          <div class="pdf-list-item"><strong>Evidencia que buscarás</strong><span>${escapeHTML(sevenDayExperiment(focus).evidence)}</span></div>
+        </div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Riesgo y pregunta</div><h2>Tu siguiente conversación contigo</h2><div class="pdf-list">
+          <div class="pdf-list-item"><strong>Riesgo</strong><span>${escapeHTML(risk.riesgo)}</span></div><div class="pdf-list-item"><strong>Prioridad práctica</strong><span>${escapeHTML(risk.prioridad)}</span></div><div class="pdf-list-item"><strong>Pregunta de avance</strong><span>${escapeHTML(risk.pregunta)}</span></div>
+        </div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Acciones concretas</div><h2>Fortalece tu prioridad central</h2><div class="pdf-actions-grid">`;
+      focus.actions.forEach((a, i) => { html += `<div class="pdf-action"><div class="pdf-action-num">${i + 1}</div><div><h3>${escapeHTML(a.title)}</h3><p class="pdf-small">${escapeHTML(a.body)}</p></div></div>`; });
+      html += `</div></section>${printableWeekZero()}`;
+      html += `<section class="pdf-section pdf-card pdf-plan-section"><div class="pdf-eyebrow">Programa personalizado de 6 semanas</div><h2>Entrena una conducta hasta convertirla en evidencia</h2><div class="pdf-list">`;
+      getPersonalizedProgram().forEach((guide, i) => {
+        html += `<div class="pdf-list-item"><strong>${escapeHTML(guide.title)}</strong><p><b>Objetivo:</b> ${escapeHTML(guide.aim)}</p><p><b>Conducta:</b> ${escapeHTML(guide.suggestedConduct)}</p><p><b>Evidencia:</b> ${escapeHTML(guide.suggestedEvidence)}</p><p><b>Fricción probable:</b> ${escapeHTML(guide.suggestedFriction)}</p><p><b>Recuperación:</b> ${escapeHTML(guide.suggestedRecovery)}</p><p><b>Cierre semanal:</b> ${escapeHTML(guide.requirement)}</p></div>`;
+      });
+      html += `</div></section>`;
+    } else {
+      const activeWeeks = planData.weeks.map((week, i) => ({ week, i })).filter(x => hasWeekActivity(x.week));
+      html += `
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Resumen del ciclo</div><h2>Prioridad, avance y evidencia</h2><div class="pdf-kpis">
+          <div class="pdf-kpi"><span>Prioridad</span><strong>${escapeHTML(planData.week0.priority || `${focus.letter} · ${focus.name}`)}</strong></div>
+          <div class="pdf-kpi"><span>Prácticas</span><strong>${planData.weeks.filter(w => w.complete || w.consolidated).length}/6</strong></div>
+          <div class="pdf-kpi"><span>Consolidadas</span><strong>${planData.weeks.filter(w => w.consolidated).length}/6</strong></div>
+          <div class="pdf-kpi"><span>Estado</span><strong>${planData.week0.priorityLocked ? 'Protegida' : 'Editable'}</strong></div>
+        </div></section>${printableWeekZero()}
+        <section class="pdf-section pdf-card pdf-plan-section"><div class="pdf-eyebrow">Seguimiento de 6 semanas</div><h2>Evidencias, ajustes y aprendizajes</h2><div class="pdf-list">`;
+      if (!activeWeeks.length) html += `<div class="pdf-muted-box">Todavía no existen prácticas registradas. Completa una semana para generar el seguimiento.</div>`;
+      activeWeeks.forEach(({ week, i }) => {
+        const guide = getPersonalizedProgram()[i];
+        html += `<div class="pdf-list-item"><strong>${escapeHTML(guide.title)} · ${weekStatusLabel(week)} · ${escapeHTML(weekDateRange(i).label)}</strong>
+          <p><b>Conexión:</b> ${escapeHTML(planReportValue(week.connection))}</p><p><b>Primera situación:</b> ${escapeHTML(planReportValue(week.situation1))}</p><p><b>Evidencia obtenida:</b> ${escapeHTML(planReportValue(week.evidenceObtained))}</p><p><b>Frase de sala:</b> ${escapeHTML(planReportValue(week.phrase || guide.suggestedPhrase))}</p><p><b>Fricción:</b> ${escapeHTML(planReportValue(week.friction || guide.suggestedFriction))}</p><p><b>Recuperación:</b> ${escapeHTML(planReportValue(week.recovery || guide.suggestedRecovery))}</p><p><b>Segunda situación:</b> ${escapeHTML(planReportValue(week.situation2))}</p><p><b>Ajuste:</b> ${escapeHTML(planReportValue(week.adjustment))}</p><p><b>Aprendizaje:</b> ${escapeHTML(planReportValue(week.learning))}</p></div>`;
+      });
+      html += `</div></section>
+        <section class="pdf-section pdf-card"><div class="pdf-eyebrow">Cierre del ciclo</div><h2>Del experimento al Sello Profesional</h2><div class="pdf-list">
+          <div class="pdf-list-item"><strong>Qué cambió para otros</strong><span>${escapeHTML(planReportValue(planData.closing.change))}</span></div><div class="pdf-list-item"><strong>Evidencia repetida</strong><span>${escapeHTML(planReportValue(planData.closing.repeatedEvidence))}</span></div><div class="pdf-list-item"><strong>Parte que protegeré</strong><span>${escapeHTML(planReportValue(planData.closing.protect))}</span></div><div class="pdf-list-item"><strong>Lente de apoyo</strong><span>${escapeHTML(planReportValue(planData.closing.supportLens))}</span></div><div class="pdf-list-item"><strong>Siguiente estándar</strong><span>${escapeHTML(planReportValue(planData.closing.nextStandard))}</span></div><div class="pdf-list-item"><strong>Fecha de revisión</strong><span>${escapeHTML(planReportValue(planData.closing.reviewDate))}</span></div>
+        </div></section>`;
+    }
+
+    html += `<section class="pdf-section"><div class="pdf-footer-note">Diagnóstico G.E.N.I.O.S. · Versión ${APP_VERSION} · ${APP_EDITION}. Autoobservación orientativa; no es una prueba psicométrica ni debe utilizarse para decisiones laborales. Basado en «Somos G.E.N.I.O.S.» de Kevin Lück · @somosgenios</div></section></article>`;
+    return html;
+  }
+
+  function updatePrintReport(type = activeReportType) {
+    activeReportType = type;
+    const report = document.getElementById('printReport');
+    report.innerHTML = buildPrintableReportHTML(type);
+  }
+
+  function openPDFDialog(type = 'initial') {
+    if (!ensureNameForReport()) return;
+    if (type === 'initial' && !calculate().complete) {
+      toast('Completa las 24 respuestas antes de guardar el reporte inicial.');
+      return;
+    }
+    activeReportType = type;
+    updatePrintReport(type);
+    const previousTitle = document.title;
+    const safeName = getRespondentName().replace(/[^\p{L}\p{N}\s_-]/gu, '').trim();
+    const label = type === 'followup' ? 'Seguimiento' : 'Reporte Inicial';
+    document.title = `Diagnóstico G.E.N.I.O.S. - ${label}${safeName ? ` - ${safeName}` : ''}`;
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => { document.title = previousTitle; }, 700);
+    }, 100);
+    toast('En la ventana de impresión, selecciona “Guardar como PDF”.');
+  }
+
+  async function copyReport(type = 'initial') {
+    if (!ensureNameForReport()) return;
+    const text = buildReportText(type);
+    try {
+      await navigator.clipboard.writeText(text);
+      toast(type === 'followup' ? '📋 Seguimiento copiado.' : '📋 Reporte inicial copiado.');
+    } catch {
+      const area = document.createElement('textarea');
+      area.value = text; document.body.appendChild(area); area.select(); document.execCommand('copy'); area.remove();
+      toast('📋 Reporte copiado.');
+    }
+  }
+
+  function initPWA() {
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      const button = document.getElementById('btnInstallApp');
+      if (button) button.hidden = false;
+    });
+  }
+
   function initEvents() {
+    const nameInput = document.getElementById('respondentName');
+    if (nameInput) {
+      nameInput.value = respondentName;
+      nameInput.addEventListener('input', e => { respondentName = e.target.value; saveName(); schedulePrintRefresh(); });
+    }
+    document.getElementById('btnReset').addEventListener('click', resetAll);
+    document.getElementById('btnResetTop').addEventListener('click', resetAll);
+    document.getElementById('btnScrollResults').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.getElementById('btnCompleteResult').addEventListener('click', () => document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.getElementById('decisionCta').addEventListener('click', () => document.getElementById('mejorar').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    document.getElementById('btnCopyInitial').addEventListener('click', () => copyReport('initial'));
+    document.getElementById('btnPDFInitial').addEventListener('click', () => openPDFDialog('initial'));
+    document.getElementById('btnCopyFollowup').addEventListener('click', () => copyReport('followup'));
+    document.getElementById('btnPDFFollowup').addEventListener('click', () => openPDFDialog('followup'));
+    document.getElementById('btnBackupPlan').addEventListener('click', downloadBackup);
+    document.getElementById('btnImportPlan').addEventListener('click', () => document.getElementById('planImportFile').click());
+    document.getElementById('planImportFile').addEventListener('change', e => { importBackupFile(e.target.files?.[0]); e.target.value = ''; });
+    document.getElementById('btnCalendar').addEventListener('click', downloadCalendarICS);
+    document.getElementById('btnResetPlan').addEventListener('click', resetPlanOnly);
+    document.getElementById('btnLockPriority').addEventListener('click', () => setPriorityLock(true));
+    document.getElementById('btnUnlockPriority').addEventListener('click', () => setPriorityLock(false));
+    const installButton = document.getElementById('btnInstallApp');
+    if (installButton) installButton.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installButton.hidden = true;
+    });
+    bindPlanEvents();
+    initPWA();
+  }
+
+  /* ── INIT ── */
+  function initEventsLegacy() {
     const nameInput = document.getElementById('respondentName');
     if (nameInput) {
       nameInput.value = respondentName;
       nameInput.addEventListener('input', e => {
         respondentName = e.target.value;
         saveName();
-        updatePrintReport();
+        schedulePrintRefresh();
       });
     }
     document.getElementById('btnReset').addEventListener('click', resetAll);
@@ -2683,6 +4504,14 @@
     document.getElementById('btnCopy').addEventListener('click', copyReport);
     document.getElementById('btnDownload').addEventListener('click', openPDFDialog);
     document.getElementById('btnPrint').addEventListener('click', openPDFDialog);
+    document.getElementById('btnBackupPlan').addEventListener('click', downloadBackup);
+    document.getElementById('btnImportPlan').addEventListener('click', () => document.getElementById('planImportFile').click());
+    document.getElementById('planImportFile').addEventListener('change', e => {
+      importBackupFile(e.target.files?.[0]);
+      e.target.value = '';
+    });
+    document.getElementById('btnResetPlan').addEventListener('click', resetPlanOnly);
+    bindPlanEvents();
   }
 
   renderQuestions();
